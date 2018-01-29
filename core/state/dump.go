@@ -20,9 +20,9 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/rlp"
-	"github.com/merval-project/merval/trie"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/rlp"
+	"github.com/genom-project/genom/trie"
 )
 
 type DumpAccount struct {

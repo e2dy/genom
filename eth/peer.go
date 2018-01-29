@@ -23,10 +23,10 @@ import (
 	"sync"
 	"time"
 
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/core/types"
-	"github.com/merval-project/merval/p2p"
-	"github.com/merval-project/merval/rlp"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/core/types"
+	"github.com/genom-project/genom/p2p"
+	"github.com/genom-project/genom/rlp"
 	"gopkg.in/fatih/set.v0"
 )
 

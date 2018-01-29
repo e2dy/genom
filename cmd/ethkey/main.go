@@ -20,7 +20,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/merval-project/merval/cmd/utils"
+	"github.com/genom-project/genom/cmd/utils"
 	"gopkg.in/urfave/cli.v1"
 )
 

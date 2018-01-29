@@ -6,8 +6,8 @@ import (
 	"encoding/json"
 	"math/big"
 
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/common/math"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/common/math"
 )
 
 var _ = (*difficultyTestMarshaling)(nil)

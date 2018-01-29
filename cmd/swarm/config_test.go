@@ -25,9 +25,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/merval-project/merval/rpc"
-	"github.com/merval-project/merval/swarm"
-	"github.com/merval-project/merval/swarm/api"
+	"github.com/genom-project/genom/rpc"
+	"github.com/genom-project/genom/swarm"
+	"github.com/genom-project/genom/swarm/api"
 
 	"github.com/docker/docker/pkg/reexec"
 )

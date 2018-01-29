@@ -22,7 +22,7 @@ package storage
 import (
 	"fmt"
 
-	"github.com/merval-project/merval/compression/rle"
+	"github.com/genom-project/genom/compression/rle"
 	"github.com/syndtr/goleveldb/leveldb"
 	"github.com/syndtr/goleveldb/leveldb/iterator"
 	"github.com/syndtr/goleveldb/leveldb/opt"

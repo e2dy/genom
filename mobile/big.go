@@ -22,7 +22,7 @@ import (
 	"errors"
 	"math/big"
 
-	"github.com/merval-project/merval/common"
+	"github.com/genom-project/genom/common"
 )
 
 // A BigInt represents a signed multi-precision integer.

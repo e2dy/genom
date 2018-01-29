@@ -21,7 +21,7 @@ import (
 	"bytes"
 	"errors"
 
-	"github.com/merval-project/merval/crypto"
+	"github.com/genom-project/genom/crypto"
 )
 
 const (

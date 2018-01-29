@@ -22,8 +22,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/merval-project/merval/p2p/discover"
-	"github.com/merval-project/merval/p2p/simulations/adapters"
+	"github.com/genom-project/genom/p2p/discover"
+	"github.com/genom-project/genom/p2p/simulations/adapters"
 )
 
 // TestNetworkSimulation creates a multi-node simulation network with each node

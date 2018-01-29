@@ -40,23 +40,23 @@ import (
 	"sync"
 	"time"
 
-	"github.com/merval-project/merval/accounts"
-	"github.com/merval-project/merval/accounts/keystore"
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/core"
-	"github.com/merval-project/merval/core/types"
-	"github.com/merval-project/merval/eth"
-	"github.com/merval-project/merval/eth/downloader"
-	"github.com/merval-project/merval/ethclient"
-	"github.com/merval-project/merval/ethstats"
-	"github.com/merval-project/merval/les"
-	"github.com/merval-project/merval/log"
-	"github.com/merval-project/merval/node"
-	"github.com/merval-project/merval/p2p"
-	"github.com/merval-project/merval/p2p/discover"
-	"github.com/merval-project/merval/p2p/discv5"
-	"github.com/merval-project/merval/p2p/nat"
-	"github.com/merval-project/merval/params"
+	"github.com/genom-project/genom/accounts"
+	"github.com/genom-project/genom/accounts/keystore"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/core"
+	"github.com/genom-project/genom/core/types"
+	"github.com/genom-project/genom/eth"
+	"github.com/genom-project/genom/eth/downloader"
+	"github.com/genom-project/genom/ethclient"
+	"github.com/genom-project/genom/ethstats"
+	"github.com/genom-project/genom/les"
+	"github.com/genom-project/genom/log"
+	"github.com/genom-project/genom/node"
+	"github.com/genom-project/genom/p2p"
+	"github.com/genom-project/genom/p2p/discover"
+	"github.com/genom-project/genom/p2p/discv5"
+	"github.com/genom-project/genom/p2p/nat"
+	"github.com/genom-project/genom/params"
 	"golang.org/x/net/websocket"
 )
 
@@ -450,7 +450,7 @@ func (f *faucet) apiHandler(conn *websocket.Conn) {
 		case *noauthFlag:
 			username, avatar, address, err = authNoAuth(msg.URL)
 		default:
-			err = errors.New("Something funky happened, please open an issue at https://github.com/merval-project/merval/issues")
+			err = errors.New("Something funky happened, please open an issue at https://github.com/genom-project/genom/issues")
 		}
 		if err != nil {
 			if err = sendError(conn, err); err != nil {

@@ -17,7 +17,7 @@
 package fuse
 
 import (
-	"github.com/merval-project/merval/swarm/api"
+	"github.com/genom-project/genom/swarm/api"
 	"sync"
 	"time"
 )

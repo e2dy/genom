@@ -19,8 +19,8 @@ package trie
 import (
 	"fmt"
 
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/log"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/log"
 )
 
 var secureKeyPrefix = []byte("secure-key-")

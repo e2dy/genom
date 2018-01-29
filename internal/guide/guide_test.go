@@ -30,8 +30,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/merval-project/merval/accounts/keystore"
-	"github.com/merval-project/merval/core/types"
+	"github.com/genom-project/genom/accounts/keystore"
+	"github.com/genom-project/genom/core/types"
 )
 
 // Tests that the account management snippets work correctly.

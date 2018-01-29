@@ -20,10 +20,10 @@ import (
 	"bytes"
 	"fmt"
 
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/crypto"
-	"github.com/merval-project/merval/log"
-	"github.com/merval-project/merval/rlp"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/crypto"
+	"github.com/genom-project/genom/log"
+	"github.com/genom-project/genom/rlp"
 )
 
 // Prove constructs a merkle proof for key. The result contains all

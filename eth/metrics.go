@@ -17,8 +17,8 @@
 package eth
 
 import (
-	"github.com/merval-project/merval/metrics"
-	"github.com/merval-project/merval/p2p"
+	"github.com/genom-project/genom/metrics"
+	"github.com/genom-project/genom/p2p"
 )
 
 var (

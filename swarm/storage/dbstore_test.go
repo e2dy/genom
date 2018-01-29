@@ -21,7 +21,7 @@ import (
 	"io/ioutil"
 	"testing"
 
-	"github.com/merval-project/merval/common"
+	"github.com/genom-project/genom/common"
 )
 
 func initDbStore(t *testing.T) *DbStore {

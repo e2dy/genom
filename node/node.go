@@ -26,13 +26,13 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/merval-project/merval/accounts"
-	"github.com/merval-project/merval/ethdb"
-	"github.com/merval-project/merval/event"
-	"github.com/merval-project/merval/internal/debug"
-	"github.com/merval-project/merval/log"
-	"github.com/merval-project/merval/p2p"
-	"github.com/merval-project/merval/rpc"
+	"github.com/genom-project/genom/accounts"
+	"github.com/genom-project/genom/ethdb"
+	"github.com/genom-project/genom/event"
+	"github.com/genom-project/genom/internal/debug"
+	"github.com/genom-project/genom/log"
+	"github.com/genom-project/genom/p2p"
+	"github.com/genom-project/genom/rpc"
 	"github.com/prometheus/prometheus/util/flock"
 )
 

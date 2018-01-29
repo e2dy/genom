@@ -36,7 +36,7 @@ import (
 	"math/big"
 	"unsafe"
 
-	"github.com/merval-project/merval/common/math"
+	"github.com/genom-project/genom/common/math"
 )
 
 /*

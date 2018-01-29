@@ -19,9 +19,9 @@ package runtime
 import (
 	"math/big"
 
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/core"
-	"github.com/merval-project/merval/core/vm"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/core"
+	"github.com/genom-project/genom/core/vm"
 )
 
 func NewEnv(cfg *Config) *vm.EVM {

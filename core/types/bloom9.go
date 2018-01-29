@@ -20,8 +20,8 @@ import (
 	"fmt"
 	"math/big"
 
-	"github.com/merval-project/merval/common/hexutil"
-	"github.com/merval-project/merval/crypto"
+	"github.com/genom-project/genom/common/hexutil"
+	"github.com/genom-project/genom/crypto"
 )
 
 type bytesBacked interface {

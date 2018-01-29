@@ -32,7 +32,7 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/merval-project/merval/log"
+	"github.com/genom-project/genom/log"
 )
 
 var (

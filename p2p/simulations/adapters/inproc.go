@@ -23,12 +23,12 @@ import (
 	"net"
 	"sync"
 
-	"github.com/merval-project/merval/event"
-	"github.com/merval-project/merval/log"
-	"github.com/merval-project/merval/node"
-	"github.com/merval-project/merval/p2p"
-	"github.com/merval-project/merval/p2p/discover"
-	"github.com/merval-project/merval/rpc"
+	"github.com/genom-project/genom/event"
+	"github.com/genom-project/genom/log"
+	"github.com/genom-project/genom/node"
+	"github.com/genom-project/genom/p2p"
+	"github.com/genom-project/genom/p2p/discover"
+	"github.com/genom-project/genom/rpc"
 )
 
 // SimAdapter is a NodeAdapter which creates in-memory simulation nodes and

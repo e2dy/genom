@@ -22,10 +22,10 @@ import (
 	"context"
 	"math/big"
 
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/core"
-	"github.com/merval-project/merval/core/types"
-	"github.com/merval-project/merval/ethdb"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/core"
+	"github.com/genom-project/genom/core/types"
+	"github.com/genom-project/genom/ethdb"
 )
 
 // NoOdr is the default context passed to an ODR capable function when the ODR

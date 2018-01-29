@@ -21,9 +21,9 @@ import (
 	"hash"
 	"sync"
 
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/crypto/sha3"
-	"github.com/merval-project/merval/rlp"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/crypto/sha3"
+	"github.com/genom-project/genom/rlp"
 )
 
 // calculator is a utility used by the hasher to calculate the hash value of the tree node.

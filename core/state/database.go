@@ -20,9 +20,9 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/ethdb"
-	"github.com/merval-project/merval/trie"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/ethdb"
+	"github.com/genom-project/genom/trie"
 	lru "github.com/hashicorp/golang-lru"
 )
 

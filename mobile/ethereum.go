@@ -22,8 +22,8 @@ import (
 	"errors"
 	"math/big"
 
-	ethereum "github.com/merval-project/merval"
-	"github.com/merval-project/merval/common"
+	ethereum "github.com/genom-project/genom"
+	"github.com/genom-project/genom/common"
 )
 
 // Subscription represents an event subscription where events are

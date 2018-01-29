@@ -21,7 +21,7 @@ package keystore
 import (
 	"time"
 
-	"github.com/merval-project/merval/log"
+	"github.com/genom-project/genom/log"
 	"github.com/rjeczalik/notify"
 )
 

@@ -19,7 +19,7 @@ package ethapi
 import (
 	"sync"
 
-	"github.com/merval-project/merval/common"
+	"github.com/genom-project/genom/common"
 )
 
 type AddrLocker struct {

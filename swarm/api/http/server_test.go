@@ -26,11 +26,11 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/swarm/api"
-	swarm "github.com/merval-project/merval/swarm/api/client"
-	"github.com/merval-project/merval/swarm/storage"
-	"github.com/merval-project/merval/swarm/testutil"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/swarm/api"
+	swarm "github.com/genom-project/genom/swarm/api/client"
+	"github.com/genom-project/genom/swarm/storage"
+	"github.com/genom-project/genom/swarm/testutil"
 )
 
 func TestBzzGetPath(t *testing.T) {

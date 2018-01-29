@@ -19,7 +19,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/merval-project/merval/log"
+	"github.com/genom-project/genom/log"
 )
 
 // ensureVirtualHost checks whether a reverse-proxy is running on the specified

@@ -19,7 +19,7 @@ package vm
 import (
 	"fmt"
 
-	"github.com/merval-project/merval/params"
+	"github.com/genom-project/genom/params"
 )
 
 func makeStackFunc(pop, push int) stackValidationFunc {

@@ -3,9 +3,9 @@ InstallDir "$InstDir"
 OutFile "${OUTPUTFILE}" # set through command line arguments
 
 # Links for "Add/Remove Programs"
-!define HELPURL "https://github.com/merval-project/merval/issues"
-!define UPDATEURL "https://github.com/merval-project/merval/releases"
-!define ABOUTURL "https://github.com/merval-project/merval#ethereum-go"
+!define HELPURL "https://github.com/genom-project/genom/issues"
+!define UPDATEURL "https://github.com/genom-project/genom/releases"
+!define ABOUTURL "https://github.com/genom-project/genom#ethereum-go"
 !define /date NOW "%Y%m%d"
 
 PageEx license

@@ -22,9 +22,9 @@ import (
 	"math/big"
 	"time"
 
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/common/math"
-	"github.com/merval-project/merval/core/vm"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/common/math"
+	"github.com/genom-project/genom/core/vm"
 )
 
 type JSONLogger struct {

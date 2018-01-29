@@ -24,7 +24,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/merval-project/merval/common"
+	"github.com/genom-project/genom/common"
 	"golang.org/x/crypto/pbkdf2"
 )
 

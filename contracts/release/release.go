@@ -25,15 +25,15 @@ import (
 	"strings"
 	"time"
 
-	"github.com/merval-project/merval/accounts/abi/bind"
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/eth"
-	"github.com/merval-project/merval/internal/ethapi"
-	"github.com/merval-project/merval/les"
-	"github.com/merval-project/merval/log"
-	"github.com/merval-project/merval/node"
-	"github.com/merval-project/merval/p2p"
-	"github.com/merval-project/merval/rpc"
+	"github.com/genom-project/genom/accounts/abi/bind"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/eth"
+	"github.com/genom-project/genom/internal/ethapi"
+	"github.com/genom-project/genom/les"
+	"github.com/genom-project/genom/log"
+	"github.com/genom-project/genom/node"
+	"github.com/genom-project/genom/p2p"
+	"github.com/genom-project/genom/rpc"
 )
 
 // Interval to check for new releases
@@ -149,7 +149,7 @@ func (r *ReleaseService) checkVersion() {
 
 		warning := fmt.Sprintf("Client v%d.%d.%d-%x seems older than the latest upstream release v%d.%d.%d-%x",
 			r.config.Major, r.config.Minor, r.config.Patch, r.config.Commit[:4], version.Major, version.Minor, version.Patch, version.Commit[:4])
-		howtofix := fmt.Sprintf("Please check https://github.com/merval-project/merval/releases for new releases")
+		howtofix := fmt.Sprintf("Please check https://github.com/genom-project/genom/releases for new releases")
 		separator := strings.Repeat("-", len(warning))
 
 		log.Warn(separator)

@@ -25,7 +25,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/merval-project/merval/log"
+	"github.com/genom-project/genom/log"
 )
 
 // explorerDockerfile is the Dockerfile required to run a block explorer.

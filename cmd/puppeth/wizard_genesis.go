@@ -25,10 +25,10 @@ import (
 	"math/rand"
 	"time"
 
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/core"
-	"github.com/merval-project/merval/log"
-	"github.com/merval-project/merval/params"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/core"
+	"github.com/genom-project/genom/log"
+	"github.com/genom-project/genom/params"
 )
 
 // makeGenesis creates a new genesis struct based on some user input.

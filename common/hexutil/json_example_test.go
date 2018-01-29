@@ -20,7 +20,7 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/merval-project/merval/common/hexutil"
+	"github.com/genom-project/genom/common/hexutil"
 )
 
 type MyType [5]byte

@@ -25,14 +25,14 @@ import (
 	"runtime"
 	"strings"
 
-	"github.com/merval-project/merval/accounts"
-	"github.com/merval-project/merval/accounts/keystore"
-	"github.com/merval-project/merval/accounts/usbwallet"
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/crypto"
-	"github.com/merval-project/merval/log"
-	"github.com/merval-project/merval/p2p"
-	"github.com/merval-project/merval/p2p/discover"
+	"github.com/genom-project/genom/accounts"
+	"github.com/genom-project/genom/accounts/keystore"
+	"github.com/genom-project/genom/accounts/usbwallet"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/crypto"
+	"github.com/genom-project/genom/log"
+	"github.com/genom-project/genom/p2p"
+	"github.com/genom-project/genom/p2p/discover"
 )
 
 const (

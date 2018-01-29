@@ -19,8 +19,8 @@ package les
 import (
 	"time"
 
-	"github.com/merval-project/merval/common/bitutil"
-	"github.com/merval-project/merval/light"
+	"github.com/genom-project/genom/common/bitutil"
+	"github.com/genom-project/genom/light"
 )
 
 const (

@@ -19,8 +19,8 @@ package runtime_test
 import (
 	"fmt"
 
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/core/vm/runtime"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/core/vm/runtime"
 )
 
 func ExampleExecute() {

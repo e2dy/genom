@@ -20,7 +20,7 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/merval-project/merval/params"
+	"github.com/genom-project/genom/params"
 )
 
 func TestTransaction(t *testing.T) {

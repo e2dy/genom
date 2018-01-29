@@ -20,7 +20,7 @@ import (
 	"errors"
 	"math/big"
 
-	"github.com/merval-project/merval/params"
+	"github.com/genom-project/genom/params"
 )
 
 type (

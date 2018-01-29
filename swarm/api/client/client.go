@@ -33,7 +33,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/merval-project/merval/swarm/api"
+	"github.com/genom-project/genom/swarm/api"
 )
 
 var (

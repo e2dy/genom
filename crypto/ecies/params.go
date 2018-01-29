@@ -42,7 +42,7 @@ import (
 	"fmt"
 	"hash"
 
-	ethcrypto "github.com/merval-project/merval/crypto"
+	ethcrypto "github.com/genom-project/genom/crypto"
 )
 
 var (

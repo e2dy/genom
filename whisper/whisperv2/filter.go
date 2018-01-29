@@ -21,7 +21,7 @@ package whisperv2
 import (
 	"crypto/ecdsa"
 
-	"github.com/merval-project/merval/event/filter"
+	"github.com/genom-project/genom/event/filter"
 )
 
 // Filter is used to subscribe to specific types of whisper messages.

@@ -24,7 +24,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/merval-project/merval/swarm/testutil"
+	"github.com/genom-project/genom/swarm/testutil"
 )
 
 func TestError(t *testing.T) {

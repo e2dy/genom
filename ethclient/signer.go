@@ -20,8 +20,8 @@ import (
 	"errors"
 	"math/big"
 
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/core/types"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/core/types"
 )
 
 // senderFromServer is a types.Signer that remembers the sender address returned by the RPC

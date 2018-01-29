@@ -22,9 +22,9 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/merval-project/merval/cmd/utils"
-	"github.com/merval-project/merval/log"
-	"github.com/merval-project/merval/swarm/storage"
+	"github.com/genom-project/genom/cmd/utils"
+	"github.com/genom-project/genom/log"
+	"github.com/genom-project/genom/swarm/storage"
 	"gopkg.in/urfave/cli.v1"
 )
 

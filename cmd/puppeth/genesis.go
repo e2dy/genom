@@ -21,11 +21,11 @@ import (
 	"errors"
 	"math"
 
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/common/hexutil"
-	"github.com/merval-project/merval/consensus/ethash"
-	"github.com/merval-project/merval/core"
-	"github.com/merval-project/merval/params"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/common/hexutil"
+	"github.com/genom-project/genom/consensus/ethash"
+	"github.com/genom-project/genom/core"
+	"github.com/genom-project/genom/params"
 )
 
 // cppEthereumGenesisSpec represents the genesis specification format used by the

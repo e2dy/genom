@@ -26,8 +26,8 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/merval-project/merval/common/bitutil"
-	"github.com/merval-project/merval/crypto"
+	"github.com/genom-project/genom/common/bitutil"
+	"github.com/genom-project/genom/crypto"
 )
 
 // bloomIndexes represents the bit indexes inside the bloom filter that belong

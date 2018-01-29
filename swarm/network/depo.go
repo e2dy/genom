@@ -22,8 +22,8 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/merval-project/merval/log"
-	"github.com/merval-project/merval/swarm/storage"
+	"github.com/genom-project/genom/log"
+	"github.com/genom-project/genom/swarm/storage"
 )
 
 // Handler for storage/retrieval related protocol requests

@@ -29,12 +29,12 @@ import (
 	"strings"
 	"text/tabwriter"
 
-	"github.com/merval-project/merval/crypto"
-	"github.com/merval-project/merval/p2p"
-	"github.com/merval-project/merval/p2p/discover"
-	"github.com/merval-project/merval/p2p/simulations"
-	"github.com/merval-project/merval/p2p/simulations/adapters"
-	"github.com/merval-project/merval/rpc"
+	"github.com/genom-project/genom/crypto"
+	"github.com/genom-project/genom/p2p"
+	"github.com/genom-project/genom/p2p/discover"
+	"github.com/genom-project/genom/p2p/simulations"
+	"github.com/genom-project/genom/p2p/simulations/adapters"
+	"github.com/genom-project/genom/rpc"
 	"gopkg.in/urfave/cli.v1"
 )
 

@@ -34,8 +34,8 @@ import (
 	"sort"
 	"strconv"
 
-	"github.com/merval-project/merval/core"
-	"github.com/merval-project/merval/rlp"
+	"github.com/genom-project/genom/core"
+	"github.com/genom-project/genom/rlp"
 )
 
 type allocItem struct{ Addr, Balance *big.Int }

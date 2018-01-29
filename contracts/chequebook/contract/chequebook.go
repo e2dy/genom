@@ -7,10 +7,10 @@ import (
 	"math/big"
 	"strings"
 
-	"github.com/merval-project/merval/accounts/abi"
-	"github.com/merval-project/merval/accounts/abi/bind"
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/core/types"
+	"github.com/genom-project/genom/accounts/abi"
+	"github.com/genom-project/genom/accounts/abi/bind"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/core/types"
 )
 
 // ChequebookABI is the input ABI used to generate the binding from.

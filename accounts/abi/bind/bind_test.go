@@ -26,7 +26,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/merval-project/merval/common"
+	"github.com/genom-project/genom/common"
 	"golang.org/x/tools/imports"
 )
 

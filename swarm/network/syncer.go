@@ -22,8 +22,8 @@ import (
 	"fmt"
 	"path/filepath"
 
-	"github.com/merval-project/merval/log"
-	"github.com/merval-project/merval/swarm/storage"
+	"github.com/genom-project/genom/log"
+	"github.com/genom-project/genom/swarm/storage"
 )
 
 // syncer parameters (global, not peer specific) default values

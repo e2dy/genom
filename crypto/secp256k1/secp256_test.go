@@ -24,8 +24,8 @@ import (
 	"encoding/hex"
 	"testing"
 
-	"github.com/merval-project/merval/common/math"
-	"github.com/merval-project/merval/crypto/randentropy"
+	"github.com/genom-project/genom/common/math"
+	"github.com/genom-project/genom/crypto/randentropy"
 )
 
 const TestCount = 1000

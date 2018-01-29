@@ -21,8 +21,8 @@ package geth
 import (
 	"math/big"
 
-	"github.com/merval-project/merval/core/types"
-	"github.com/merval-project/merval/ethclient"
+	"github.com/genom-project/genom/core/types"
+	"github.com/genom-project/genom/ethclient"
 )
 
 // EthereumClient provides access to the Ethereum APIs.

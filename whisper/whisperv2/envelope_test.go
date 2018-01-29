@@ -21,8 +21,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/merval-project/merval/crypto"
-	"github.com/merval-project/merval/crypto/ecies"
+	"github.com/genom-project/genom/crypto"
+	"github.com/genom-project/genom/crypto/ecies"
 )
 
 func TestEnvelopeOpen(t *testing.T) {

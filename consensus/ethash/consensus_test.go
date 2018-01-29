@@ -23,9 +23,9 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/merval-project/merval/common/math"
-	"github.com/merval-project/merval/core/types"
-	"github.com/merval-project/merval/params"
+	"github.com/genom-project/genom/common/math"
+	"github.com/genom-project/genom/core/types"
+	"github.com/genom-project/genom/params"
 )
 
 type diffTest struct {

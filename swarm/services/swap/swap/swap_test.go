@@ -21,7 +21,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/merval-project/merval/common"
+	"github.com/genom-project/genom/common"
 )
 
 type testInPayment struct {

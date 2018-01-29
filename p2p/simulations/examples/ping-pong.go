@@ -25,13 +25,13 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/merval-project/merval/log"
-	"github.com/merval-project/merval/node"
-	"github.com/merval-project/merval/p2p"
-	"github.com/merval-project/merval/p2p/discover"
-	"github.com/merval-project/merval/p2p/simulations"
-	"github.com/merval-project/merval/p2p/simulations/adapters"
-	"github.com/merval-project/merval/rpc"
+	"github.com/genom-project/genom/log"
+	"github.com/genom-project/genom/node"
+	"github.com/genom-project/genom/p2p"
+	"github.com/genom-project/genom/p2p/discover"
+	"github.com/genom-project/genom/p2p/simulations"
+	"github.com/genom-project/genom/p2p/simulations/adapters"
+	"github.com/genom-project/genom/rpc"
 )
 
 var adapterType = flag.String("adapter", "sim", `node adapter to use (one of "sim", "exec" or "docker")`)

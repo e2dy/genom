@@ -26,10 +26,10 @@ import (
 	"runtime"
 	"strings"
 
-	"github.com/merval-project/merval/cmd/internal/browser"
-	"github.com/merval-project/merval/params"
+	"github.com/genom-project/genom/cmd/internal/browser"
+	"github.com/genom-project/genom/params"
 
-	"github.com/merval-project/merval/cmd/utils"
+	"github.com/genom-project/genom/cmd/utils"
 	cli "gopkg.in/urfave/cli.v1"
 )
 
@@ -41,7 +41,7 @@ var bugCommand = cli.Command{
 	Category:  "MISCELLANEOUS COMMANDS",
 }
 
-const issueUrl = "https://github.com/merval-project/merval/issues/new"
+const issueUrl = "https://github.com/genom-project/genom/issues/new"
 
 // reportBug reports a bug by opening a new URL to the go-ethereum GH issue
 // tracker and setting default values as the issue body.

@@ -20,8 +20,8 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/crypto"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/crypto"
 )
 
 func TestConfig(t *testing.T) {

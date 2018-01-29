@@ -25,7 +25,7 @@ import (
 	"strings"
 	"text/template"
 
-	"github.com/merval-project/merval/log"
+	"github.com/genom-project/genom/log"
 )
 
 // ethstatsDockerfile is the Dockerfile required to build an ethstats backend

@@ -32,9 +32,9 @@ import (
 	"sync"
 	"time"
 
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/crypto"
-	"github.com/merval-project/merval/log"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/crypto"
+	"github.com/genom-project/genom/log"
 )
 
 const (

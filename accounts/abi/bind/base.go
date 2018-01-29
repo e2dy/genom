@@ -22,11 +22,11 @@ import (
 	"fmt"
 	"math/big"
 
-	"github.com/merval-project/merval"
-	"github.com/merval-project/merval/accounts/abi"
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/core/types"
-	"github.com/merval-project/merval/crypto"
+	"github.com/genom-project/genom"
+	"github.com/genom-project/genom/accounts/abi"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/core/types"
+	"github.com/genom-project/genom/crypto"
 )
 
 // SignerFn is a signer function callback when a contract requires a method to

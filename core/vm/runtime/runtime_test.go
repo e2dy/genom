@@ -21,11 +21,11 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/merval-project/merval/accounts/abi"
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/core/state"
-	"github.com/merval-project/merval/core/vm"
-	"github.com/merval-project/merval/ethdb"
+	"github.com/genom-project/genom/accounts/abi"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/core/state"
+	"github.com/genom-project/genom/core/vm"
+	"github.com/genom-project/genom/ethdb"
 )
 
 func TestDefaults(t *testing.T) {

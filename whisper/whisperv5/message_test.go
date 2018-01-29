@@ -21,8 +21,8 @@ import (
 	mrand "math/rand"
 	"testing"
 
-	"github.com/merval-project/merval/crypto"
-	"github.com/merval-project/merval/rlp"
+	"github.com/genom-project/genom/crypto"
+	"github.com/genom-project/genom/rlp"
 )
 
 func generateMessageParams() (*MessageParams, error) {

@@ -21,9 +21,9 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/merval-project/merval/accounts/keystore"
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/log"
+	"github.com/genom-project/genom/accounts/keystore"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/log"
 )
 
 // deployNode creates a new node configuration based on some user input.

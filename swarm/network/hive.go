@@ -22,12 +22,12 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/log"
-	"github.com/merval-project/merval/p2p/discover"
-	"github.com/merval-project/merval/p2p/netutil"
-	"github.com/merval-project/merval/swarm/network/kademlia"
-	"github.com/merval-project/merval/swarm/storage"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/log"
+	"github.com/genom-project/genom/p2p/discover"
+	"github.com/genom-project/genom/p2p/netutil"
+	"github.com/genom-project/genom/swarm/network/kademlia"
+	"github.com/genom-project/genom/swarm/storage"
 )
 
 // Hive is the logistic manager of the swarm

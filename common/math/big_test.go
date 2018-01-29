@@ -22,7 +22,7 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/merval-project/merval/common"
+	"github.com/genom-project/genom/common"
 )
 
 func TestHexOrDecimal256(t *testing.T) {

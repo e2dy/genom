@@ -1,4 +1,4 @@
-export ROOT="${GOPATH}/src/github.com/merval-project/merval"
+export ROOT="${GOPATH}/src/github.com/genom-project/genom"
 export PATH="${ROOT}/swarm/dev/bin:${PATH}"
 
 cd "${ROOT}/swarm/dev"

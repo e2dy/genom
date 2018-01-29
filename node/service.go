@@ -19,11 +19,11 @@ package node
 import (
 	"reflect"
 
-	"github.com/merval-project/merval/accounts"
-	"github.com/merval-project/merval/ethdb"
-	"github.com/merval-project/merval/event"
-	"github.com/merval-project/merval/p2p"
-	"github.com/merval-project/merval/rpc"
+	"github.com/genom-project/genom/accounts"
+	"github.com/genom-project/genom/ethdb"
+	"github.com/genom-project/genom/event"
+	"github.com/genom-project/genom/p2p"
+	"github.com/genom-project/genom/rpc"
 )
 
 // ServiceContext is a collection of service independent options inherited from

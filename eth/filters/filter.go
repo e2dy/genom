@@ -20,13 +20,13 @@ import (
 	"context"
 	"math/big"
 
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/core"
-	"github.com/merval-project/merval/core/bloombits"
-	"github.com/merval-project/merval/core/types"
-	"github.com/merval-project/merval/ethdb"
-	"github.com/merval-project/merval/event"
-	"github.com/merval-project/merval/rpc"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/core"
+	"github.com/genom-project/genom/core/bloombits"
+	"github.com/genom-project/genom/core/types"
+	"github.com/genom-project/genom/ethdb"
+	"github.com/genom-project/genom/event"
+	"github.com/genom-project/genom/rpc"
 )
 
 type Backend interface {

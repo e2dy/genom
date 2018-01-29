@@ -21,8 +21,8 @@ import (
 	"math/rand"
 	"testing"
 
-	"github.com/merval-project/merval/core/types"
-	"github.com/merval-project/merval/crypto"
+	"github.com/genom-project/genom/core/types"
+	"github.com/genom-project/genom/crypto"
 )
 
 // Tests that transactions can be added to strict lists and list contents and

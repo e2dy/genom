@@ -22,7 +22,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/merval-project/merval/crypto"
+	"github.com/genom-project/genom/crypto"
 )
 
 // Tests whether a message can be wrapped without any identity or encryption.

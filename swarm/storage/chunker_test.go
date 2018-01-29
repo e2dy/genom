@@ -27,7 +27,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/merval-project/merval/crypto/sha3"
+	"github.com/genom-project/genom/crypto/sha3"
 )
 
 /*

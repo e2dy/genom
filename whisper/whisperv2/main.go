@@ -27,12 +27,12 @@ import (
 	"os"
 	"time"
 
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/crypto"
-	"github.com/merval-project/merval/logger"
-	"github.com/merval-project/merval/p2p"
-	"github.com/merval-project/merval/p2p/nat"
-	"github.com/merval-project/merval/whisper"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/crypto"
+	"github.com/genom-project/genom/logger"
+	"github.com/genom-project/genom/p2p"
+	"github.com/genom-project/genom/p2p/nat"
+	"github.com/genom-project/genom/whisper"
 )
 
 func main() {

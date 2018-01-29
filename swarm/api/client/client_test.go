@@ -25,8 +25,8 @@ import (
 	"sort"
 	"testing"
 
-	"github.com/merval-project/merval/swarm/api"
-	"github.com/merval-project/merval/swarm/testutil"
+	"github.com/genom-project/genom/swarm/api"
+	"github.com/genom-project/genom/swarm/testutil"
 )
 
 // TestClientUploadDownloadRaw test uploading and downloading raw data to swarm

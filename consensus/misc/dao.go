@@ -21,9 +21,9 @@ import (
 	"errors"
 	"math/big"
 
-	"github.com/merval-project/merval/core/state"
-	"github.com/merval-project/merval/core/types"
-	"github.com/merval-project/merval/params"
+	"github.com/genom-project/genom/core/state"
+	"github.com/genom-project/genom/core/types"
+	"github.com/genom-project/genom/params"
 )
 
 var (

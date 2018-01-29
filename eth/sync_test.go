@@ -21,9 +21,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/merval-project/merval/eth/downloader"
-	"github.com/merval-project/merval/p2p"
-	"github.com/merval-project/merval/p2p/discover"
+	"github.com/genom-project/genom/eth/downloader"
+	"github.com/genom-project/genom/p2p"
+	"github.com/genom-project/genom/p2p/discover"
 )
 
 // Tests that fast sync gets disabled as soon as a real block is successfully

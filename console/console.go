@@ -27,9 +27,9 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/merval-project/merval/internal/jsre"
-	"github.com/merval-project/merval/internal/web3ext"
-	"github.com/merval-project/merval/rpc"
+	"github.com/genom-project/genom/internal/jsre"
+	"github.com/genom-project/genom/internal/web3ext"
+	"github.com/genom-project/genom/rpc"
 	"github.com/mattn/go-colorable"
 	"github.com/peterh/liner"
 	"github.com/robertkrimen/otto"

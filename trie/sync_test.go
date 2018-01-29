@@ -20,8 +20,8 @@ import (
 	"bytes"
 	"testing"
 
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/ethdb"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/ethdb"
 )
 
 // makeTestTrie create a sample test trie to test node-wise reconstruction.

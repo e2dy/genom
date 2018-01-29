@@ -38,9 +38,9 @@ import (
 	"math/big"
 	"unsafe"
 
-	"github.com/merval-project/merval/core/state"
-	"github.com/merval-project/merval/crypto"
-	"github.com/merval-project/merval/params"
+	"github.com/genom-project/genom/core/state"
+	"github.com/genom-project/genom/crypto"
+	"github.com/genom-project/genom/params"
 )
 
 type JitVm struct {

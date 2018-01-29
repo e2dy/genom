@@ -19,7 +19,7 @@ package event_test
 import (
 	"fmt"
 
-	"github.com/merval-project/merval/event"
+	"github.com/genom-project/genom/event"
 )
 
 func ExampleFeed_acknowledgedEvents() {

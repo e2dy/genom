@@ -27,10 +27,10 @@ import (
 	"errors"
 	"strconv"
 
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/crypto"
-	"github.com/merval-project/merval/crypto/ecies"
-	"github.com/merval-project/merval/log"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/crypto"
+	"github.com/genom-project/genom/crypto/ecies"
+	"github.com/genom-project/genom/log"
 )
 
 // Options specifies the exact way a message should be wrapped into an Envelope.

@@ -23,7 +23,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/merval-project/merval/log"
+	"github.com/genom-project/genom/log"
 	"github.com/rcrowley/go-metrics"
 	"github.com/rcrowley/go-metrics/exp"
 )

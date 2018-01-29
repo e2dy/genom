@@ -16,7 +16,7 @@
 
 package core
 
-import "github.com/merval-project/merval/common"
+import "github.com/genom-project/genom/common"
 
 // BadHashes represent a set of manually tracked bad hashes (usually hard forks)
 var BadHashes = map[common.Hash]bool{

@@ -19,7 +19,7 @@ package p2p
 import (
 	"fmt"
 
-	"github.com/merval-project/merval/p2p/discover"
+	"github.com/genom-project/genom/p2p/discover"
 )
 
 // Protocol represents a P2P subprotocol implementation.

@@ -23,8 +23,8 @@ import (
 	"math/rand"
 	"reflect"
 
-	"github.com/merval-project/merval/common/hexutil"
-	"github.com/merval-project/merval/crypto/sha3"
+	"github.com/genom-project/genom/common/hexutil"
+	"github.com/genom-project/genom/crypto/sha3"
 )
 
 const (

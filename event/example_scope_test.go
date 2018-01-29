@@ -20,7 +20,7 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/merval-project/merval/event"
+	"github.com/genom-project/genom/event"
 )
 
 // This example demonstrates how SubscriptionScope can be used to control the lifetime of

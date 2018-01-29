@@ -21,7 +21,7 @@ package geth
 import (
 	"errors"
 
-	"github.com/merval-project/merval/p2p"
+	"github.com/genom-project/genom/p2p"
 )
 
 // NodeInfo represents pi short summary of the information known about the host.

@@ -21,9 +21,9 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/core/types"
-	"github.com/merval-project/merval/log"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/core/types"
+	"github.com/genom-project/genom/log"
 )
 
 // WaitMined waits for tx to be mined on the blockchain.

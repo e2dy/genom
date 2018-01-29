@@ -20,11 +20,11 @@ import (
 	"errors"
 	"math/big"
 
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/common/math"
-	"github.com/merval-project/merval/core/vm"
-	"github.com/merval-project/merval/log"
-	"github.com/merval-project/merval/params"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/common/math"
+	"github.com/genom-project/genom/core/vm"
+	"github.com/genom-project/genom/log"
+	"github.com/genom-project/genom/params"
 )
 
 var (

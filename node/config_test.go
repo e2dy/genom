@@ -24,8 +24,8 @@ import (
 	"runtime"
 	"testing"
 
-	"github.com/merval-project/merval/crypto"
-	"github.com/merval-project/merval/p2p"
+	"github.com/genom-project/genom/crypto"
+	"github.com/genom-project/genom/p2p"
 )
 
 // Tests that datadirs can be successfully created, be them manually configured

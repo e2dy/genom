@@ -21,9 +21,9 @@ package geth
 import (
 	"encoding/json"
 
-	"github.com/merval-project/merval/core"
-	"github.com/merval-project/merval/p2p/discv5"
-	"github.com/merval-project/merval/params"
+	"github.com/genom-project/genom/core"
+	"github.com/genom-project/genom/p2p/discv5"
+	"github.com/genom-project/genom/params"
 )
 
 // MainnetGenesis returns the JSON spec to use for the main Ethereum network. It

@@ -21,8 +21,8 @@ import (
 
 	"sync/atomic"
 
-	"github.com/merval-project/merval/consensus"
-	"github.com/merval-project/merval/log"
+	"github.com/genom-project/genom/consensus"
+	"github.com/genom-project/genom/log"
 )
 
 type CpuAgent struct {

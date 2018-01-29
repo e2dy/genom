@@ -27,8 +27,8 @@ import (
 	"testing/quick"
 	"time"
 
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/crypto"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/crypto"
 )
 
 type nullTransport struct{}

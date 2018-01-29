@@ -32,8 +32,8 @@ import (
 	"io/ioutil"
 	"sync"
 
-	"github.com/merval-project/merval/log"
-	"github.com/merval-project/merval/rlp"
+	"github.com/genom-project/genom/log"
+	"github.com/genom-project/genom/rlp"
 	"github.com/syndtr/goleveldb/leveldb"
 	"github.com/syndtr/goleveldb/leveldb/iterator"
 )

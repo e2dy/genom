@@ -16,7 +16,7 @@
 
 package bind
 
-import "github.com/merval-project/merval/accounts/abi"
+import "github.com/genom-project/genom/accounts/abi"
 
 // tmplData is the data structure required to fill the binding template.
 type tmplData struct {

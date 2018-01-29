@@ -26,8 +26,8 @@ import (
 	"strings"
 	"text/template"
 
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/log"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/log"
 )
 
 // nodeDockerfile is the Dockerfile required to run an Ethereum node.

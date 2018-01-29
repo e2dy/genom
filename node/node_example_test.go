@@ -20,9 +20,9 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/merval-project/merval/node"
-	"github.com/merval-project/merval/p2p"
-	"github.com/merval-project/merval/rpc"
+	"github.com/genom-project/genom/node"
+	"github.com/genom-project/genom/p2p"
+	"github.com/genom-project/genom/rpc"
 )
 
 // SampleService is a trivial network service that can be attached to a node for

@@ -27,8 +27,8 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/merval-project/merval/swarm/api"
-	"github.com/merval-project/merval/swarm/storage"
+	"github.com/genom-project/genom/swarm/api"
+	"github.com/genom-project/genom/swarm/storage"
 )
 
 type fileInfo struct {

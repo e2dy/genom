@@ -25,9 +25,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/merval-project/merval/cmd/utils"
-	"github.com/merval-project/merval/node"
-	"github.com/merval-project/merval/rpc"
+	"github.com/genom-project/genom/cmd/utils"
+	"github.com/genom-project/genom/node"
+	"github.com/genom-project/genom/rpc"
 	"github.com/gizak/termui"
 	"gopkg.in/urfave/cli.v1"
 )

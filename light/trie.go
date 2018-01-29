@@ -20,11 +20,11 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/core/state"
-	"github.com/merval-project/merval/core/types"
-	"github.com/merval-project/merval/crypto"
-	"github.com/merval-project/merval/trie"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/core/state"
+	"github.com/genom-project/genom/core/types"
+	"github.com/genom-project/genom/crypto"
+	"github.com/genom-project/genom/trie"
 )
 
 func NewState(ctx context.Context, head *types.Header, odr OdrBackend) *state.StateDB {

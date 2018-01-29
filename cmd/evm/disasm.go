@@ -22,7 +22,7 @@ import (
 	"io/ioutil"
 	"strings"
 
-	"github.com/merval-project/merval/core/asm"
+	"github.com/genom-project/genom/core/asm"
 	cli "gopkg.in/urfave/cli.v1"
 )
 

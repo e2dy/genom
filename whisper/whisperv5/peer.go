@@ -20,10 +20,10 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/log"
-	"github.com/merval-project/merval/p2p"
-	"github.com/merval-project/merval/rlp"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/log"
+	"github.com/genom-project/genom/p2p"
+	"github.com/genom-project/genom/rlp"
 	set "gopkg.in/fatih/set.v0"
 )
 

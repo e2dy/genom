@@ -26,12 +26,12 @@ import (
 	"runtime"
 	"strings"
 
-	"github.com/merval-project/merval/core"
-	"github.com/merval-project/merval/core/types"
-	"github.com/merval-project/merval/internal/debug"
-	"github.com/merval-project/merval/log"
-	"github.com/merval-project/merval/node"
-	"github.com/merval-project/merval/rlp"
+	"github.com/genom-project/genom/core"
+	"github.com/genom-project/genom/core/types"
+	"github.com/genom-project/genom/internal/debug"
+	"github.com/genom-project/genom/log"
+	"github.com/genom-project/genom/node"
+	"github.com/genom-project/genom/rlp"
 )
 
 const (

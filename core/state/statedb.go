@@ -23,12 +23,12 @@ import (
 	"sort"
 	"sync"
 
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/core/types"
-	"github.com/merval-project/merval/crypto"
-	"github.com/merval-project/merval/log"
-	"github.com/merval-project/merval/rlp"
-	"github.com/merval-project/merval/trie"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/core/types"
+	"github.com/genom-project/genom/crypto"
+	"github.com/genom-project/genom/log"
+	"github.com/genom-project/genom/rlp"
+	"github.com/genom-project/genom/trie"
 )
 
 type revision struct {

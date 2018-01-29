@@ -5,7 +5,7 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/merval-project/merval/common"
+	"github.com/genom-project/genom/common"
 )
 
 // precompiledTest defines the input/output pairs for precompiled contract tests.

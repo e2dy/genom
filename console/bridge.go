@@ -23,9 +23,9 @@ import (
 	"strings"
 	"time"
 
-	"github.com/merval-project/merval/accounts/usbwallet"
-	"github.com/merval-project/merval/log"
-	"github.com/merval-project/merval/rpc"
+	"github.com/genom-project/genom/accounts/usbwallet"
+	"github.com/genom-project/genom/log"
+	"github.com/genom-project/genom/rpc"
 	"github.com/robertkrimen/otto"
 )
 

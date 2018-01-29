@@ -20,13 +20,13 @@ import (
 	"context"
 	"math/big"
 
-	"github.com/merval-project/merval"
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/common/hexutil"
-	"github.com/merval-project/merval/core/types"
-	"github.com/merval-project/merval/internal/ethapi"
-	"github.com/merval-project/merval/rlp"
-	"github.com/merval-project/merval/rpc"
+	"github.com/genom-project/genom"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/common/hexutil"
+	"github.com/genom-project/genom/core/types"
+	"github.com/genom-project/genom/internal/ethapi"
+	"github.com/genom-project/genom/rlp"
+	"github.com/genom-project/genom/rpc"
 )
 
 // ContractBackend implements bind.ContractBackend with direct calls to Ethereum

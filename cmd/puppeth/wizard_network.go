@@ -20,7 +20,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/merval-project/merval/log"
+	"github.com/genom-project/genom/log"
 )
 
 // manageServers displays a list of servers the user can disconnect from, and an

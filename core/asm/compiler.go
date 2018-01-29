@@ -23,8 +23,8 @@ import (
 	"os"
 	"strings"
 
-	"github.com/merval-project/merval/common/math"
-	"github.com/merval-project/merval/core/vm"
+	"github.com/genom-project/genom/common/math"
+	"github.com/genom-project/genom/core/vm"
 )
 
 // Compiler contains information about the parsed source

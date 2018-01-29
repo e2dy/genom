@@ -19,10 +19,10 @@ package les
 import (
 	"context"
 
-	"github.com/merval-project/merval/core"
-	"github.com/merval-project/merval/ethdb"
-	"github.com/merval-project/merval/light"
-	"github.com/merval-project/merval/log"
+	"github.com/genom-project/genom/core"
+	"github.com/genom-project/genom/ethdb"
+	"github.com/genom-project/genom/light"
+	"github.com/genom-project/genom/log"
 )
 
 // LesOdr implements light.OdrBackend

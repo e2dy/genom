@@ -21,7 +21,7 @@ import (
 	"sort"
 	"sync"
 
-	"github.com/merval-project/merval/event"
+	"github.com/genom-project/genom/event"
 )
 
 // Manager is an overarching account manager that can communicate with various

@@ -20,7 +20,7 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/merval-project/merval/common"
+	"github.com/genom-project/genom/common"
 	"gopkg.in/karalabe/cookiejar.v2/collections/prque"
 )
 

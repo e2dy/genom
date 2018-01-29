@@ -23,8 +23,8 @@ import (
 	"math/rand"
 	"time"
 
-	"github.com/merval-project/merval/common/mclock"
-	"github.com/merval-project/merval/log"
+	"github.com/genom-project/genom/common/mclock"
+	"github.com/genom-project/genom/log"
 )
 
 const (

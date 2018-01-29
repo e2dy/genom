@@ -26,12 +26,12 @@ import (
 	"testing"
 	"time"
 
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/consensus/ethash"
-	"github.com/merval-project/merval/core"
-	"github.com/merval-project/merval/eth"
-	"github.com/merval-project/merval/internal/jsre"
-	"github.com/merval-project/merval/node"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/consensus/ethash"
+	"github.com/genom-project/genom/core"
+	"github.com/genom-project/genom/eth"
+	"github.com/genom-project/genom/internal/jsre"
+	"github.com/genom-project/genom/node"
 )
 
 const (

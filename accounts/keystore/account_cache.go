@@ -27,9 +27,9 @@ import (
 	"sync"
 	"time"
 
-	"github.com/merval-project/merval/accounts"
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/log"
+	"github.com/genom-project/genom/accounts"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/log"
 	"gopkg.in/fatih/set.v0"
 )
 

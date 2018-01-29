@@ -23,10 +23,10 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/merval-project/merval/cmd/utils"
-	"github.com/merval-project/merval/consensus/ethash"
-	"github.com/merval-project/merval/eth"
-	"github.com/merval-project/merval/params"
+	"github.com/genom-project/genom/cmd/utils"
+	"github.com/genom-project/genom/consensus/ethash"
+	"github.com/genom-project/genom/eth"
+	"github.com/genom-project/genom/params"
 	"gopkg.in/urfave/cli.v1"
 )
 

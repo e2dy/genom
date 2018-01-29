@@ -22,9 +22,9 @@ import (
 	"sync"
 	"time"
 
-	"github.com/merval-project/merval/accounts"
-	"github.com/merval-project/merval/event"
-	"github.com/merval-project/merval/log"
+	"github.com/genom-project/genom/accounts"
+	"github.com/genom-project/genom/event"
+	"github.com/genom-project/genom/log"
 	"github.com/karalabe/hid"
 )
 

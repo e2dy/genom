@@ -21,11 +21,11 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/core/types"
-	"github.com/merval-project/merval/eth/downloader"
-	"github.com/merval-project/merval/log"
-	"github.com/merval-project/merval/p2p/discover"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/core/types"
+	"github.com/genom-project/genom/eth/downloader"
+	"github.com/genom-project/genom/log"
+	"github.com/genom-project/genom/p2p/discover"
 )
 
 const (

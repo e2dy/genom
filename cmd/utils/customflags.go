@@ -27,7 +27,7 @@ import (
 	"path"
 	"strings"
 
-	"github.com/merval-project/merval/common/math"
+	"github.com/genom-project/genom/common/math"
 	"gopkg.in/urfave/cli.v1"
 )
 

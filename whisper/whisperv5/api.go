@@ -24,12 +24,12 @@ import (
 	"sync"
 	"time"
 
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/common/hexutil"
-	"github.com/merval-project/merval/crypto"
-	"github.com/merval-project/merval/log"
-	"github.com/merval-project/merval/p2p/discover"
-	"github.com/merval-project/merval/rpc"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/common/hexutil"
+	"github.com/genom-project/genom/crypto"
+	"github.com/genom-project/genom/log"
+	"github.com/genom-project/genom/p2p/discover"
+	"github.com/genom-project/genom/rpc"
 )
 
 const (

@@ -21,11 +21,11 @@ import (
 	"net"
 	"time"
 
-	"github.com/merval-project/merval/contracts/chequebook"
-	"github.com/merval-project/merval/p2p/discover"
-	"github.com/merval-project/merval/swarm/network/kademlia"
-	"github.com/merval-project/merval/swarm/services/swap"
-	"github.com/merval-project/merval/swarm/storage"
+	"github.com/genom-project/genom/contracts/chequebook"
+	"github.com/genom-project/genom/p2p/discover"
+	"github.com/genom-project/genom/swarm/network/kademlia"
+	"github.com/genom-project/genom/swarm/services/swap"
+	"github.com/genom-project/genom/swarm/storage"
 )
 
 /*

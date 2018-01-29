@@ -19,7 +19,7 @@ package tests
 import (
 	"testing"
 
-	"github.com/merval-project/merval/core/vm"
+	"github.com/genom-project/genom/core/vm"
 )
 
 func TestVM(t *testing.T) {

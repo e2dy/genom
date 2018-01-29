@@ -29,8 +29,8 @@ import (
 
 	"github.com/cespare/cp"
 	"github.com/davecgh/go-spew/spew"
-	"github.com/merval-project/merval/accounts"
-	"github.com/merval-project/merval/common"
+	"github.com/genom-project/genom/accounts"
+	"github.com/genom-project/genom/common"
 )
 
 var (

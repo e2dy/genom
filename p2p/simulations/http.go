@@ -29,11 +29,11 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/merval-project/merval/event"
-	"github.com/merval-project/merval/p2p"
-	"github.com/merval-project/merval/p2p/discover"
-	"github.com/merval-project/merval/p2p/simulations/adapters"
-	"github.com/merval-project/merval/rpc"
+	"github.com/genom-project/genom/event"
+	"github.com/genom-project/genom/p2p"
+	"github.com/genom-project/genom/p2p/discover"
+	"github.com/genom-project/genom/p2p/simulations/adapters"
+	"github.com/genom-project/genom/rpc"
 	"github.com/julienschmidt/httprouter"
 	"golang.org/x/net/websocket"
 )

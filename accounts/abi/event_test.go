@@ -25,8 +25,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/crypto"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/crypto"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )
@@ -244,7 +244,7 @@ func unpackTestEventData(dest interface{}, hexData string, jsonEvent []byte, ass
 
 /*
 Taken from
-https://github.com/merval-project/merval/pull/15568
+https://github.com/genom-project/genom/pull/15568
 */
 
 type testResult struct {

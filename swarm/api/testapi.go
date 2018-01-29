@@ -17,7 +17,7 @@
 package api
 
 import (
-	"github.com/merval-project/merval/swarm/network"
+	"github.com/genom-project/genom/swarm/network"
 )
 
 type Control struct {

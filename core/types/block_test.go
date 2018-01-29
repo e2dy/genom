@@ -23,8 +23,8 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/rlp"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/rlp"
 )
 
 // from bcValidBlockTest.json, "SimpleTx"

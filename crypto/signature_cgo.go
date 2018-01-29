@@ -23,8 +23,8 @@ import (
 	"crypto/elliptic"
 	"fmt"
 
-	"github.com/merval-project/merval/common/math"
-	"github.com/merval-project/merval/crypto/secp256k1"
+	"github.com/genom-project/genom/common/math"
+	"github.com/genom-project/genom/crypto/secp256k1"
 )
 
 // Ecrecover returns the uncompressed public key that created the given signature.

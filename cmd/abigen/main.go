@@ -24,8 +24,8 @@ import (
 	"os"
 	"strings"
 
-	"github.com/merval-project/merval/accounts/abi/bind"
-	"github.com/merval-project/merval/common/compiler"
+	"github.com/genom-project/genom/accounts/abi/bind"
+	"github.com/genom-project/genom/common/compiler"
 )
 
 var (

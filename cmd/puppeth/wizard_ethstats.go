@@ -20,7 +20,7 @@ import (
 	"fmt"
 	"sort"
 
-	"github.com/merval-project/merval/log"
+	"github.com/genom-project/genom/log"
 )
 
 // deployEthstats queries the user for various input on deploying an ethstats

@@ -20,7 +20,7 @@ import (
 	"crypto/sha256"
 	"testing"
 
-	"github.com/merval-project/merval/crypto"
+	"github.com/genom-project/genom/crypto"
 	"golang.org/x/crypto/pbkdf2"
 )
 

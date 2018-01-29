@@ -21,17 +21,17 @@ import (
 	"fmt"
 	"sync/atomic"
 
-	"github.com/merval-project/merval/accounts"
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/consensus"
-	"github.com/merval-project/merval/core"
-	"github.com/merval-project/merval/core/state"
-	"github.com/merval-project/merval/core/types"
-	"github.com/merval-project/merval/eth/downloader"
-	"github.com/merval-project/merval/ethdb"
-	"github.com/merval-project/merval/event"
-	"github.com/merval-project/merval/log"
-	"github.com/merval-project/merval/params"
+	"github.com/genom-project/genom/accounts"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/consensus"
+	"github.com/genom-project/genom/core"
+	"github.com/genom-project/genom/core/state"
+	"github.com/genom-project/genom/core/types"
+	"github.com/genom-project/genom/eth/downloader"
+	"github.com/genom-project/genom/ethdb"
+	"github.com/genom-project/genom/event"
+	"github.com/genom-project/genom/log"
+	"github.com/genom-project/genom/params"
 )
 
 // Backend wraps all methods required for mining.

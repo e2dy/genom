@@ -25,7 +25,7 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/merval-project/merval/ethdb"
+	"github.com/genom-project/genom/ethdb"
 )
 
 func newTestLDB() (*ethdb.LDBDatabase, func()) {

@@ -25,17 +25,17 @@ import (
 	"os"
 	"strings"
 
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/common/hexutil"
-	"github.com/merval-project/merval/core"
-	"github.com/merval-project/merval/core/state"
-	"github.com/merval-project/merval/core/types"
-	"github.com/merval-project/merval/log"
-	"github.com/merval-project/merval/miner"
-	"github.com/merval-project/merval/params"
-	"github.com/merval-project/merval/rlp"
-	"github.com/merval-project/merval/rpc"
-	"github.com/merval-project/merval/trie"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/common/hexutil"
+	"github.com/genom-project/genom/core"
+	"github.com/genom-project/genom/core/state"
+	"github.com/genom-project/genom/core/types"
+	"github.com/genom-project/genom/log"
+	"github.com/genom-project/genom/miner"
+	"github.com/genom-project/genom/params"
+	"github.com/genom-project/genom/rlp"
+	"github.com/genom-project/genom/rpc"
+	"github.com/genom-project/genom/trie"
 )
 
 // PublicEthereumAPI provides an API to access Ethereum full node-related

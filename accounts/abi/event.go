@@ -20,8 +20,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/crypto"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/crypto"
 )
 
 // Event is an event potentially triggered by the EVM's LOG mechanism. The Event

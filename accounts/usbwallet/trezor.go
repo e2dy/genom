@@ -27,12 +27,12 @@ import (
 	"io"
 	"math/big"
 
-	"github.com/merval-project/merval/accounts"
-	"github.com/merval-project/merval/accounts/usbwallet/internal/trezor"
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/common/hexutil"
-	"github.com/merval-project/merval/core/types"
-	"github.com/merval-project/merval/log"
+	"github.com/genom-project/genom/accounts"
+	"github.com/genom-project/genom/accounts/usbwallet/internal/trezor"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/common/hexutil"
+	"github.com/genom-project/genom/core/types"
+	"github.com/genom-project/genom/log"
 	"github.com/golang/protobuf/proto"
 )
 

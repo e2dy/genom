@@ -26,7 +26,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/merval-project/merval/rlp"
+	"github.com/genom-project/genom/rlp"
 )
 
 var (

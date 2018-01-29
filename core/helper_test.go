@@ -20,9 +20,9 @@ import (
 	"container/list"
 	"fmt"
 
-	"github.com/merval-project/merval/core/types"
-	"github.com/merval-project/merval/ethdb"
-	"github.com/merval-project/merval/event"
+	"github.com/genom-project/genom/core/types"
+	"github.com/genom-project/genom/ethdb"
+	"github.com/genom-project/genom/event"
 )
 
 // Implement our EthTest Manager

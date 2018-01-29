@@ -24,8 +24,8 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/swarm/storage"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/swarm/storage"
 )
 
 var testDownloadDir, _ = ioutil.TempDir(os.TempDir(), "bzz-test")

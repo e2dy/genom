@@ -19,7 +19,7 @@ package state
 import (
 	"math/big"
 
-	"github.com/merval-project/merval/common"
+	"github.com/genom-project/genom/common"
 )
 
 type journalEntry interface {

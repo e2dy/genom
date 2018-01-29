@@ -19,8 +19,8 @@ package vm
 import (
 	"math/big"
 
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/core/types"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/core/types"
 )
 
 // StateDB is an EVM database for full state querying.

@@ -24,9 +24,9 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/merval-project/merval/cmd/utils"
-	"github.com/merval-project/merval/swarm/api"
-	swarm "github.com/merval-project/merval/swarm/api/client"
+	"github.com/genom-project/genom/cmd/utils"
+	"github.com/genom-project/genom/swarm/api"
+	swarm "github.com/genom-project/genom/swarm/api/client"
 	"gopkg.in/urfave/cli.v1"
 )
 

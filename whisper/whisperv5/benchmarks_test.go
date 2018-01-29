@@ -19,7 +19,7 @@ package whisperv5
 import (
 	"testing"
 
-	"github.com/merval-project/merval/crypto"
+	"github.com/genom-project/genom/crypto"
 )
 
 func BenchmarkDeriveKeyMaterial(b *testing.B) {

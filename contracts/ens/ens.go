@@ -22,11 +22,11 @@ import (
 	"math/big"
 	"strings"
 
-	"github.com/merval-project/merval/accounts/abi/bind"
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/contracts/ens/contract"
-	"github.com/merval-project/merval/core/types"
-	"github.com/merval-project/merval/crypto"
+	"github.com/genom-project/genom/accounts/abi/bind"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/contracts/ens/contract"
+	"github.com/genom-project/genom/core/types"
+	"github.com/genom-project/genom/crypto"
 )
 
 var (

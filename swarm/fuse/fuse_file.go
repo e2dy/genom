@@ -26,8 +26,8 @@ import (
 
 	"bazil.org/fuse"
 	"bazil.org/fuse/fs"
-	"github.com/merval-project/merval/log"
-	"github.com/merval-project/merval/swarm/storage"
+	"github.com/genom-project/genom/log"
+	"github.com/genom-project/genom/swarm/storage"
 	"golang.org/x/net/context"
 )
 

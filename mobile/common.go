@@ -24,7 +24,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/merval-project/merval/common"
+	"github.com/genom-project/genom/common"
 )
 
 // Hash represents the 32 byte Keccak256 hash of arbitrary data.

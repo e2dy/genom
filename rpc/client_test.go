@@ -31,7 +31,7 @@ import (
 	"time"
 
 	"github.com/davecgh/go-spew/spew"
-	"github.com/merval-project/merval/log"
+	"github.com/genom-project/genom/log"
 )
 
 func TestClientRequest(t *testing.T) {

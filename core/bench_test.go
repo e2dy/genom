@@ -23,14 +23,14 @@ import (
 	"os"
 	"testing"
 
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/common/math"
-	"github.com/merval-project/merval/consensus/ethash"
-	"github.com/merval-project/merval/core/types"
-	"github.com/merval-project/merval/core/vm"
-	"github.com/merval-project/merval/crypto"
-	"github.com/merval-project/merval/ethdb"
-	"github.com/merval-project/merval/params"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/common/math"
+	"github.com/genom-project/genom/consensus/ethash"
+	"github.com/genom-project/genom/core/types"
+	"github.com/genom-project/genom/core/vm"
+	"github.com/genom-project/genom/crypto"
+	"github.com/genom-project/genom/ethdb"
+	"github.com/genom-project/genom/params"
 )
 
 func BenchmarkInsertChain_empty_memdb(b *testing.B) {

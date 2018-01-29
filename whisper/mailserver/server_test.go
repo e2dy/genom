@@ -24,9 +24,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/crypto"
-	whisper "github.com/merval-project/merval/whisper/whisperv5"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/crypto"
+	whisper "github.com/genom-project/genom/whisper/whisperv5"
 )
 
 const powRequirement = 0.00001

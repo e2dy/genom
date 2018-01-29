@@ -40,7 +40,7 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/merval-project/merval/crypto"
+	"github.com/genom-project/genom/crypto"
 )
 
 var dumpEnc bool

@@ -37,12 +37,12 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/merval-project/merval/contracts/chequebook"
-	"github.com/merval-project/merval/log"
-	"github.com/merval-project/merval/p2p"
-	bzzswap "github.com/merval-project/merval/swarm/services/swap"
-	"github.com/merval-project/merval/swarm/services/swap/swap"
-	"github.com/merval-project/merval/swarm/storage"
+	"github.com/genom-project/genom/contracts/chequebook"
+	"github.com/genom-project/genom/log"
+	"github.com/genom-project/genom/p2p"
+	bzzswap "github.com/genom-project/genom/swarm/services/swap"
+	"github.com/genom-project/genom/swarm/services/swap/swap"
+	"github.com/genom-project/genom/swarm/storage"
 )
 
 const (

@@ -26,8 +26,8 @@ import (
 	"math/rand"
 	"time"
 
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/internal/jsre/deps"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/internal/jsre/deps"
 	"github.com/robertkrimen/otto"
 )
 

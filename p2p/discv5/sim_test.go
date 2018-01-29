@@ -28,7 +28,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/merval-project/merval/common"
+	"github.com/genom-project/genom/common"
 )
 
 // In this test, nodes try to randomly resolve each other.

@@ -19,9 +19,9 @@ package keystore
 import (
 	"math/big"
 
-	ethereum "github.com/merval-project/merval"
-	"github.com/merval-project/merval/accounts"
-	"github.com/merval-project/merval/core/types"
+	ethereum "github.com/genom-project/genom"
+	"github.com/genom-project/genom/accounts"
+	"github.com/genom-project/genom/core/types"
 )
 
 // keystoreWallet implements the accounts.Wallet interface for the original

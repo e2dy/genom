@@ -27,8 +27,8 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/crypto"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/crypto"
 )
 
 func tmpKeyStoreIface(t *testing.T, encrypted bool) (dir string, ks keyStore) {

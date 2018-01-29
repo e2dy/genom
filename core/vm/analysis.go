@@ -19,7 +19,7 @@ package vm
 import (
 	"math/big"
 
-	"github.com/merval-project/merval/common"
+	"github.com/genom-project/genom/common"
 )
 
 // destinations stores one map per contract (keyed by hash of code).

@@ -21,11 +21,11 @@ import (
 	"fmt"
 	"math/big"
 
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/common/math"
-	"github.com/merval-project/merval/consensus/ethash"
-	"github.com/merval-project/merval/core/types"
-	"github.com/merval-project/merval/params"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/common/math"
+	"github.com/genom-project/genom/consensus/ethash"
+	"github.com/genom-project/genom/core/types"
+	"github.com/genom-project/genom/params"
 )
 
 //go:generate gencodec -type DifficultyTest -field-override difficultyTestMarshaling -out gen_difficultytest.go

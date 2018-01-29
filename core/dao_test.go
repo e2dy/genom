@@ -20,10 +20,10 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/merval-project/merval/consensus/ethash"
-	"github.com/merval-project/merval/core/vm"
-	"github.com/merval-project/merval/ethdb"
-	"github.com/merval-project/merval/params"
+	"github.com/genom-project/genom/consensus/ethash"
+	"github.com/genom-project/genom/core/vm"
+	"github.com/genom-project/genom/ethdb"
+	"github.com/genom-project/genom/params"
 )
 
 // Tests that DAO-fork enabled clients can properly filter out fork-commencing

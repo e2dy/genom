@@ -22,14 +22,14 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/contracts/ens"
-	"github.com/merval-project/merval/crypto"
-	"github.com/merval-project/merval/log"
-	"github.com/merval-project/merval/node"
-	"github.com/merval-project/merval/swarm/network"
-	"github.com/merval-project/merval/swarm/services/swap"
-	"github.com/merval-project/merval/swarm/storage"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/contracts/ens"
+	"github.com/genom-project/genom/crypto"
+	"github.com/genom-project/genom/log"
+	"github.com/genom-project/genom/node"
+	"github.com/genom-project/genom/swarm/network"
+	"github.com/genom-project/genom/swarm/services/swap"
+	"github.com/genom-project/genom/swarm/storage"
 )
 
 const (

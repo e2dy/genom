@@ -17,8 +17,8 @@
 package core
 
 import (
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/core/types"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/core/types"
 )
 
 // TxPreEvent is posted when a transaction enters the transaction pool.

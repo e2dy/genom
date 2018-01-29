@@ -19,8 +19,8 @@ package state
 import (
 	"testing"
 
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/ethdb"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/ethdb"
 )
 
 var addr = common.BytesToAddress([]byte("test"))

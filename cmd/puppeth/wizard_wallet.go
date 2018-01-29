@@ -21,7 +21,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/merval-project/merval/log"
+	"github.com/genom-project/genom/log"
 )
 
 // deployWallet creates a new web wallet based on some user input.

@@ -23,13 +23,13 @@ import (
 	"path/filepath"
 	"runtime"
 
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/common/hexutil"
-	"github.com/merval-project/merval/consensus/ethash"
-	"github.com/merval-project/merval/core"
-	"github.com/merval-project/merval/eth/downloader"
-	"github.com/merval-project/merval/eth/gasprice"
-	"github.com/merval-project/merval/params"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/common/hexutil"
+	"github.com/genom-project/genom/consensus/ethash"
+	"github.com/genom-project/genom/core"
+	"github.com/genom-project/genom/eth/downloader"
+	"github.com/genom-project/genom/eth/gasprice"
+	"github.com/genom-project/genom/params"
 )
 
 // DefaultConfig contains default settings for use on the Ethereum main net.

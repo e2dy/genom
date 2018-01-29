@@ -20,14 +20,14 @@ import (
 	"fmt"
 	"math/big"
 
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/consensus"
-	"github.com/merval-project/merval/consensus/misc"
-	"github.com/merval-project/merval/core/state"
-	"github.com/merval-project/merval/core/types"
-	"github.com/merval-project/merval/core/vm"
-	"github.com/merval-project/merval/ethdb"
-	"github.com/merval-project/merval/params"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/consensus"
+	"github.com/genom-project/genom/consensus/misc"
+	"github.com/genom-project/genom/core/state"
+	"github.com/genom-project/genom/core/types"
+	"github.com/genom-project/genom/core/vm"
+	"github.com/genom-project/genom/ethdb"
+	"github.com/genom-project/genom/params"
 )
 
 // So we can deterministically seed different blockchains

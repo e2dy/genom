@@ -22,10 +22,10 @@ import (
 	"sort"
 	"sync"
 
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/internal/ethapi"
-	"github.com/merval-project/merval/params"
-	"github.com/merval-project/merval/rpc"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/internal/ethapi"
+	"github.com/genom-project/genom/params"
+	"github.com/genom-project/genom/rpc"
 )
 
 var maxPrice = big.NewInt(500 * params.Shannon)

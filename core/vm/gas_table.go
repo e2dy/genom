@@ -19,9 +19,9 @@ package vm
 import (
 	"math/big"
 
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/common/math"
-	"github.com/merval-project/merval/params"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/common/math"
+	"github.com/genom-project/genom/params"
 )
 
 // memoryGasCosts calculates the quadratic gas for memory expansion. It does so

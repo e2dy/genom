@@ -26,11 +26,11 @@ import (
 	"io"
 	"math/big"
 
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/core"
-	"github.com/merval-project/merval/crypto"
-	"github.com/merval-project/merval/crypto/secp256k1"
-	"github.com/merval-project/merval/rlp"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/core"
+	"github.com/genom-project/genom/crypto"
+	"github.com/genom-project/genom/crypto/secp256k1"
+	"github.com/genom-project/genom/rlp"
 )
 
 // Constants to match up protocol versions and messages

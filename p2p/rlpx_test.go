@@ -31,11 +31,11 @@ import (
 	"time"
 
 	"github.com/davecgh/go-spew/spew"
-	"github.com/merval-project/merval/crypto"
-	"github.com/merval-project/merval/crypto/ecies"
-	"github.com/merval-project/merval/crypto/sha3"
-	"github.com/merval-project/merval/p2p/discover"
-	"github.com/merval-project/merval/rlp"
+	"github.com/genom-project/genom/crypto"
+	"github.com/genom-project/genom/crypto/ecies"
+	"github.com/genom-project/genom/crypto/sha3"
+	"github.com/genom-project/genom/p2p/discover"
+	"github.com/genom-project/genom/rlp"
 )
 
 func TestSharedSecret(t *testing.T) {

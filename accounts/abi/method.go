@@ -20,7 +20,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/merval-project/merval/crypto"
+	"github.com/genom-project/genom/crypto"
 )
 
 // Method represents a callable given a `Name` and whether the method is a constant.

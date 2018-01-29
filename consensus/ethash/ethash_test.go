@@ -20,7 +20,7 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/merval-project/merval/core/types"
+	"github.com/genom-project/genom/core/types"
 )
 
 // Tests that ethash works correctly in test mode.

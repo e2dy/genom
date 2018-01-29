@@ -20,10 +20,10 @@ import (
 	"errors"
 	"sync"
 
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/crypto"
-	"github.com/merval-project/merval/rlp"
-	"github.com/merval-project/merval/trie"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/crypto"
+	"github.com/genom-project/genom/rlp"
+	"github.com/genom-project/genom/trie"
 )
 
 // NodeSet stores a set of trie nodes. It implements trie.Database and can also

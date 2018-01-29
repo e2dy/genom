@@ -19,9 +19,9 @@ package misc
 import (
 	"fmt"
 
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/core/types"
-	"github.com/merval-project/merval/params"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/core/types"
+	"github.com/genom-project/genom/params"
 )
 
 // VerifyForkHashes verifies that blocks conforming to network hard-forks do have

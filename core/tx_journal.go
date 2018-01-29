@@ -21,10 +21,10 @@ import (
 	"io"
 	"os"
 
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/core/types"
-	"github.com/merval-project/merval/log"
-	"github.com/merval-project/merval/rlp"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/core/types"
+	"github.com/genom-project/genom/log"
+	"github.com/genom-project/genom/rlp"
 )
 
 // errNoActiveJournal is returned if a transaction is attempted to be inserted

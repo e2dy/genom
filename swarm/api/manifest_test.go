@@ -25,7 +25,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/merval-project/merval/swarm/storage"
+	"github.com/genom-project/genom/swarm/storage"
 )
 
 func manifest(paths ...string) (manifestReader storage.LazySectionReader) {

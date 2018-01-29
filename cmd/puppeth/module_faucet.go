@@ -26,8 +26,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/log"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/log"
 )
 
 // faucetDockerfile is the Dockerfile required to build an faucet container to

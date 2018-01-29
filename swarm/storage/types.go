@@ -24,9 +24,9 @@ import (
 	"io"
 	"sync"
 
-	"github.com/merval-project/merval/bmt"
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/crypto/sha3"
+	"github.com/genom-project/genom/bmt"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/crypto/sha3"
 )
 
 type Hasher func() hash.Hash

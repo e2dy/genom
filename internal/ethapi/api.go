@@ -25,21 +25,21 @@ import (
 	"strings"
 	"time"
 
-	"github.com/merval-project/merval/accounts"
-	"github.com/merval-project/merval/accounts/keystore"
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/common/hexutil"
-	"github.com/merval-project/merval/common/math"
-	"github.com/merval-project/merval/consensus/ethash"
-	"github.com/merval-project/merval/core"
-	"github.com/merval-project/merval/core/types"
-	"github.com/merval-project/merval/core/vm"
-	"github.com/merval-project/merval/crypto"
-	"github.com/merval-project/merval/log"
-	"github.com/merval-project/merval/p2p"
-	"github.com/merval-project/merval/params"
-	"github.com/merval-project/merval/rlp"
-	"github.com/merval-project/merval/rpc"
+	"github.com/genom-project/genom/accounts"
+	"github.com/genom-project/genom/accounts/keystore"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/common/hexutil"
+	"github.com/genom-project/genom/common/math"
+	"github.com/genom-project/genom/consensus/ethash"
+	"github.com/genom-project/genom/core"
+	"github.com/genom-project/genom/core/types"
+	"github.com/genom-project/genom/core/vm"
+	"github.com/genom-project/genom/crypto"
+	"github.com/genom-project/genom/log"
+	"github.com/genom-project/genom/p2p"
+	"github.com/genom-project/genom/params"
+	"github.com/genom-project/genom/rlp"
+	"github.com/genom-project/genom/rpc"
 	"github.com/syndtr/goleveldb/leveldb"
 	"github.com/syndtr/goleveldb/leveldb/util"
 )
@@ -391,7 +391,7 @@ func signHash(data []byte) []byte {
 //
 // The key used to calculate the signature is decrypted with the given password.
 //
-// https://github.com/merval-project/merval/wiki/Management-APIs#personal_sign
+// https://github.com/genom-project/genom/wiki/Management-APIs#personal_sign
 func (s *PrivateAccountAPI) Sign(ctx context.Context, data hexutil.Bytes, addr common.Address, passwd string) (hexutil.Bytes, error) {
 	// Look up the wallet containing the requested signer
 	account := accounts.Account{Address: addr}
@@ -418,7 +418,7 @@ func (s *PrivateAccountAPI) Sign(ctx context.Context, data hexutil.Bytes, addr c
 // Note, the signature must conform to the secp256k1 curve R, S and V values, where
 // the V value must be be 27 or 28 for legacy reasons.
 //
-// https://github.com/merval-project/merval/wiki/Management-APIs#personal_ecRecover
+// https://github.com/genom-project/genom/wiki/Management-APIs#personal_ecRecover
 func (s *PrivateAccountAPI) EcRecover(ctx context.Context, data, sig hexutil.Bytes) (common.Address, error) {
 	if len(sig) != 65 {
 		return common.Address{}, fmt.Errorf("signature must be 65 bytes long")

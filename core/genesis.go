@@ -25,15 +25,15 @@ import (
 	"math/big"
 	"strings"
 
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/common/hexutil"
-	"github.com/merval-project/merval/common/math"
-	"github.com/merval-project/merval/core/state"
-	"github.com/merval-project/merval/core/types"
-	"github.com/merval-project/merval/ethdb"
-	"github.com/merval-project/merval/log"
-	"github.com/merval-project/merval/params"
-	"github.com/merval-project/merval/rlp"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/common/hexutil"
+	"github.com/genom-project/genom/common/math"
+	"github.com/genom-project/genom/core/state"
+	"github.com/genom-project/genom/core/types"
+	"github.com/genom-project/genom/ethdb"
+	"github.com/genom-project/genom/log"
+	"github.com/genom-project/genom/params"
+	"github.com/genom-project/genom/rlp"
 )
 
 //go:generate gencodec -type Genesis -field-override genesisSpecMarshaling -out gen_genesis.go

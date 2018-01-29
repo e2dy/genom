@@ -36,14 +36,14 @@ import (
 	"sync"
 	"time"
 
-	"github.com/merval-project/merval/accounts/abi/bind"
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/common/hexutil"
-	"github.com/merval-project/merval/contracts/chequebook/contract"
-	"github.com/merval-project/merval/core/types"
-	"github.com/merval-project/merval/crypto"
-	"github.com/merval-project/merval/log"
-	"github.com/merval-project/merval/swarm/services/swap/swap"
+	"github.com/genom-project/genom/accounts/abi/bind"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/common/hexutil"
+	"github.com/genom-project/genom/contracts/chequebook/contract"
+	"github.com/genom-project/genom/core/types"
+	"github.com/genom-project/genom/crypto"
+	"github.com/genom-project/genom/log"
+	"github.com/genom-project/genom/swarm/services/swap/swap"
 )
 
 // TODO(zelig): watch peer solvency and notify of bouncing cheques

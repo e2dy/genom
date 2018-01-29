@@ -21,9 +21,9 @@ import (
 	"bytes"
 	"fmt"
 
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/crypto/sha3"
-	"github.com/merval-project/merval/log"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/crypto/sha3"
+	"github.com/genom-project/genom/log"
 	"github.com/rcrowley/go-metrics"
 )
 

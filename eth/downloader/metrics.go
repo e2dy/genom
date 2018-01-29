@@ -19,7 +19,7 @@
 package downloader
 
 import (
-	"github.com/merval-project/merval/metrics"
+	"github.com/genom-project/genom/metrics"
 )
 
 var (

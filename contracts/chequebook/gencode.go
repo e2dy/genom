@@ -25,11 +25,11 @@ import (
 	"io/ioutil"
 	"math/big"
 
-	"github.com/merval-project/merval/accounts/abi/bind"
-	"github.com/merval-project/merval/accounts/abi/bind/backends"
-	"github.com/merval-project/merval/contracts/chequebook/contract"
-	"github.com/merval-project/merval/core"
-	"github.com/merval-project/merval/crypto"
+	"github.com/genom-project/genom/accounts/abi/bind"
+	"github.com/genom-project/genom/accounts/abi/bind/backends"
+	"github.com/genom-project/genom/contracts/chequebook/contract"
+	"github.com/genom-project/genom/core"
+	"github.com/genom-project/genom/crypto"
 )
 
 var (

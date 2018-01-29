@@ -27,13 +27,13 @@ import (
 
 	cli "gopkg.in/urfave/cli.v1"
 
-	"github.com/merval-project/merval/cmd/utils"
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/log"
-	"github.com/merval-project/merval/node"
+	"github.com/genom-project/genom/cmd/utils"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/log"
+	"github.com/genom-project/genom/node"
 	"github.com/naoina/toml"
 
-	bzzapi "github.com/merval-project/merval/swarm/api"
+	bzzapi "github.com/genom-project/genom/swarm/api"
 )
 
 var (
@@ -83,7 +83,7 @@ var tomlSettings = toml.Config{
 	MissingField: func(rt reflect.Type, field string) error {
 		link := ""
 		if unicode.IsUpper(rune(rt.Name()[0])) && rt.PkgPath() != "main" {
-			link = fmt.Sprintf(", check github.com/merval-project/merval/swarm/api/config.go for available fields")
+			link = fmt.Sprintf(", check github.com/genom-project/genom/swarm/api/config.go for available fields")
 		}
 		return fmt.Errorf("field '%s' is not defined in %s%s", field, rt.String(), link)
 	},

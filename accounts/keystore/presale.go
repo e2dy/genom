@@ -25,8 +25,8 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/merval-project/merval/accounts"
-	"github.com/merval-project/merval/crypto"
+	"github.com/genom-project/genom/accounts"
+	"github.com/genom-project/genom/crypto"
 	"github.com/pborman/uuid"
 	"golang.org/x/crypto/pbkdf2"
 )

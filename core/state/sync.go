@@ -19,9 +19,9 @@ package state
 import (
 	"bytes"
 
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/rlp"
-	"github.com/merval-project/merval/trie"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/rlp"
+	"github.com/genom-project/genom/trie"
 )
 
 // NewStateSync create a new state trie download scheduler.

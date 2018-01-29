@@ -24,7 +24,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/merval-project/merval/common"
+	"github.com/genom-project/genom/common"
 )
 
 func TestPack(t *testing.T) {

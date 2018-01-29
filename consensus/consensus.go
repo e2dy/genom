@@ -18,11 +18,11 @@
 package consensus
 
 import (
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/core/state"
-	"github.com/merval-project/merval/core/types"
-	"github.com/merval-project/merval/params"
-	"github.com/merval-project/merval/rpc"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/core/state"
+	"github.com/genom-project/genom/core/types"
+	"github.com/genom-project/genom/params"
+	"github.com/genom-project/genom/rpc"
 	"math/big"
 )
 

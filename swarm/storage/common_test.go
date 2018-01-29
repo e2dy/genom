@@ -24,7 +24,7 @@ import (
 	"sync"
 	"testing"
 
-	"github.com/merval-project/merval/log"
+	"github.com/genom-project/genom/log"
 )
 
 type brokenLimitedReader struct {

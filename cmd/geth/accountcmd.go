@@ -20,12 +20,12 @@ import (
 	"fmt"
 	"io/ioutil"
 
-	"github.com/merval-project/merval/accounts"
-	"github.com/merval-project/merval/accounts/keystore"
-	"github.com/merval-project/merval/cmd/utils"
-	"github.com/merval-project/merval/console"
-	"github.com/merval-project/merval/crypto"
-	"github.com/merval-project/merval/log"
+	"github.com/genom-project/genom/accounts"
+	"github.com/genom-project/genom/accounts/keystore"
+	"github.com/genom-project/genom/cmd/utils"
+	"github.com/genom-project/genom/console"
+	"github.com/genom-project/genom/crypto"
+	"github.com/genom-project/genom/log"
 	"gopkg.in/urfave/cli.v1"
 )
 

@@ -19,7 +19,7 @@ package params
 import (
 	"math/big"
 
-	"github.com/merval-project/merval/common"
+	"github.com/genom-project/genom/common"
 )
 
 // DAOForkBlockExtra is the block header extra-data field to set for the DAO fork

@@ -26,11 +26,11 @@ import (
 	"math/big"
 	"time"
 
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/common/math"
-	"github.com/merval-project/merval/crypto"
-	"github.com/merval-project/merval/crypto/ecies"
-	"github.com/merval-project/merval/rlp"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/common/math"
+	"github.com/genom-project/genom/crypto"
+	"github.com/genom-project/genom/crypto/ecies"
+	"github.com/genom-project/genom/rlp"
 )
 
 // Envelope represents a clear-text data packet to transmit through the Whisper

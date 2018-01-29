@@ -21,11 +21,11 @@ import (
 	"errors"
 	"math/big"
 
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/common/math"
-	"github.com/merval-project/merval/crypto"
-	"github.com/merval-project/merval/crypto/bn256"
-	"github.com/merval-project/merval/params"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/common/math"
+	"github.com/genom-project/genom/crypto"
+	"github.com/genom-project/genom/crypto/bn256"
+	"github.com/genom-project/genom/params"
 	"golang.org/x/crypto/ripemd160"
 )
 

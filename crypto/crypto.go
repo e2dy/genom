@@ -28,10 +28,10 @@ import (
 	"math/big"
 	"os"
 
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/common/math"
-	"github.com/merval-project/merval/crypto/sha3"
-	"github.com/merval-project/merval/rlp"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/common/math"
+	"github.com/genom-project/genom/crypto/sha3"
+	"github.com/genom-project/genom/rlp"
 )
 
 var (

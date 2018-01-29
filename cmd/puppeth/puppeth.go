@@ -22,7 +22,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/merval-project/merval/log"
+	"github.com/genom-project/genom/log"
 	"gopkg.in/urfave/cli.v1"
 )
 

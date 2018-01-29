@@ -6,8 +6,8 @@ import (
 	"encoding/json"
 	"errors"
 
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/common/hexutil"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/common/hexutil"
 )
 
 func (l Log) MarshalJSON() ([]byte, error) {

@@ -24,7 +24,7 @@ import (
 	"math/big"
 	"strings"
 
-	"github.com/merval-project/merval/rlp"
+	"github.com/genom-project/genom/rlp"
 )
 
 // RLPTest is the JSON structure of a single RLP test.

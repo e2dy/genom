@@ -19,9 +19,9 @@ package core
 import (
 	"math/big"
 
-	"github.com/merval-project/merval/core/state"
-	"github.com/merval-project/merval/core/types"
-	"github.com/merval-project/merval/core/vm"
+	"github.com/genom-project/genom/core/state"
+	"github.com/genom-project/genom/core/types"
+	"github.com/genom-project/genom/core/vm"
 )
 
 // Validator is an interface which defines the standard for block validation. It

@@ -33,7 +33,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/merval-project/merval/log"
+	"github.com/genom-project/genom/log"
 )
 
 // Handler is the global debugging handler.

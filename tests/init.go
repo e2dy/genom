@@ -20,7 +20,7 @@ import (
 	"fmt"
 	"math/big"
 
-	"github.com/merval-project/merval/params"
+	"github.com/genom-project/genom/params"
 )
 
 // This table defines supported forks and their chain config.

@@ -25,7 +25,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/merval-project/merval/log"
+	"github.com/genom-project/genom/log"
 )
 
 // walletDockerfile is the Dockerfile required to run a web wallet.

@@ -21,11 +21,11 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/merval-project/merval/accounts/abi/bind"
-	"github.com/merval-project/merval/accounts/abi/bind/backends"
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/core"
-	"github.com/merval-project/merval/crypto"
+	"github.com/genom-project/genom/accounts/abi/bind"
+	"github.com/genom-project/genom/accounts/abi/bind/backends"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/core"
+	"github.com/genom-project/genom/crypto"
 )
 
 // setupReleaseTest creates a blockchain simulator and deploys a version oracle

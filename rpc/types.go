@@ -23,7 +23,7 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/merval-project/merval/common/hexutil"
+	"github.com/genom-project/genom/common/hexutil"
 	"gopkg.in/fatih/set.v0"
 )
 

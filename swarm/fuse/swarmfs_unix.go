@@ -29,9 +29,9 @@ import (
 
 	"bazil.org/fuse"
 	"bazil.org/fuse/fs"
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/log"
-	"github.com/merval-project/merval/swarm/api"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/log"
+	"github.com/genom-project/genom/swarm/api"
 )
 
 var (

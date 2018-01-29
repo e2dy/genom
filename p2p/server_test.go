@@ -25,10 +25,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/merval-project/merval/crypto"
-	"github.com/merval-project/merval/crypto/sha3"
-	"github.com/merval-project/merval/log"
-	"github.com/merval-project/merval/p2p/discover"
+	"github.com/genom-project/genom/crypto"
+	"github.com/genom-project/genom/crypto/sha3"
+	"github.com/genom-project/genom/log"
+	"github.com/genom-project/genom/p2p/discover"
 )
 
 func init() {

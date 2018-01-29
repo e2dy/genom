@@ -22,8 +22,8 @@ import (
 	"path/filepath"
 	"runtime"
 
-	"github.com/merval-project/merval/p2p"
-	"github.com/merval-project/merval/p2p/nat"
+	"github.com/genom-project/genom/p2p"
+	"github.com/genom-project/genom/p2p/nat"
 )
 
 const (

@@ -30,8 +30,8 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/crypto"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/crypto"
 )
 
 // Node represents a host on the network.

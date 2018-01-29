@@ -26,7 +26,7 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/merval-project/merval/log"
+	"github.com/genom-project/genom/log"
 )
 
 // makeWizard creates and returns a new puppeth wizard.

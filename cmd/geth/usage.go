@@ -24,8 +24,8 @@ import (
 
 	"strings"
 
-	"github.com/merval-project/merval/cmd/utils"
-	"github.com/merval-project/merval/internal/debug"
+	"github.com/genom-project/genom/cmd/utils"
+	"github.com/genom-project/genom/internal/debug"
 	"gopkg.in/urfave/cli.v1"
 )
 

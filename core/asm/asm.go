@@ -21,7 +21,7 @@ import (
 	"encoding/hex"
 	"fmt"
 
-	"github.com/merval-project/merval/core/vm"
+	"github.com/genom-project/genom/core/vm"
 )
 
 // Iterator for disassembled EVM instructions

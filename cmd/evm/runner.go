@@ -27,16 +27,16 @@ import (
 
 	goruntime "runtime"
 
-	"github.com/merval-project/merval/cmd/evm/internal/compiler"
-	"github.com/merval-project/merval/cmd/utils"
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/core"
-	"github.com/merval-project/merval/core/state"
-	"github.com/merval-project/merval/core/vm"
-	"github.com/merval-project/merval/core/vm/runtime"
-	"github.com/merval-project/merval/ethdb"
-	"github.com/merval-project/merval/log"
-	"github.com/merval-project/merval/params"
+	"github.com/genom-project/genom/cmd/evm/internal/compiler"
+	"github.com/genom-project/genom/cmd/utils"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/core"
+	"github.com/genom-project/genom/core/state"
+	"github.com/genom-project/genom/core/vm"
+	"github.com/genom-project/genom/core/vm/runtime"
+	"github.com/genom-project/genom/ethdb"
+	"github.com/genom-project/genom/log"
+	"github.com/genom-project/genom/params"
 	cli "gopkg.in/urfave/cli.v1"
 )
 

@@ -24,8 +24,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/merval-project/merval/log"
-	"github.com/merval-project/merval/p2p/discover"
+	"github.com/genom-project/genom/log"
+	"github.com/genom-project/genom/p2p/discover"
 )
 
 //a map of mocker names to its function

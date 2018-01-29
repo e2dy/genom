@@ -23,7 +23,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/merval-project/merval/common"
+	"github.com/genom-project/genom/common"
 )
 
 func TestWhisperBasic(t *testing.T) {

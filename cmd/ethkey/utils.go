@@ -22,9 +22,9 @@ import (
 	"io/ioutil"
 	"strings"
 
-	"github.com/merval-project/merval/cmd/utils"
-	"github.com/merval-project/merval/console"
-	"github.com/merval-project/merval/crypto"
+	"github.com/genom-project/genom/cmd/utils"
+	"github.com/genom-project/genom/console"
+	"github.com/genom-project/genom/crypto"
 	"gopkg.in/urfave/cli.v1"
 )
 

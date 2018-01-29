@@ -23,10 +23,10 @@ import (
 	"io/ioutil"
 	"os"
 
-	"github.com/merval-project/merval/core/state"
-	"github.com/merval-project/merval/core/vm"
-	"github.com/merval-project/merval/log"
-	"github.com/merval-project/merval/tests"
+	"github.com/genom-project/genom/core/state"
+	"github.com/genom-project/genom/core/vm"
+	"github.com/genom-project/genom/log"
+	"github.com/genom-project/genom/tests"
 
 	cli "gopkg.in/urfave/cli.v1"
 )

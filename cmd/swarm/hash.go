@@ -21,8 +21,8 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/merval-project/merval/cmd/utils"
-	"github.com/merval-project/merval/swarm/storage"
+	"github.com/genom-project/genom/cmd/utils"
+	"github.com/genom-project/genom/swarm/storage"
 	"gopkg.in/urfave/cli.v1"
 )
 

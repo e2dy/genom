@@ -21,7 +21,7 @@ import (
 	"math/rand"
 	"testing"
 
-	"github.com/merval-project/merval/common/hexutil"
+	"github.com/genom-project/genom/common/hexutil"
 )
 
 // Tests that data bitset encoding and decoding works and is bijective.

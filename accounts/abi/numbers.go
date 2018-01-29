@@ -20,8 +20,8 @@ import (
 	"math/big"
 	"reflect"
 
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/common/math"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/common/math"
 )
 
 var (

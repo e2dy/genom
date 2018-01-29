@@ -19,7 +19,7 @@ package downloader
 import (
 	"fmt"
 
-	"github.com/merval-project/merval/core/types"
+	"github.com/genom-project/genom/core/types"
 )
 
 // peerDropFn is a callback type for dropping a peer detected as malicious.

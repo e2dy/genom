@@ -24,8 +24,8 @@ import (
 	"time"
 
 	"github.com/davecgh/go-spew/spew"
-	"github.com/merval-project/merval/p2p/discover"
-	"github.com/merval-project/merval/p2p/netutil"
+	"github.com/genom-project/genom/p2p/discover"
+	"github.com/genom-project/genom/p2p/netutil"
 )
 
 func init() {

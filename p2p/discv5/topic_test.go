@@ -21,8 +21,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/common/mclock"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/common/mclock"
 )
 
 func TestTopicRadius(t *testing.T) {

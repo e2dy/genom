@@ -27,7 +27,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/merval-project/merval/log"
+	"github.com/genom-project/genom/log"
 	"golang.org/x/net/websocket"
 	"gopkg.in/fatih/set.v0"
 )

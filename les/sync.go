@@ -20,9 +20,9 @@ import (
 	"context"
 	"time"
 
-	"github.com/merval-project/merval/core"
-	"github.com/merval-project/merval/eth/downloader"
-	"github.com/merval-project/merval/light"
+	"github.com/genom-project/genom/core"
+	"github.com/genom-project/genom/eth/downloader"
+	"github.com/genom-project/genom/light"
 )
 
 const (

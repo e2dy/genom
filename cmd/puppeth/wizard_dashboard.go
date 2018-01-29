@@ -19,7 +19,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/merval-project/merval/log"
+	"github.com/genom-project/genom/log"
 )
 
 // deployDashboard queries the user for various input on deploying a web-service

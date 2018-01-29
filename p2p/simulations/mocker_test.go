@@ -27,7 +27,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/merval-project/merval/p2p/discover"
+	"github.com/genom-project/genom/p2p/discover"
 )
 
 func TestMocker(t *testing.T) {

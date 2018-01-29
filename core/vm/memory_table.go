@@ -19,7 +19,7 @@ package vm
 import (
 	"math/big"
 
-	"github.com/merval-project/merval/common/math"
+	"github.com/genom-project/genom/common/math"
 )
 
 func memorySha3(stack *Stack) *big.Int {

@@ -20,7 +20,7 @@ import (
 	"html/template"
 	"path"
 
-	"github.com/merval-project/merval/swarm/api"
+	"github.com/genom-project/genom/swarm/api"
 )
 
 type htmlListData struct {

@@ -22,8 +22,8 @@ import (
 	"math/rand"
 	"testing"
 
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/ethdb"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/ethdb"
 )
 
 func TestIterator(t *testing.T) {

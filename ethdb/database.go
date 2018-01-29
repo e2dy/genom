@@ -22,8 +22,8 @@ import (
 	"sync"
 	"time"
 
-	"github.com/merval-project/merval/log"
-	"github.com/merval-project/merval/metrics"
+	"github.com/genom-project/genom/log"
+	"github.com/genom-project/genom/metrics"
 	"github.com/syndtr/goleveldb/leveldb"
 	"github.com/syndtr/goleveldb/leveldb/errors"
 	"github.com/syndtr/goleveldb/leveldb/filter"

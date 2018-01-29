@@ -24,9 +24,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/core/vm"
-	"github.com/merval-project/merval/params"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/core/vm"
+	"github.com/genom-project/genom/params"
 )
 
 type account struct{}

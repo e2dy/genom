@@ -24,17 +24,17 @@ import (
 	"fmt"
 	"path/filepath"
 
-	"github.com/merval-project/merval/core"
-	"github.com/merval-project/merval/eth"
-	"github.com/merval-project/merval/eth/downloader"
-	"github.com/merval-project/merval/ethclient"
-	"github.com/merval-project/merval/ethstats"
-	"github.com/merval-project/merval/les"
-	"github.com/merval-project/merval/node"
-	"github.com/merval-project/merval/p2p"
-	"github.com/merval-project/merval/p2p/nat"
-	"github.com/merval-project/merval/params"
-	whisper "github.com/merval-project/merval/whisper/whisperv5"
+	"github.com/genom-project/genom/core"
+	"github.com/genom-project/genom/eth"
+	"github.com/genom-project/genom/eth/downloader"
+	"github.com/genom-project/genom/ethclient"
+	"github.com/genom-project/genom/ethstats"
+	"github.com/genom-project/genom/les"
+	"github.com/genom-project/genom/node"
+	"github.com/genom-project/genom/p2p"
+	"github.com/genom-project/genom/p2p/nat"
+	"github.com/genom-project/genom/params"
+	whisper "github.com/genom-project/genom/whisper/whisperv5"
 )
 
 // NodeConfig represents the collection of configuration values to fine tune the Geth

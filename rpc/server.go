@@ -25,7 +25,7 @@ import (
 	"sync"
 	"sync/atomic"
 
-	"github.com/merval-project/merval/log"
+	"github.com/genom-project/genom/log"
 	"gopkg.in/fatih/set.v0"
 )
 

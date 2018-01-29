@@ -19,7 +19,7 @@ package bloombits
 import (
 	"errors"
 
-	"github.com/merval-project/merval/core/types"
+	"github.com/genom-project/genom/core/types"
 )
 
 // errSectionOutOfBounds is returned if the user tried to add more bloom filters

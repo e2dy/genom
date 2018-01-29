@@ -20,17 +20,17 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/merval-project/merval/log"
+	"github.com/genom-project/genom/log"
 )
 
 /*
 http roundtripper to register for bzz url scheme
-see https://github.com/merval-project/merval/issues/2040
+see https://github.com/genom-project/genom/issues/2040
 Usage:
 
 import (
- "github.com/merval-project/merval/common/httpclient"
- "github.com/merval-project/merval/swarm/api/http"
+ "github.com/genom-project/genom/common/httpclient"
+ "github.com/genom-project/genom/swarm/api/http"
 )
 client := httpclient.New()
 // for (private) swarm proxy running locally

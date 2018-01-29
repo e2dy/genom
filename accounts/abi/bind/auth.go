@@ -22,10 +22,10 @@ import (
 	"io"
 	"io/ioutil"
 
-	"github.com/merval-project/merval/accounts/keystore"
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/core/types"
-	"github.com/merval-project/merval/crypto"
+	"github.com/genom-project/genom/accounts/keystore"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/core/types"
+	"github.com/genom-project/genom/crypto"
 )
 
 // NewTransactor is a utility method to easily create a transaction signer from

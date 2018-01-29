@@ -30,9 +30,9 @@ import (
 	"strings"
 	"sync"
 
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/core"
-	"github.com/merval-project/merval/log"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/core"
+	"github.com/genom-project/genom/log"
 	"golang.org/x/crypto/ssh/terminal"
 )
 

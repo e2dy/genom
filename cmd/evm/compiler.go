@@ -21,7 +21,7 @@ import (
 	"fmt"
 	"io/ioutil"
 
-	"github.com/merval-project/merval/cmd/evm/internal/compiler"
+	"github.com/genom-project/genom/cmd/evm/internal/compiler"
 
 	cli "gopkg.in/urfave/cli.v1"
 )

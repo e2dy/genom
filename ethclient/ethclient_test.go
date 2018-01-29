@@ -16,7 +16,7 @@
 
 package ethclient
 
-import "github.com/merval-project/merval"
+import "github.com/genom-project/genom"
 
 // Verify that Client implements the ethereum interfaces.
 var (

@@ -21,7 +21,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/merval-project/merval/common"
+	"github.com/genom-project/genom/common"
 )
 
 func (Address) Generate(rand *rand.Rand, size int) reflect.Value {

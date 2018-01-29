@@ -23,12 +23,12 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/core/state"
-	"github.com/merval-project/merval/crypto/sha3"
-	"github.com/merval-project/merval/ethdb"
-	"github.com/merval-project/merval/log"
-	"github.com/merval-project/merval/trie"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/core/state"
+	"github.com/genom-project/genom/crypto/sha3"
+	"github.com/genom-project/genom/ethdb"
+	"github.com/genom-project/genom/log"
+	"github.com/genom-project/genom/trie"
 )
 
 // stateReq represents a batch of state fetch requests groupped together into

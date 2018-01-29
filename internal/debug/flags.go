@@ -24,8 +24,8 @@ import (
 	"os"
 	"runtime"
 
-	"github.com/merval-project/merval/log"
-	"github.com/merval-project/merval/log/term"
+	"github.com/genom-project/genom/log"
+	"github.com/genom-project/genom/log/term"
 	colorable "github.com/mattn/go-colorable"
 	"gopkg.in/urfave/cli.v1"
 )

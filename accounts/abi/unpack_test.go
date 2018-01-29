@@ -26,7 +26,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/merval-project/merval/common"
+	"github.com/genom-project/genom/common"
 	"github.com/stretchr/testify/require"
 )
 

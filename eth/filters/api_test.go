@@ -21,8 +21,8 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/rpc"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/rpc"
 )
 
 func TestUnmarshalJSONNewFilterArgs(t *testing.T) {

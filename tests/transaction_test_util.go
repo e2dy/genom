@@ -22,12 +22,12 @@ import (
 	"fmt"
 	"math/big"
 
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/common/hexutil"
-	"github.com/merval-project/merval/common/math"
-	"github.com/merval-project/merval/core/types"
-	"github.com/merval-project/merval/params"
-	"github.com/merval-project/merval/rlp"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/common/hexutil"
+	"github.com/genom-project/genom/common/math"
+	"github.com/genom-project/genom/core/types"
+	"github.com/genom-project/genom/params"
+	"github.com/genom-project/genom/rlp"
 )
 
 // TransactionTest checks RLP decoding and sender derivation of transactions.

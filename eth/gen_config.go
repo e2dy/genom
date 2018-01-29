@@ -5,12 +5,12 @@ package eth
 import (
 	"math/big"
 
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/common/hexutil"
-	"github.com/merval-project/merval/consensus/ethash"
-	"github.com/merval-project/merval/core"
-	"github.com/merval-project/merval/eth/downloader"
-	"github.com/merval-project/merval/eth/gasprice"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/common/hexutil"
+	"github.com/genom-project/genom/consensus/ethash"
+	"github.com/genom-project/genom/core"
+	"github.com/genom-project/genom/eth/downloader"
+	"github.com/genom-project/genom/eth/gasprice"
 )
 
 func (c Config) MarshalTOML() (interface{}, error) {

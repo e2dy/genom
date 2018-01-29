@@ -20,7 +20,7 @@ import (
 	"bytes"
 	"testing"
 
-	"github.com/merval-project/merval/common"
+	"github.com/genom-project/genom/common"
 )
 
 // Tests that the node iterator indeed walks over the entire database contents.

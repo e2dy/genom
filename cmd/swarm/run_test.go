@@ -27,13 +27,13 @@ import (
 	"time"
 
 	"github.com/docker/docker/pkg/reexec"
-	"github.com/merval-project/merval/accounts"
-	"github.com/merval-project/merval/accounts/keystore"
-	"github.com/merval-project/merval/internal/cmdtest"
-	"github.com/merval-project/merval/node"
-	"github.com/merval-project/merval/p2p"
-	"github.com/merval-project/merval/rpc"
-	"github.com/merval-project/merval/swarm"
+	"github.com/genom-project/genom/accounts"
+	"github.com/genom-project/genom/accounts/keystore"
+	"github.com/genom-project/genom/internal/cmdtest"
+	"github.com/genom-project/genom/node"
+	"github.com/genom-project/genom/p2p"
+	"github.com/genom-project/genom/rpc"
+	"github.com/genom-project/genom/swarm"
 )
 
 func init() {

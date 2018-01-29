@@ -25,13 +25,13 @@ import (
 	"sync"
 	"time"
 
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/core/state"
-	"github.com/merval-project/merval/core/types"
-	"github.com/merval-project/merval/event"
-	"github.com/merval-project/merval/log"
-	"github.com/merval-project/merval/metrics"
-	"github.com/merval-project/merval/params"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/core/state"
+	"github.com/genom-project/genom/core/types"
+	"github.com/genom-project/genom/event"
+	"github.com/genom-project/genom/log"
+	"github.com/genom-project/genom/metrics"
+	"github.com/genom-project/genom/params"
 	"gopkg.in/karalabe/cookiejar.v2/collections/prque"
 )
 

@@ -19,10 +19,10 @@ package shhclient
 import (
 	"context"
 
-	"github.com/merval-project/merval"
-	"github.com/merval-project/merval/common/hexutil"
-	"github.com/merval-project/merval/rpc"
-	whisper "github.com/merval-project/merval/whisper/whisperv5"
+	"github.com/genom-project/genom"
+	"github.com/genom-project/genom/common/hexutil"
+	"github.com/genom-project/genom/rpc"
+	whisper "github.com/genom-project/genom/whisper/whisperv5"
 )
 
 // Client defines typed wrappers for the Whisper v5 RPC API.

@@ -28,8 +28,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/merval-project/merval/log"
-	"github.com/merval-project/merval/swarm/api"
+	"github.com/genom-project/genom/log"
+	"github.com/genom-project/genom/swarm/api"
 )
 
 //templateMap holds a mapping of an HTTP error code to a template

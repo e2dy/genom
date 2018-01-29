@@ -20,7 +20,7 @@ import (
 	"errors"
 	"math/big"
 
-	"github.com/merval-project/merval/common"
+	"github.com/genom-project/genom/common"
 )
 
 const Version = "1.0"

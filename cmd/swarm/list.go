@@ -22,8 +22,8 @@ import (
 	"strings"
 	"text/tabwriter"
 
-	"github.com/merval-project/merval/cmd/utils"
-	swarm "github.com/merval-project/merval/swarm/api/client"
+	"github.com/genom-project/genom/cmd/utils"
+	swarm "github.com/genom-project/genom/swarm/api/client"
 	"gopkg.in/urfave/cli.v1"
 )
 

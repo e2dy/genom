@@ -24,9 +24,9 @@ import (
 	"os"
 	"testing"
 
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/log"
-	"github.com/merval-project/merval/swarm/storage"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/log"
+	"github.com/genom-project/genom/swarm/storage"
 )
 
 func testApi(t *testing.T, f func(*Api)) {

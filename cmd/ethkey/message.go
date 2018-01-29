@@ -7,10 +7,10 @@ import (
 	"os"
 	"strings"
 
-	"github.com/merval-project/merval/accounts/keystore"
-	"github.com/merval-project/merval/cmd/utils"
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/crypto"
+	"github.com/genom-project/genom/accounts/keystore"
+	"github.com/genom-project/genom/cmd/utils"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/crypto"
 	"gopkg.in/urfave/cli.v1"
 )
 

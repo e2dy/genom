@@ -23,10 +23,10 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/merval-project/merval/cmd/utils"
-	"github.com/merval-project/merval/console"
-	"github.com/merval-project/merval/node"
-	"github.com/merval-project/merval/rpc"
+	"github.com/genom-project/genom/cmd/utils"
+	"github.com/genom-project/genom/console"
+	"github.com/genom-project/genom/node"
+	"github.com/genom-project/genom/rpc"
 	"gopkg.in/urfave/cli.v1"
 )
 
@@ -42,7 +42,7 @@ var (
 		Description: `
 The Geth console is an interactive shell for the JavaScript runtime environment
 which exposes a node admin interface as well as the Ðapp JavaScript API.
-See https://github.com/merval-project/merval/wiki/Javascipt-Console.`,
+See https://github.com/genom-project/genom/wiki/Javascipt-Console.`,
 	}
 
 	attachCommand = cli.Command{
@@ -55,7 +55,7 @@ See https://github.com/merval-project/merval/wiki/Javascipt-Console.`,
 		Description: `
 The Geth console is an interactive shell for the JavaScript runtime environment
 which exposes a node admin interface as well as the Ðapp JavaScript API.
-See https://github.com/merval-project/merval/wiki/Javascipt-Console.
+See https://github.com/genom-project/genom/wiki/Javascipt-Console.
 This command allows to open a console on a running geth node.`,
 	}
 
@@ -68,7 +68,7 @@ This command allows to open a console on a running geth node.`,
 		Category:  "CONSOLE COMMANDS",
 		Description: `
 The JavaScript VM exposes a node admin interface as well as the Ðapp
-JavaScript API. See https://github.com/merval-project/merval/wiki/Javascipt-Console`,
+JavaScript API. See https://github.com/genom-project/genom/wiki/Javascipt-Console`,
 	}
 )
 

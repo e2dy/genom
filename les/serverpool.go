@@ -27,13 +27,13 @@ import (
 	"sync"
 	"time"
 
-	"github.com/merval-project/merval/common/mclock"
-	"github.com/merval-project/merval/ethdb"
-	"github.com/merval-project/merval/log"
-	"github.com/merval-project/merval/p2p"
-	"github.com/merval-project/merval/p2p/discover"
-	"github.com/merval-project/merval/p2p/discv5"
-	"github.com/merval-project/merval/rlp"
+	"github.com/genom-project/genom/common/mclock"
+	"github.com/genom-project/genom/ethdb"
+	"github.com/genom-project/genom/log"
+	"github.com/genom-project/genom/p2p"
+	"github.com/genom-project/genom/p2p/discover"
+	"github.com/genom-project/genom/p2p/discv5"
+	"github.com/genom-project/genom/rlp"
 )
 
 const (

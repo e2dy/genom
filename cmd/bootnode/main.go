@@ -23,13 +23,13 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/merval-project/merval/cmd/utils"
-	"github.com/merval-project/merval/crypto"
-	"github.com/merval-project/merval/log"
-	"github.com/merval-project/merval/p2p/discover"
-	"github.com/merval-project/merval/p2p/discv5"
-	"github.com/merval-project/merval/p2p/nat"
-	"github.com/merval-project/merval/p2p/netutil"
+	"github.com/genom-project/genom/cmd/utils"
+	"github.com/genom-project/genom/crypto"
+	"github.com/genom-project/genom/log"
+	"github.com/genom-project/genom/p2p/discover"
+	"github.com/genom-project/genom/p2p/discv5"
+	"github.com/genom-project/genom/p2p/nat"
+	"github.com/genom-project/genom/p2p/netutil"
 )
 
 func main() {

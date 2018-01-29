@@ -22,10 +22,10 @@ import (
 	"math/rand"
 	"time"
 
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/consensus"
-	"github.com/merval-project/merval/core/types"
-	"github.com/merval-project/merval/log"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/consensus"
+	"github.com/genom-project/genom/core/types"
+	"github.com/genom-project/genom/log"
 	"gopkg.in/karalabe/cookiejar.v2/collections/prque"
 )
 

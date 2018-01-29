@@ -21,11 +21,11 @@ import (
 	"math/big"
 	"testing"
 
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/core/types"
-	"github.com/merval-project/merval/crypto/sha3"
-	"github.com/merval-project/merval/ethdb"
-	"github.com/merval-project/merval/rlp"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/core/types"
+	"github.com/genom-project/genom/crypto/sha3"
+	"github.com/genom-project/genom/ethdb"
+	"github.com/genom-project/genom/rlp"
 )
 
 // Tests block header storage and retrieval operations.

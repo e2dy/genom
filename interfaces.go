@@ -22,8 +22,8 @@ import (
 	"errors"
 	"math/big"
 
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/core/types"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/core/types"
 )
 
 // NotFound is returned by API methods if the requested item does not exist.

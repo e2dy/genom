@@ -20,8 +20,8 @@ import (
 	"encoding/json"
 	"fmt"
 
-	"github.com/merval-project/merval/accounts/keystore"
-	"github.com/merval-project/merval/log"
+	"github.com/genom-project/genom/accounts/keystore"
+	"github.com/genom-project/genom/log"
 )
 
 // deployFaucet queries the user for various input on deploying a faucet, after

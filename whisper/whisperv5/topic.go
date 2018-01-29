@@ -19,8 +19,8 @@
 package whisperv5
 
 import (
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/common/hexutil"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/common/hexutil"
 )
 
 // Topic represents a cryptographically secure, probabilistic partial

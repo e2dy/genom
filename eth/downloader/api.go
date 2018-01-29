@@ -20,9 +20,9 @@ import (
 	"context"
 	"sync"
 
-	ethereum "github.com/merval-project/merval"
-	"github.com/merval-project/merval/event"
-	"github.com/merval-project/merval/rpc"
+	ethereum "github.com/genom-project/genom"
+	"github.com/genom-project/genom/event"
+	"github.com/genom-project/genom/rpc"
 )
 
 // PublicDownloaderAPI provides an API which gives information about the current synchronisation status.

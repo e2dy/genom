@@ -24,9 +24,9 @@ import (
 	"net"
 	"time"
 
-	"github.com/merval-project/merval/log"
-	"github.com/merval-project/merval/p2p/discover"
-	"github.com/merval-project/merval/p2p/netutil"
+	"github.com/genom-project/genom/log"
+	"github.com/genom-project/genom/p2p/discover"
+	"github.com/genom-project/genom/p2p/netutil"
 )
 
 const (

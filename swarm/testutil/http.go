@@ -22,9 +22,9 @@ import (
 	"os"
 	"testing"
 
-	"github.com/merval-project/merval/swarm/api"
-	httpapi "github.com/merval-project/merval/swarm/api/http"
-	"github.com/merval-project/merval/swarm/storage"
+	"github.com/genom-project/genom/swarm/api"
+	httpapi "github.com/genom-project/genom/swarm/api/http"
+	"github.com/genom-project/genom/swarm/storage"
 )
 
 func NewTestSwarmServer(t *testing.T) *TestSwarmServer {

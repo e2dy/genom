@@ -27,9 +27,9 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/merval-project/merval/event"
-	"github.com/merval-project/merval/p2p/discover"
-	"github.com/merval-project/merval/rlp"
+	"github.com/genom-project/genom/event"
+	"github.com/genom-project/genom/p2p/discover"
+	"github.com/genom-project/genom/rlp"
 )
 
 // Msg defines the structure of a p2p message.

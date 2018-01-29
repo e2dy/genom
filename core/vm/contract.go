@@ -19,7 +19,7 @@ package vm
 import (
 	"math/big"
 
-	"github.com/merval-project/merval/common"
+	"github.com/genom-project/genom/common"
 )
 
 // ContractRef is a reference to the contract's backing object

@@ -26,9 +26,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/merval-project/merval/accounts"
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/event"
+	"github.com/genom-project/genom/accounts"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/event"
 )
 
 var testSigData = make([]byte, 32)

@@ -25,9 +25,9 @@ import (
 	"testing"
 	"time"
 
-	"github.com/merval-project/merval/crypto"
-	"github.com/merval-project/merval/log"
-	"github.com/merval-project/merval/swarm/storage"
+	"github.com/genom-project/genom/crypto"
+	"github.com/genom-project/genom/log"
+	"github.com/genom-project/genom/swarm/storage"
 )
 
 func init() {

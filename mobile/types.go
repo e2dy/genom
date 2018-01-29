@@ -23,9 +23,9 @@ import (
 	"errors"
 	"fmt"
 
-	"github.com/merval-project/merval/common"
-	"github.com/merval-project/merval/core/types"
-	"github.com/merval-project/merval/rlp"
+	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/core/types"
+	"github.com/genom-project/genom/rlp"
 )
 
 // A Nonce is a 64-bit hash which proves (combined with the mix-hash) that

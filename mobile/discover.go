@@ -22,7 +22,7 @@ package geth
 import (
 	"errors"
 
-	"github.com/merval-project/merval/p2p/discv5"
+	"github.com/genom-project/genom/p2p/discv5"
 )
 
 // Enode represents a host on the network.

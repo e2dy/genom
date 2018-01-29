@@ -21,7 +21,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/merval-project/merval/log"
+	"github.com/genom-project/genom/log"
 )
 
 // deployExplorer creates a new block explorer based on some user input.

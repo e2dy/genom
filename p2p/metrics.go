@@ -21,7 +21,7 @@ package p2p
 import (
 	"net"
 
-	"github.com/merval-project/merval/metrics"
+	"github.com/genom-project/genom/metrics"
 )
 
 var (

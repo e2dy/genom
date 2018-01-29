@@ -20,7 +20,7 @@ import (
 	"errors"
 	"sync"
 
-	"github.com/merval-project/merval/common"
+	"github.com/genom-project/genom/common"
 )
 
 /*
