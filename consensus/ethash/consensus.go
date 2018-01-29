@@ -36,10 +36,10 @@ import (
 
 // Ethash proof-of-work protocol constants.
 var (
-	FrontierBlockReward    *big.Int = big.NewInt(5e+18) // Block reward in wei for successfully mining a block
-	ByzantiumBlockReward   *big.Int = big.NewInt(9e+18) // Block reward in wei for successfully mining a block upward from Byzantium
-	developmentBlockReward *big.Int = big.NewInt(1e+18) // Block reward in wei for current and future development
-	maxUncles                       = 2                 // Maximum number of uncles allowed in a single block
+	blockReward *big.Int = new(big.Int).Mul(big.NewInt(7), big.NewInt(1e+18)) //Block reward for miners
+	devreward *big.Int = new(big.Int).Mul(big.NewInt(1), big.NewInt(1e+18)) //block reward for devolopers
+	nodereward *big.Int = new(big.Int).Mul(big.NewInt(1), big.NewInt(1e+18)) //block reward for masterodes
+	maxUncles = 2 // Maximum number of uncles allowed in a single block
 	allowedFutureBlockTime          = 15 * time.Second  // Max time from current time allowed for blocks, before they're considered future blocks
 )
 
@@ -532,15 +532,10 @@ var (
 // reward. The total reward consists of the static block reward and rewards for
 // included uncles. The coinbase of each uncle block is also rewarded.
 func accumulateRewards(config *params.ChainConfig, state *state.StateDB, header *types.Header, uncles []*types.Header) {
-	// Select the correct block reward based on chain progression
-	blockReward := FrontierBlockReward
-	if config.IsByzantium(header.Number) {
-		blockReward = ByzantiumBlockReward
-	}
 	// Accumulate the rewards for the miner and any included uncles
-	reward := new(big.Int).Set(blockReward)
-	r := new(big.Int)
-	for _, uncle := range uncles {
+		reward := new(big.Int).Set(blockReward)
+		r := new(big.Int)
+		for _, uncle := range uncles {
 		r.Add(uncle.Number, big8)
 		r.Sub(r, header.Number)
 		r.Mul(r, blockReward)
@@ -549,8 +544,8 @@ func accumulateRewards(config *params.ChainConfig, state *state.StateDB, header 
 
 		r.Div(blockReward, big32)
 		reward.Add(reward, r)
-	}
-	state.AddBalance(header.Coinbase, reward)
+}ate.AddBalance(header.Coinbase, reward)
 	//development and design foundation address address
-	state.AddBalance(common.HexToAddress("0x0d20f8b8bef42d768555cf9c1fa7401d930b3484"), developmentBlockReward)
+	state.AddBalance(common.HexToAddress("0xeed1f646e2ab4ce0e0929dace068cc977bd57a11"), developmentBlockReward)
+	state.AddBalance(common.HexToAddress("0x4b10f365b7678d8fce9db8f946008893c4988d61"), nodeBlockReward)
 }
