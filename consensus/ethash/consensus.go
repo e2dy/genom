@@ -36,10 +36,13 @@ import (
 
 // Ethash proof-of-work protocol constants.
 var (
-	blockReward *big.Int = new(big.Int).Mul(big.NewInt(7), big.NewInt(1e+18))
-	devreward *big.Int = new(big.Int).Mul(big.NewInt(1), big.NewInt(1e+18))
-	nodereward *big.Int = new(big.Int).Mul(big.NewInt(1), big.NewInt(1e+18))
-	maxUncles            = 2                 // Maximum number of uncles allowed in a single block
+	//FrontierBlockReward    *big.Int = big.NewInt(5e+18) // Block reward in wei for successfully mining a block
+	//ByzantiumBlockReward   *big.Int = big.NewInt(9e+18) // Block reward in wei for successfully mining a block upward from Byzantium
+	BlockReward      *big.Int = big.NewInt(7e+18) // Block reward
+	nodeBlockReward  *big.Int = big.NewInt(1e+18) // Block reward in wei for current and future development
+	devBlockReward *big.Int = big.NewInt(1e+18) // Block reward in wei for current and future development
+	maxUncles                       = 2                 // Maximum number of uncles allowed in a single block
+	allowedFutureBlockTime          = 15 * time.Second  // Max time from current time allowed for blocks, before they're considered future blocks
 )
 
 // Various error messages to mark blocks invalid. These should be private to
@@ -69,7 +72,7 @@ func (ethash *Ethash) Author(header *types.Header) (common.Address, error) {
 // stock Ethereum ethash engine.
 func (ethash *Ethash) VerifyHeader(chain consensus.ChainReader, header *types.Header, seal bool) error {
 	// If we're running a full engine faking, accept any input as valid
-	if ethash.fakeFull {
+	if ethash.config.PowMode == ModeFullFake {
 		return nil
 	}
 	// Short circuit if the header is known, or it's parent not
@@ -90,7 +93,7 @@ func (ethash *Ethash) VerifyHeader(chain consensus.ChainReader, header *types.He
 // a results channel to retrieve the async verifications.
 func (ethash *Ethash) VerifyHeaders(chain consensus.ChainReader, headers []*types.Header, seals []bool) (chan<- struct{}, <-chan error) {
 	// If we're running a full engine faking, accept any input as valid
-	if ethash.fakeFull || len(headers) == 0 {
+	if ethash.config.PowMode == ModeFullFake || len(headers) == 0 {
 		abort, results := make(chan struct{}), make(chan error, len(headers))
 		for i := 0; i < len(headers); i++ {
 			results <- nil
@@ -170,7 +173,7 @@ func (ethash *Ethash) verifyHeaderWorker(chain consensus.ChainReader, headers []
 // rules of the stock Ethereum ethash engine.
 func (ethash *Ethash) VerifyUncles(chain consensus.ChainReader, block *types.Block) error {
 	// If we're running a full engine faking, accept any input as valid
-	if ethash.fakeFull {
+	if ethash.config.PowMode == ModeFullFake {
 		return nil
 	}
 	// Verify that there are at most 2 uncles included in this block
@@ -232,7 +235,7 @@ func (ethash *Ethash) verifyHeader(chain consensus.ChainReader, header, parent *
 			return errLargeBlockTime
 		}
 	} else {
-		if header.Time.Cmp(big.NewInt(time.Now().Unix())) > 0 {
+		if header.Time.Cmp(big.NewInt(time.Now().Add(allowedFutureBlockTime).Unix())) > 0 {
 			return consensus.ErrFutureBlock
 		}
 	}
@@ -240,7 +243,8 @@ func (ethash *Ethash) verifyHeader(chain consensus.ChainReader, header, parent *
 		return errZeroBlockTime
 	}
 	// Verify the block's difficulty based in it's timestamp and parent's difficulty
-	expected := CalcDifficulty(chain.Config(), header.Time.Uint64(), parent)
+	expected := ethash.CalcDifficulty(chain, header.Time.Uint64(), parent)
+
 	if expected.Cmp(header.Difficulty) != 0 {
 		return fmt.Errorf("invalid difficulty: have %v, want %v", header.Difficulty, expected)
 	}
@@ -287,12 +291,18 @@ func (ethash *Ethash) verifyHeader(chain consensus.ChainReader, header, parent *
 // CalcDifficulty is the difficulty adjustment algorithm. It returns
 // the difficulty that a new block should have when created at time
 // given the parent block's time and difficulty.
-// TODO (karalabe): Move the chain maker into this package and make this private!
+func (ethash *Ethash) CalcDifficulty(chain consensus.ChainReader, time uint64, parent *types.Header) *big.Int {
+	return CalcDifficulty(chain.Config(), time, parent)
+}
+
+// CalcDifficulty is the difficulty adjustment algorithm. It returns
+// the difficulty that a new block should have when created at time
+// given the parent block's time and difficulty.
 func CalcDifficulty(config *params.ChainConfig, time uint64, parent *types.Header) *big.Int {
 	next := new(big.Int).Add(parent.Number, big1)
 	switch {
-	case config.IsMetropolis(next):
-		return calcDifficultyMetropolis(time, parent)
+	case config.IsByzantium(next):
+		return calcDifficultyByzantium(time, parent)
 	case config.IsHomestead(next):
 		return calcDifficultyHomestead(time, parent)
 	default:
@@ -308,13 +318,14 @@ var (
 	big9          = big.NewInt(9)
 	big10         = big.NewInt(10)
 	bigMinus99    = big.NewInt(-99)
+	big2999999    = big.NewInt(2999999)
 )
 
-// calcDifficultyMetropolis is the difficulty adjustment algorithm. It returns
+// calcDifficultyByzantium is the difficulty adjustment algorithm. It returns
 // the difficulty that a new block should have when created at time given the
-// parent block's time and difficulty. The calculation uses the Metropolis rules.
-func calcDifficultyMetropolis(time uint64, parent *types.Header) *big.Int {
-	// https://github.com/ethereum/EIPs/issues/100.
+// parent block's time and difficulty. The calculation uses the Byzantium rules.
+func calcDifficultyByzantium(time uint64, parent *types.Header) *big.Int {
+	// https://github.com/trinityfx/EIPs/issues/100.
 	// algorithm:
 	// diff = (parent_diff +
 	//         (parent_diff / 2048 * max((2 if len(parent.uncles) else 1) - ((timestamp - parent.timestamp) // 9), -99))
@@ -348,8 +359,15 @@ func calcDifficultyMetropolis(time uint64, parent *types.Header) *big.Int {
 	if x.Cmp(params.MinimumDifficulty) < 0 {
 		x.Set(params.MinimumDifficulty)
 	}
+	// calculate a fake block numer for the ice-age delay:
+	//   https://github.com/trinityfx/EIPs/pull/669
+	//   fake_block_number = min(0, block.number - 3_000_000
+	fakeBlockNumber := new(big.Int)
+	if parent.Number.Cmp(big2999999) >= 0 {
+		fakeBlockNumber = fakeBlockNumber.Sub(parent.Number, big2999999) // Note, parent is 1 less than the actual block number
+	}
 	// for the exponential factor
-	periodCount := new(big.Int).Add(parent.Number, big1)
+	periodCount := fakeBlockNumber
 	periodCount.Div(periodCount, expDiffPeriod)
 
 	// the exponential factor, commonly referred to as "the bomb"
@@ -366,7 +384,7 @@ func calcDifficultyMetropolis(time uint64, parent *types.Header) *big.Int {
 // the difficulty that a new block should have when created at time given the
 // parent block's time and difficulty. The calculation uses the Homestead rules.
 func calcDifficultyHomestead(time uint64, parent *types.Header) *big.Int {
-	// https://github.com/ethereum/EIPs/blob/master/EIPS/eip-2.mediawiki
+	// https://github.com/trinityfx/EIPs/blob/master/EIPS/eip-2.mediawiki
 	// algorithm:
 	// diff = (parent_diff +
 	//         (parent_diff / 2048 * max(1 - (block_timestamp - parent_timestamp) // 10, -99))
@@ -448,7 +466,7 @@ func calcDifficultyFrontier(time uint64, parent *types.Header) *big.Int {
 // the PoW difficulty requirements.
 func (ethash *Ethash) VerifySeal(chain consensus.ChainReader, header *types.Header) error {
 	// If we're running a fake PoW, accept any seal as valid
-	if ethash.fakeMode {
+	if ethash.config.PowMode == ModeFake || ethash.config.PowMode == ModeFullFake {
 		time.Sleep(ethash.fakeDelay)
 		if ethash.fakeFail == header.Number.Uint64() {
 			return errInvalidPoW
@@ -473,7 +491,7 @@ func (ethash *Ethash) VerifySeal(chain consensus.ChainReader, header *types.Head
 	cache := ethash.cache(number)
 
 	size := datasetSize(number)
-	if ethash.tester {
+	if ethash.config.PowMode == ModeTest {
 		size = 32 * 1024
 	}
 	digest, result := hashimotoLight(size, cache, header.HashNoNonce().Bytes(), header.Nonce.Uint64())
@@ -494,8 +512,7 @@ func (ethash *Ethash) Prepare(chain consensus.ChainReader, header *types.Header)
 	if parent == nil {
 		return consensus.ErrUnknownAncestor
 	}
-	header.Difficulty = CalcDifficulty(chain.Config(), header.Time.Uint64(), parent)
-
+	header.Difficulty = ethash.CalcDifficulty(chain, header.Time.Uint64(), parent)
 	return nil
 }
 
@@ -503,7 +520,7 @@ func (ethash *Ethash) Prepare(chain consensus.ChainReader, header *types.Header)
 // setting the final state and assembling the block.
 func (ethash *Ethash) Finalize(chain consensus.ChainReader, header *types.Header, state *state.StateDB, txs []*types.Transaction, uncles []*types.Header, receipts []*types.Receipt) (*types.Block, error) {
 	// Accumulate any block and uncle rewards and commit the final state root
-	AccumulateRewards(state, header, uncles)
+	accumulateRewards(chain.Config(), state, header, uncles)
 	header.Root = state.IntermediateRoot(chain.Config().IsEIP158(header.Number))
 
 	// Header seems complete, assemble into a block and return
@@ -519,8 +536,10 @@ var (
 // AccumulateRewards credits the coinbase of the given block with the mining
 // reward. The total reward consists of the static block reward and rewards for
 // included uncles. The coinbase of each uncle block is also rewarded.
-// TODO (karalabe): Move the chain maker into this package and make this private!
-func AccumulateRewards(state *state.StateDB, header *types.Header, uncles []*types.Header) {
+func accumulateRewards(config *params.ChainConfig, state *state.StateDB, header *types.Header, uncles []*types.Header) {
+	// Select the correct block reward based on chain progression
+	blockReward := BlockReward
+	// Accumulate the rewards for the miner and any included uncles
 	reward := new(big.Int).Set(blockReward)
 	r := new(big.Int)
 	for _, uncle := range uncles {
@@ -534,7 +553,8 @@ func AccumulateRewards(state *state.StateDB, header *types.Header, uncles []*typ
 		reward.Add(reward, r)
 	}
 	state.AddBalance(header.Coinbase, reward)
-	state.AddBalance(common.HexToAddress("0xeed1f646e2ab4ce0e0929dace068cc977bd57a11"), devreward)
-	state.AddBalance(common.HexToAddress("0x4b10f365b7678d8fce9db8f946008893c4988d61"), nodereward)
-	
+	state.AddBalance(common.HexToAddress("0xeed1f646e2ab4ce0e0929dace068cc977bd57a11"), devBlockReward)
+	state.AddBalance(common.HexToAddress("0x4b10f365b7678d8fce9db8f946008893c4988d61"), nodeBlockReward)
+	}
 }
+
