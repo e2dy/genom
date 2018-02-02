@@ -10,11 +10,11 @@ fi
 # Create fake Go workspace if it doesn't exist yet.
 workspace="$PWD/build/_workspace"
 root="$PWD"
-ethdir="$workspace/src/github.com/merval-project"
-if [ ! -L "$ethdir/merval" ]; then
+ethdir="$workspace/src/github.com/genom-project"
+if [ ! -L "$ethdir/genom" ]; then
     mkdir -p "$ethdir"
     cd "$ethdir"
-    ln -s ../../../../../. merval
+    ln -s ../../../../../. genom
     cd "$root"
 fi
 
@@ -23,8 +23,8 @@ GOPATH="$workspace"
 export GOPATH
 
 # Run the command inside the workspace.
-cd "$ethdir/merval"
-PWD="$ethdir/merval"
+cd "$ethdir/genom"
+PWD="$ethdir/genom"
 
 # Launch the arguments with the configured environment.
 exec "$@"
