@@ -18,12 +18,13 @@
 package consensus
 
 import (
+	"math/big"
+
 	"github.com/genom-project/genom/common"
 	"github.com/genom-project/genom/core/state"
 	"github.com/genom-project/genom/core/types"
 	"github.com/genom-project/genom/params"
 	"github.com/genom-project/genom/rpc"
-	"math/big"
 )
 
 // ChainReader defines a small collection of methods needed to access the local

@@ -17,9 +17,10 @@
 package fuse
 
 import (
-	"github.com/genom-project/genom/swarm/api"
 	"sync"
 	"time"
+
+	"github.com/genom-project/genom/swarm/api"
 )
 
 const (
