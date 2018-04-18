@@ -18,15 +18,15 @@ package common
 
 import (
 	"encoding/hex"
+	"encoding/json"
 	"fmt"
 	"math/big"
 	"math/rand"
 	"reflect"
+	"strings"
 
-	"encoding/json"
 	"github.com/genom-project/genom/common/hexutil"
 	"github.com/genom-project/genom/crypto/sha3"
-	"strings"
 )
 
 const (

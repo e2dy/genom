@@ -23,17 +23,18 @@ import (
 	"context"
 	"crypto/rand"
 	"crypto/sha256"
+	"encoding/hex"
 	"encoding/json"
 	"fmt"
 	"io"
 	"io/ioutil"
 	"os"
+	"os/signal"
 	"os/user"
 	"path/filepath"
 	"runtime"
 	"strings"
 
-	"encoding/hex"
 	"github.com/genom-project/genom/cmd/utils"
 	"github.com/genom-project/genom/common"
 	"github.com/genom-project/genom/crypto"
@@ -44,7 +45,6 @@ import (
 	"github.com/genom-project/genom/signer/rules"
 	"github.com/genom-project/genom/signer/storage"
 	"gopkg.in/urfave/cli.v1"
-	"os/signal"
 )
 
 // ExternalApiVersion -- see extapi_changelog.md
@@ -435,7 +435,7 @@ func signer(c *cli.Context) error {
 			ipcApiUrl = filepath.Join(configDir, "clef.ipc")
 		}
 
-		listener, _, err := rpc.StartIPCEndpoint(func() bool { return true }, ipcApiUrl, rpcApi)
+		listener, _, err := rpc.StartIPCEndpoint(ipcApiUrl, rpcApi)
 		if err != nil {
 			utils.Fatalf("Could not start IPC api: %v", err)
 		}
