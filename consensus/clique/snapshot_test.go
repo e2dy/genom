@@ -24,6 +24,7 @@ import (
 
 	"github.com/genom-project/genom/common"
 	"github.com/genom-project/genom/core"
+	"github.com/genom-project/genom/core/rawdb"
 	"github.com/genom-project/genom/core/types"
 	"github.com/genom-project/genom/crypto"
 	"github.com/genom-project/genom/ethdb"
@@ -81,7 +82,7 @@ func (r *testerChainReader) GetBlock(common.Hash, uint64) *types.Block   { panic
 func (r *testerChainReader) GetHeaderByHash(common.Hash) *types.Header   { panic("not supported") }
 func (r *testerChainReader) GetHeaderByNumber(number uint64) *types.Header {
 	if number == 0 {
-		return core.GetHeader(r.db, core.GetCanonicalHash(r.db, 0), 0)
+		return rawdb.ReadHeader(r.db, rawdb.ReadCanonicalHash(r.db, 0), 0)
 	}
 	panic("not supported")
 }

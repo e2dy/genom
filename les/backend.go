@@ -28,6 +28,7 @@ import (
 	"github.com/genom-project/genom/consensus"
 	"github.com/genom-project/genom/core"
 	"github.com/genom-project/genom/core/bloombits"
+	"github.com/genom-project/genom/core/rawdb"
 	"github.com/genom-project/genom/core/types"
 	"github.com/genom-project/genom/eth"
 	"github.com/genom-project/genom/eth/downloader"
@@ -122,7 +123,7 @@ func New(ctx *node.ServiceContext, config *eth.Config) (*LightEthereum, error) {
 	if compat, ok := genesisErr.(*params.ConfigCompatError); ok {
 		log.Warn("Rewinding chain to upgrade configuration", "err", compat)
 		leth.blockchain.SetHead(compat.RewindTo)
-		core.WriteChainConfig(chainDb, genesisHash, chainConfig)
+		rawdb.WriteChainConfig(chainDb, genesisHash, chainConfig)
 	}
 
 	leth.txPool = light.NewTxPool(leth.chainConfig, leth.blockchain, leth.relay)

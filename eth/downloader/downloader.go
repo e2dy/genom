@@ -27,7 +27,7 @@ import (
 
 	ethereum "github.com/genom-project/genom"
 	"github.com/genom-project/genom/common"
-	"github.com/genom-project/genom/core"
+	"github.com/genom-project/genom/core/rawdb"
 	"github.com/genom-project/genom/core/types"
 	"github.com/genom-project/genom/ethdb"
 	"github.com/genom-project/genom/event"
@@ -224,7 +224,7 @@ func New(mode SyncMode, stateDb ethdb.Database, mux *event.TypeMux, chain BlockC
 		stateCh:        make(chan dataPack),
 		stateSyncStart: make(chan *stateSync),
 		syncStatsState: stateSyncStats{
-			processed: core.GetTrieSyncProgress(stateDb),
+			processed: rawdb.ReadFastTrieProgress(stateDb),
 		},
 		trackStateReq: make(chan *stateReq),
 	}

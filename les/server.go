@@ -25,6 +25,7 @@ import (
 
 	"github.com/genom-project/genom/common"
 	"github.com/genom-project/genom/core"
+	"github.com/genom-project/genom/core/rawdb"
 	"github.com/genom-project/genom/core/types"
 	"github.com/genom-project/genom/eth"
 	"github.com/genom-project/genom/ethdb"
@@ -329,11 +330,11 @@ func (pm *ProtocolManager) blockLoop() {
 					header := ev.Block.Header()
 					hash := header.Hash()
 					number := header.Number.Uint64()
-					td := core.GetTd(pm.chainDb, hash, number)
+					td := rawdb.ReadTd(pm.chainDb, hash, number)
 					if td != nil && td.Cmp(lastBroadcastTd) > 0 {
 						var reorg uint64
 						if lastHead != nil {
-							reorg = lastHead.Number.Uint64() - core.FindCommonAncestor(pm.chainDb, header, lastHead).Number.Uint64()
+							reorg = lastHead.Number.Uint64() - rawdb.FindCommonAncestor(pm.chainDb, header, lastHead).Number.Uint64()
 						}
 						lastHead = header
 						lastBroadcastTd = td

@@ -25,6 +25,7 @@ import (
 	"github.com/genom-project/genom/common"
 	"github.com/genom-project/genom/common/bitutil"
 	"github.com/genom-project/genom/core"
+	"github.com/genom-project/genom/core/rawdb"
 	"github.com/genom-project/genom/core/types"
 	"github.com/genom-project/genom/ethdb"
 	"github.com/genom-project/genom/log"
@@ -161,7 +162,7 @@ func (c *ChtIndexerBackend) Process(header *types.Header) {
 	hash, num := header.Hash(), header.Number.Uint64()
 	c.lastHash = hash
 
-	td := core.GetTd(c.diskdb, hash, num)
+	td := rawdb.ReadTd(c.diskdb, hash, num)
 	if td == nil {
 		panic(nil)
 	}
@@ -272,7 +273,7 @@ func (b *BloomTrieIndexerBackend) Commit() error {
 		binary.BigEndian.PutUint64(encKey[2:10], b.section)
 		var decomp []byte
 		for j := uint64(0); j < b.bloomTrieRatio; j++ {
-			data, err := core.GetBloomBits(b.diskdb, i, b.section*b.bloomTrieRatio+j, b.sectionHeads[j])
+			data, err := rawdb.ReadBloomBits(b.diskdb, i, b.section*b.bloomTrieRatio+j, b.sectionHeads[j])
 			if err != nil {
 				return err
 			}

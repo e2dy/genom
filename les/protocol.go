@@ -28,6 +28,7 @@ import (
 
 	"github.com/genom-project/genom/common"
 	"github.com/genom-project/genom/core"
+	"github.com/genom-project/genom/core/rawdb"
 	"github.com/genom-project/genom/crypto"
 	"github.com/genom-project/genom/crypto/secp256k1"
 	"github.com/genom-project/genom/rlp"
@@ -223,6 +224,6 @@ type proofsData [][]rlp.RawValue
 
 type txStatus struct {
 	Status core.TxStatus
-	Lookup *core.TxLookupEntry `rlp:"nil"`
+	Lookup *rawdb.TxLookupEntry `rlp:"nil"`
 	Error  string
 }
