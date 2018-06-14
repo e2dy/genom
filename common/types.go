@@ -29,6 +29,7 @@ import (
 	"github.com/genom-project/genom/crypto/sha3"
 )
 
+// Lengths of hashes and addresses in bytes.
 const (
 	HashLength    = 32
 	AddressLength = 20
