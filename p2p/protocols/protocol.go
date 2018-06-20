@@ -31,10 +31,12 @@ package protocols
 import (
 	"context"
 	"fmt"
+	"io"
 	"reflect"
 	"sync"
 	"time"
 
+	"github.com/genom-project/genom/log"
 	"github.com/genom-project/genom/metrics"
 	"github.com/genom-project/genom/p2p"
 )
@@ -202,6 +204,11 @@ func NewPeer(p *p2p.Peer, rw p2p.MsgReadWriter, spec *Spec) *Peer {
 func (p *Peer) Run(handler func(msg interface{}) error) error {
 	for {
 		if err := p.handleIncoming(handler); err != nil {
+			if err != io.EOF {
+				metrics.GetOrRegisterCounter("peer.handleincoming.error", nil).Inc(1)
+				log.Error("peer.handleIncoming", "err", err)
+			}
+
 			return err
 		}
 	}

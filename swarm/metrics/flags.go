@@ -20,9 +20,9 @@ import (
 	"time"
 
 	"github.com/genom-project/genom/cmd/utils"
-	"github.com/genom-project/genom/log"
 	gethmetrics "github.com/genom-project/genom/metrics"
 	"github.com/genom-project/genom/metrics/influxdb"
+	"github.com/genom-project/genom/swarm/log"
 	"gopkg.in/urfave/cli.v1"
 )
 

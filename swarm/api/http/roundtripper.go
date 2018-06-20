@@ -20,7 +20,7 @@ import (
 	"fmt"
 	"net/http"
 
-	"github.com/genom-project/genom/log"
+	"github.com/genom-project/genom/swarm/log"
 )
 
 /*
