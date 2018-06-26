@@ -22,6 +22,7 @@ import (
 	"github.com/genom-project/genom/params"
 )
 
+// Gas costs
 const (
 	GasQuickStep   uint64 = 2
 	GasFastestStep uint64 = 3
