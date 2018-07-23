@@ -22,10 +22,7 @@ import (
 	"net/http/httptest"
 	"os"
 	"testing"
-	"time"
 
-	"github.com/genom-project/genom/metrics"
-	"github.com/genom-project/genom/metrics/influxdb"
 	"github.com/genom-project/genom/swarm/api"
 	"github.com/genom-project/genom/swarm/storage"
 	"github.com/genom-project/genom/swarm/storage/mru"
@@ -112,12 +109,4 @@ func (t *TestSwarmServer) Close() {
 
 func (t *TestSwarmServer) GetCurrentTime() mru.Timestamp {
 	return t.timestampProvider.Now()
-}
-
-// EnableMetrics is starting InfluxDB reporter so that we collect stats when running tests locally
-func EnableMetrics() {
-	metrics.Enabled = true
-	go influxdb.InfluxDBWithTags(metrics.DefaultRegistry, 1*time.Second, "http://localhost:8086", "metrics", "admin", "admin", "swarm.", map[string]string{
-		"host": "test",
-	})
 }
