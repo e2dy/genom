@@ -24,6 +24,7 @@ import (
 	"github.com/genom-project/genom/common"
 	"github.com/genom-project/genom/metrics"
 	"github.com/genom-project/genom/p2p/discover"
+	cp "github.com/genom-project/genom/swarm/chunk"
 	"github.com/genom-project/genom/swarm/log"
 	"github.com/genom-project/genom/swarm/network"
 	"github.com/genom-project/genom/swarm/spancontext"
@@ -229,6 +230,11 @@ R:
 	for req := range d.receiveC {
 		processReceivedChunksCount.Inc(1)
 
+		if len(req.SData) > cp.DefaultSize+8 {
+			log.Warn("received chunk is bigger than expected", "len", len(req.SData))
+			continue R
+		}
+
 		// this should be has locally
 		chunk, err := d.db.Get(context.TODO(), req.Addr)
 		if err == nil {
@@ -244,6 +250,7 @@ R:
 			continue R
 		default:
 		}
+
 		chunk.SData = req.SData
 		d.db.Put(context.TODO(), chunk)
 
