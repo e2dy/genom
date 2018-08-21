@@ -58,28 +58,29 @@ type TrustedCheckpoint struct {
 	SectionHead, CHTRoot, BloomRoot common.Hash
 }
 
-var (
-	mainnetCheckpoint = TrustedCheckpoint{
+// trustedCheckpoints associates each known checkpoint with the genesis hash of the chain it belongs to
+var trustedCheckpoints = map[common.Hash]TrustedCheckpoint{
+	params.MainnetGenesisHash: {
 		name:        "mainnet",
 		SectionIdx:  161,
 		SectionHead: common.HexToHash("75b0c4baa7a62cece48abdcb03b6f31601961c9bece67dcd61df87aad4fc0d8d"),
 		CHTRoot:     common.HexToHash("bbbfaa67b29716348997ec21a39c03b8d1fb973f6a43740b865595ba26ee812f"),
 		BloomRoot:   common.HexToHash("d6db6e6248354d7453391ce97830072a28ea4216be0bd95a5db9f53b1a64677b"),
-	}
-
-	ropstenCheckpoint = TrustedCheckpoint{
+	},
+	params.TestnetGenesisHash: {
 		name:        "ropsten",
 		SectionIdx:  83,
 		SectionHead: common.HexToHash("3ca623586bc0da35f1fc8d9b6b55950f3b1f69be9c6501846a2df672adb61236"),
 		CHTRoot:     common.HexToHash("8f08ec7783969768c6ef06e5fe3398223cbf4ae2907b676da7b6fe6c7f55b059"),
 		BloomRoot:   common.HexToHash("02d86d3c6a87f8f8a92c2a59bbba2132ff6f9f61b0915a5dc28a9d8279219fd0"),
-	}
-)
-
-// trustedCheckpoints associates each known checkpoint with the genesis hash of the chain it belongs to
-var trustedCheckpoints = map[common.Hash]TrustedCheckpoint{
-	params.MainnetGenesisHash: mainnetCheckpoint,
-	params.TestnetGenesisHash: ropstenCheckpoint,
+	},
+	params.RinkebyGenesisHash: {
+		name:        "rinkeby",
+		SectionIdx:  85,
+		SectionHead: common.HexToHash("92cfa67afc4ad8ab0dcbc6fa49efd14b5b19402442e7317e6bc879d85f89d64d"),
+		CHTRoot:     common.HexToHash("2802ec92cd7a54a75bca96afdc666ae7b99e5d96cf8192dcfb09588812f51564"),
+		BloomRoot:   common.HexToHash("ebefeb31a9a42866d8cf2d2477704b4c3d7c20d0e4e9b5aaa77f396e016a1263"),
+	},
 }
 
 var (
