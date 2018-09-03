@@ -26,13 +26,13 @@ import (
 	"time"
 
 	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/common/prque"
 	"github.com/genom-project/genom/core/state"
 	"github.com/genom-project/genom/core/types"
 	"github.com/genom-project/genom/event"
 	"github.com/genom-project/genom/log"
 	"github.com/genom-project/genom/metrics"
 	"github.com/genom-project/genom/params"
-	"gopkg.in/karalabe/cookiejar.v2/collections/prque"
 )
 
 const (
@@ -987,11 +987,11 @@ func (pool *TxPool) promoteExecutables(accounts []common.Address) {
 	if pending > pool.config.GlobalSlots {
 		pendingBeforeCap := pending
 		// Assemble a spam order to penalize large transactors first
-		spammers := prque.New()
+		spammers := prque.New(nil)
 		for addr, list := range pool.pending {
 			// Only evict transactions from high rollers
 			if !pool.locals.contains(addr) && uint64(list.Len()) > pool.config.AccountSlots {
-				spammers.Push(addr, float32(list.Len()))
+				spammers.Push(addr, int64(list.Len()))
 			}
 		}
 		// Gradually drop transactions from offenders
