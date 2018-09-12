@@ -34,7 +34,6 @@ import (
 	"github.com/genom-project/genom/p2p/discover"
 	"github.com/genom-project/genom/p2p/simulations/adapters"
 	"github.com/genom-project/genom/swarm/api"
-	"github.com/genom-project/genom/swarm/network"
 	"github.com/genom-project/genom/swarm/network/simulation"
 	"github.com/genom-project/genom/swarm/storage"
 	colorable "github.com/mattn/go-colorable"
@@ -293,7 +292,7 @@ func testSwarmNetwork(t *testing.T, o *testSwarmNetworkOptions, steps ...testSwa
 			if err != nil {
 				return nil, cleanup, err
 			}
-			bucket.Store(simulation.BucketKeyKademlia, swarm.bzz.Hive.Overlay.(*network.Kademlia))
+			bucket.Store(simulation.BucketKeyKademlia, swarm.bzz.Hive.Kademlia)
 			log.Info("new swarm", "bzzKey", config.BzzKey, "baseAddr", fmt.Sprintf("%x", swarm.bzz.BaseAddr()))
 			return swarm, cleanup, nil
 		},
