@@ -25,7 +25,7 @@ import (
 	"github.com/genom-project/genom/ethclient"
 )
 
-// EthereumClient provides access to the Ethereum APIs.
+// GenomClient provides access to the Ethereum APIs.
 type EthereumClient struct {
 	client *ethclient.Client
 }

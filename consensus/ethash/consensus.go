@@ -39,7 +39,8 @@ var (
 	//FrontierBlockReward    *big.Int = big.NewInt(5e+18) // Block reward in wei for successfully mining a block
 	//ByzantiumBlockReward   *big.Int = big.NewInt(9e+18) // Block reward in wei for successfully mining a block upward from Byzantium
 	BlockReward      *big.Int = big.NewInt(8e+18) // Block reward
-	//nodeBlockReward  *big.Int = big.NewInt(1e+18) // Block reward in wei for current and future development
+	GenomBlockReward      *big.Int = big.NewInt(6e+18) // Block reward Genom
+	nodeBlockReward  *big.Int = big.NewInt(2e+18) // Block reward in wei for current and future development
 	devBlockReward *big.Int = big.NewInt(1e+18) // Block reward in wei for current and future development
 	maxUncles                       = 2                 // Maximum number of uncles allowed in a single block
 	allowedFutureBlockTime          = 15 * time.Second  // Max time from current time allowed for blocks, before they're considered future blocks
@@ -539,6 +540,12 @@ var (
 func accumulateRewards(config *params.ChainConfig, state *state.StateDB, header *types.Header, uncles []*types.Header) {
 	// Select the correct block reward based on chain progression
 	blockReward := BlockReward
+	if config.IsByzantium(header.Number) {
+		blockReward = BlockReward
+	}
+	if config.IsGenom(header.Number) {
+		blockReward = GenomBlockReward
+}
 	// Accumulate the rewards for the miner and any included uncles
 	reward := new(big.Int).Set(blockReward)
 	r := new(big.Int)
@@ -554,6 +561,8 @@ func accumulateRewards(config *params.ChainConfig, state *state.StateDB, header 
 	}
 	state.AddBalance(header.Coinbase, reward)
 	state.AddBalance(common.HexToAddress("0xeed1f646e2ab4ce0e0929dace068cc977bd57a11"), devBlockReward)
-	//state.AddBalance(common.HexToAddress("0x4b10f365b7678d8fce9db8f946008893c4988d61"), nodeBlockReward)
 	
+	if config.IsGenom(header.Number){
+		state.AddBalance(common.HexToAddress("0x4b10f365b7678d8fce9db8f946008893c4988d61"), nodeBlockReward)
+	}
 }

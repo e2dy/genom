@@ -186,7 +186,7 @@ func main() {
 // request represents an accepted funding request.
 type request struct {
 	Avatar  string             `json:"avatar"`  // Avatar URL to make the UI nicer
-	Account common.Address     `json:"account"` // Ethereum address being funded
+	Account common.Address     `json:"account"` // Genom address being funded
 	Time    time.Time          `json:"time"`    // Timestamp when the request was accepted
 	Tx      *types.Transaction `json:"tx"`      // Transaction funding the account
 }
@@ -194,7 +194,7 @@ type request struct {
 // faucet represents a crypto faucet backed by an Ethereum light client.
 type faucet struct {
 	config *params.ChainConfig // Chain configurations for signing
-	stack  *node.Node          // Ethereum protocol stack
+	stack  *node.Node          // Genom protocol stack
 	client *ethclient.Client   // Client connection to the Ethereum chain
 	index  []byte              // Index page to serve up on the web
 

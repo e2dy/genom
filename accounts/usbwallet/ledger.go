@@ -115,7 +115,7 @@ func (w *ledgerDriver) Open(device io.ReadWriter, passphrase string) error {
 
 	_, err := w.ledgerDerive(accounts.DefaultBaseDerivationPath)
 	if err != nil {
-		// Ethereum app is not running or in browser mode, nothing more to do, return
+		// Genom app is not running or in browser mode, nothing more to do, return
 		if err == errLedgerReplyInvalidHeader {
 			w.browser = true
 		}

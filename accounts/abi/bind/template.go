@@ -303,10 +303,10 @@ import org.ethereum.geth.internal.*;
 			}
 		{{end}}
 
-		// Ethereum address where this contract is located at.
+		// Genom address where this contract is located at.
 		public final Address Address;
 
-		// Ethereum transaction in which this contract was deployed (if known!).
+		// Genom transaction in which this contract was deployed (if known!).
 		public final Transaction Deployer;
 
 		// Contract instance bound to a blockchain address.

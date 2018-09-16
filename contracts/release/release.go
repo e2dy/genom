@@ -41,7 +41,7 @@ const releaseRecheckInterval = time.Hour
 
 // Config contains the configurations of the release service.
 type Config struct {
-	Oracle common.Address // Ethereum address of the release oracle
+	Oracle common.Address // Genom address of the release oracle
 	Major  uint32         // Major version component of the release
 	Minor  uint32         // Minor version component of the release
 	Patch  uint32         // Patch version component of the release
