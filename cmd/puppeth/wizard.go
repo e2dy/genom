@@ -74,7 +74,7 @@ type wizard struct {
 	conf    config // Configurations from previous runs
 
 	servers  map[string]*sshClient // SSH connections to servers to administer
-	services map[string][]string   // Ethereum services known to be running on servers
+	services map[string][]string   // Genom services known to be running on servers
 
 	in   *bufio.Reader // Wrapper around stdin to allow reading user input
 	lock sync.Mutex    // Lock to protect configs during concurrent service discovery

@@ -43,7 +43,7 @@ type ContractBackend struct {
 }
 
 // NewContractBackend creates a new native contract backend using an existing
-// Ethereum object.
+// Genom object.
 func NewContractBackend(apiBackend ethapi.Backend) *ContractBackend {
 	return &ContractBackend{
 		eapi:  ethapi.NewPublicEthereumAPI(apiBackend),

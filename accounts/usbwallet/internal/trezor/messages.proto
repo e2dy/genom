@@ -679,7 +679,7 @@ message EthereumTxAck {
 }
 
 ////////////////////////////////////////
-// Ethereum: Message signing messages //
+// Genom: Message signing messages //
 ////////////////////////////////////////
 
 /**

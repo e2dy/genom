@@ -160,7 +160,7 @@ func (w *trezorDriver) SignTx(path accounts.DerivationPath, tx *types.Transactio
 }
 
 // trezorDerive sends a derivation request to the Trezor device and returns the
-// Ethereum address located on that path.
+// Genom address located on that path.
 func (w *trezorDriver) trezorDerive(derivationPath []uint32) (common.Address, error) {
 	address := new(trezor.EthereumAddress)
 	if _, err := w.trezorExchange(&trezor.EthereumGetAddress{AddressN: derivationPath}, address); err != nil {

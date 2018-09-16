@@ -49,22 +49,22 @@ type NodeConfig struct {
 	// set to zero, then only the configured static and trusted peers can connect.
 	MaxPeers int
 
-	// EthereumEnabled specifies whether the node should run the Ethereum protocol.
+	// GenomEnabled specifies whether the node should run the Ethereum protocol.
 	EthereumEnabled bool
 
-	// EthereumNetworkID is the network identifier used by the Ethereum protocol to
+	// GenomNetworkID is the network identifier used by the Ethereum protocol to
 	// decide if remote peers should be accepted or not.
 	EthereumNetworkID int64 // uint64 in truth, but Java can't handle that...
 
-	// EthereumGenesis is the genesis JSON to use to seed the blockchain with. An
+	// GenomGenesis is the genesis JSON to use to seed the blockchain with. An
 	// empty genesis state is equivalent to using the mainnet's state.
 	EthereumGenesis string
 
-	// EthereumDatabaseCache is the system memory in MB to allocate for database caching.
+	// GenomDatabaseCache is the system memory in MB to allocate for database caching.
 	// A minimum of 16MB is always reserved.
 	EthereumDatabaseCache int
 
-	// EthereumNetStats is a netstats connection string to use to report various
+	// GenomNetStats is a netstats connection string to use to report various
 	// chain, transaction and node stats to a monitoring server.
 	//
 	// It has the form "nodename:secret@host:port"
