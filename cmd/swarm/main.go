@@ -38,7 +38,7 @@ import (
 	"github.com/genom-project/genom/internal/debug"
 	"github.com/genom-project/genom/log"
 	"github.com/genom-project/genom/node"
-	"github.com/genom-project/genom/p2p/discover"
+	"github.com/genom-project/genom/p2p/enode"
 	"github.com/genom-project/genom/swarm"
 	bzzapi "github.com/genom-project/genom/swarm/api"
 	swarmmetrics "github.com/genom-project/genom/swarm/metrics"
@@ -795,10 +795,10 @@ func setSwarmBootstrapNodes(ctx *cli.Context, cfg *node.Config) {
 		return
 	}
 
-	cfg.P2P.BootstrapNodes = []*discover.Node{}
+	cfg.P2P.BootstrapNodes = []*enode.Node{}
 
 	for _, url := range SwarmBootnodes {
-		node, err := discover.ParseNode(url)
+		node, err := enode.ParseV4(url)
 		if err != nil {
 			log.Error("Bootstrap URL invalid", "enode", url, "err", err)
 		}

@@ -26,7 +26,7 @@ import (
 	"time"
 
 	"github.com/genom-project/genom/event"
-	"github.com/genom-project/genom/p2p/discover"
+	"github.com/genom-project/genom/p2p/enode"
 	"github.com/genom-project/genom/rlp"
 )
 
@@ -253,13 +253,13 @@ type msgEventer struct {
 	MsgReadWriter
 
 	feed     *event.Feed
-	peerID   discover.NodeID
+	peerID   enode.ID
 	Protocol string
 }
 
 // newMsgEventer returns a msgEventer which sends message events to the given
 // feed
-func newMsgEventer(rw MsgReadWriter, feed *event.Feed, peerID discover.NodeID, proto string) *msgEventer {
+func newMsgEventer(rw MsgReadWriter, feed *event.Feed, peerID enode.ID, proto string) *msgEventer {
 	return &msgEventer{
 		MsgReadWriter: rw,
 		feed:          feed,

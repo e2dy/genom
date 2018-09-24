@@ -51,8 +51,8 @@ import (
 	"github.com/genom-project/genom/metrics/influxdb"
 	"github.com/genom-project/genom/node"
 	"github.com/genom-project/genom/p2p"
-	"github.com/genom-project/genom/p2p/discover"
 	"github.com/genom-project/genom/p2p/discv5"
+	"github.com/genom-project/genom/p2p/enode"
 	"github.com/genom-project/genom/p2p/nat"
 	"github.com/genom-project/genom/p2p/netutil"
 	"github.com/genom-project/genom/params"
@@ -692,9 +692,9 @@ func setBootstrapNodes(ctx *cli.Context, cfg *p2p.Config) {
 		return // already set, don't apply defaults.
 	}
 
-	cfg.BootstrapNodes = make([]*discover.Node, 0, len(urls))
+	cfg.BootstrapNodes = make([]*enode.Node, 0, len(urls))
 	for _, url := range urls {
-		node, err := discover.ParseNode(url)
+		node, err := enode.ParseV4(url)
 		if err != nil {
 			log.Crit("Bootstrap URL invalid", "enode", url, "err", err)
 		}

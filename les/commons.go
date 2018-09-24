@@ -26,7 +26,7 @@ import (
 	"github.com/genom-project/genom/ethdb"
 	"github.com/genom-project/genom/light"
 	"github.com/genom-project/genom/p2p"
-	"github.com/genom-project/genom/p2p/discover"
+	"github.com/genom-project/genom/p2p/enode"
 	"github.com/genom-project/genom/params"
 )
 
@@ -63,7 +63,7 @@ func (c *lesCommons) makeProtocols(versions []uint) []p2p.Protocol {
 			Run: func(p *p2p.Peer, rw p2p.MsgReadWriter) error {
 				return c.protocolManager.runPeer(version, p, rw)
 			},
-			PeerInfo: func(id discover.NodeID) interface{} {
+			PeerInfo: func(id enode.ID) interface{} {
 				if p := c.protocolManager.peers.Peer(fmt.Sprintf("%x", id[:8])); p != nil {
 					return p.Info()
 				}

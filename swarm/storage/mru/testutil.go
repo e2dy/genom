@@ -22,8 +22,7 @@ import (
 	"path/filepath"
 	"sync"
 
-	"github.com/genom-project/genom/p2p/discover"
-
+	"github.com/genom-project/genom/p2p/enode"
 	"github.com/genom-project/genom/swarm/storage"
 )
 
@@ -43,7 +42,7 @@ type mockNetFetcher struct{}
 
 func (m *mockNetFetcher) Request(ctx context.Context) {
 }
-func (m *mockNetFetcher) Offer(ctx context.Context, source *discover.NodeID) {
+func (m *mockNetFetcher) Offer(ctx context.Context, source *enode.ID) {
 }
 
 func newFakeNetFetcher(context.Context, storage.Address, *sync.Map) storage.NetFetcher {

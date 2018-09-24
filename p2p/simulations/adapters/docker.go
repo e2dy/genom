@@ -29,7 +29,7 @@ import (
 
 	"github.com/docker/docker/pkg/reexec"
 	"github.com/genom-project/genom/node"
-	"github.com/genom-project/genom/p2p/discover"
+	"github.com/genom-project/genom/p2p/enode"
 )
 
 var (
@@ -64,7 +64,7 @@ func NewDockerAdapter() (*DockerAdapter, error) {
 
 	return &DockerAdapter{
 		ExecAdapter{
-			nodes: make(map[discover.NodeID]*ExecNode),
+			nodes: make(map[enode.ID]*ExecNode),
 		},
 	}, nil
 }

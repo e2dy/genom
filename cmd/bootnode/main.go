@@ -29,6 +29,7 @@ import (
 	"github.com/genom-project/genom/log"
 	"github.com/genom-project/genom/p2p/discover"
 	"github.com/genom-project/genom/p2p/discv5"
+	"github.com/genom-project/genom/p2p/enode"
 	"github.com/genom-project/genom/p2p/nat"
 	"github.com/genom-project/genom/p2p/netutil"
 )
@@ -85,7 +86,7 @@ func main() {
 	}
 
 	if *writeAddr {
-		fmt.Printf("%v\n", discover.PubkeyID(&nodeKey.PublicKey))
+		fmt.Printf("%v\n", enode.PubkeyToIDV4(&nodeKey.PublicKey))
 		os.Exit(0)
 	}
 

@@ -47,7 +47,7 @@ import (
 
 	"github.com/genom-project/genom/crypto"
 	"github.com/genom-project/genom/p2p"
-	"github.com/genom-project/genom/p2p/discover"
+	"github.com/genom-project/genom/p2p/enode"
 	"github.com/genom-project/genom/p2p/simulations"
 	"github.com/genom-project/genom/p2p/simulations/adapters"
 	"github.com/genom-project/genom/rpc"
@@ -285,7 +285,7 @@ func createNode(ctx *cli.Context) error {
 		if err != nil {
 			return err
 		}
-		config.ID = discover.PubkeyID(&privKey.PublicKey)
+		config.ID = enode.PubkeyToIDV4(&privKey.PublicKey)
 		config.PrivateKey = privKey
 	}
 	if services := ctx.String("services"); services != "" {

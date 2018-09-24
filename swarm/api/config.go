@@ -27,7 +27,7 @@ import (
 	"github.com/genom-project/genom/contracts/ens"
 	"github.com/genom-project/genom/crypto"
 	"github.com/genom-project/genom/node"
-	"github.com/genom-project/genom/p2p/discover"
+	"github.com/genom-project/genom/p2p/enode"
 	"github.com/genom-project/genom/swarm/log"
 	"github.com/genom-project/genom/swarm/network"
 	"github.com/genom-project/genom/swarm/pss"
@@ -118,7 +118,7 @@ func (c *Config) Init(prvKey *ecdsa.PrivateKey) {
 
 	c.PublicKey = pubkeyhex
 	c.BzzKey = keyhex
-	c.NodeID = discover.PubkeyID(&prvKey.PublicKey).String()
+	c.NodeID = enode.PubkeyToIDV4(&prvKey.PublicKey).String()
 
 	if c.SwapEnabled {
 		c.Swap.Init(c.Contract, prvKey)
