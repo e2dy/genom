@@ -165,25 +165,6 @@ the official networks need to be manually set up.
 First, you'll need to create the genesis state of your networks, which all nodes need to be aware of
 and agree upon. This consists of a small JSON file (e.g. call it `genesis.json`):
 
-```json
-{
-  "config": {
-        "chainId": 200665,
-        "homesteadBlock": 0,
-        "eip155Block": 0,
-        "eip158Block": 0
-    },
-  "alloc"      : {},
-  "coinbase"   : "0x0000000000000000000000000000000000000000",
-  "difficulty" : "0x20000",
-  "extraData"  : "",
-  "gasLimit"   : "0x2fefd8",
-  "nonce"      : "0x0000000000000042",
-  "mixhash"    : "0x0000000000000000000000000000000000000000000000000000000000000000",
-  "parentHash" : "0x0000000000000000000000000000000000000000000000000000000000000000",
-  "timestamp"  : "0x00"
-}
-```
 
 The above fields should be fine for most purposes, although we'd recommend changing the `nonce` to
 some random value so you prevent unknown remote nodes from being able to connect to you. If you'd
