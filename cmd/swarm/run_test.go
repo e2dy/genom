@@ -40,6 +40,9 @@ import (
 	"github.com/genom-project/genom/p2p"
 	"github.com/genom-project/genom/rpc"
 	"github.com/genom-project/genom/swarm"
+	"github.com/genom-project/genom/swarm/api"
+	swarmhttp "github.com/genom-project/genom/swarm/api/http"
+	"github.com/genom-project/genom/swarm/testutil"
 )
 
 var loglevel = flag.Int("loglevel", 3, "verbosity of logs")
@@ -55,6 +58,9 @@ func init() {
 	})
 }
 
+func serverFunc(api *api.API) testutil.TestServer {
+	return swarmhttp.NewServer(api, "")
+}
 func TestMain(m *testing.M) {
 	// check if we have been reexec'd
 	if reexec.Init() {
