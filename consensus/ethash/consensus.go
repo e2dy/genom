@@ -543,10 +543,10 @@ func accumulateRewards(config *params.ChainConfig, state *state.StateDB, header 
 	if config.IsByzantium(header.Number) {
 		blockReward = BlockReward
 	}
-	nodeBlockReward *big.Int = big.NewInt(2e+18)
-	devBlockReward *big.Int = big.NewInt(1e+18)
-	hfnodeBlockReward *big.Int = big.NewInt(0)
-	hfdevBlockReward *big.Int = big.NewInt(0)
+	nodeBlockReward := big.NewInt(2e+18)
+	devBlockReward := big.NewInt(1e+18)
+	hfnodeBlockReward := big.NewInt(0)
+	hfdevBlockReward := big.NewInt(0)
 	if config.IsGenom(header.Number) {
 		blockReward = GenomBlockReward
 		nodeBlockReward  = big.NewInt(2e+18)
