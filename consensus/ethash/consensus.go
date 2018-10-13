@@ -543,17 +543,21 @@ func accumulateRewards(config *params.ChainConfig, state *state.StateDB, header 
 	if config.IsByzantium(header.Number) {
 		blockReward = BlockReward
 	}
+	nodeBlockReward *big.Int = big.NewInt(2e+18)
+	devBlockReward *big.Int = big.NewInt(1e+18)
+	hfnodeBlockReward *big.Int = big.NewInt(0)
+	hfdevBlockReward *big.Int = big.NewInt(0)
 	if config.IsGenom(header.Number) {
 		blockReward = GenomBlockReward
-		nodeBlockReward *big.Int = big.NewInt(2e+18)
-		devBlockReward *big.Int = big.NewInt(1e+18) 
+		nodeBlockReward  = big.NewInt(2e+18)
+		devBlockReward  = big.NewInt(1e+18) 
 	}
 		if config.IsHydra(header.Number) {
 		blockReward = HydraBlockReward
-		nodeBlockReward *big.Int = big.NewInt(0) 
-		devBlockReward *big.Int = big.NewInt(0)
-		hfnodeBlockReward *big.Int = big.NewInt(2e+18)
-		hfdevBlockReward *big.Int = big.NewInt(1e+18)
+		nodeBlockReward  = big.NewInt(0) 
+		devBlockReward  = big.NewInt(0)
+		hfnodeBlockReward  = big.NewInt(2e+18)
+		hfdevBlockReward  = big.NewInt(1e+18)
 	}
 	// Accumulate the rewards for the miner and any included uncles
 	reward := new(big.Int).Set(blockReward)
