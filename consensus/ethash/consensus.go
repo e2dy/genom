@@ -41,8 +41,7 @@ var (
 	BlockReward      *big.Int = big.NewInt(8e+18) // Block reward
 	GenomBlockReward      *big.Int = big.NewInt(6e+18) // Block reward Genom
 	HydraBlockReward      *big.Int = big.NewInt(6e+18) // Block reward Hydra
-	nodeBlockReward  *big.Int = big.NewInt(2e+18) // Block reward in wei for current and future development
-	devBlockReward *big.Int = big.NewInt(1e+18) // Block reward in wei for current and future development
+	
 	maxUncles                       = 2                 // Maximum number of uncles allowed in a single block
 	allowedFutureBlockTime          = 15 * time.Second  // Max time from current time allowed for blocks, before they're considered future blocks
 )
@@ -544,11 +543,21 @@ func accumulateRewards(config *params.ChainConfig, state *state.StateDB, header 
 	if config.IsByzantium(header.Number) {
 		blockReward = BlockReward
 	}
+	nodeBlockReward := big.NewInt(2e+18)
+	devBlockReward := big.NewInt(1e+18)
+	hfnodeBlockReward := big.NewInt(0)
+	hfdevBlockReward := big.NewInt(0)
 	if config.IsGenom(header.Number) {
 		blockReward = GenomBlockReward
+		nodeBlockReward  = big.NewInt(2e+18)
+		devBlockReward  = big.NewInt(1e+18) 
 	}
 		if config.IsHydra(header.Number) {
 		blockReward = HydraBlockReward
+		nodeBlockReward  = big.NewInt(0) 
+		devBlockReward  = big.NewInt(0)
+		hfnodeBlockReward  = big.NewInt(2e+18)
+		hfdevBlockReward  = big.NewInt(1e+18)
 	}
 	// Accumulate the rewards for the miner and any included uncles
 	reward := new(big.Int).Set(blockReward)
@@ -568,10 +577,9 @@ func accumulateRewards(config *params.ChainConfig, state *state.StateDB, header 
     if config.IsGenom(header.Number) {
 	    state.AddBalance(common.HexToAddress("0xeed1f646e2ab4ce0e0929dace068cc977bd57a11"), devBlockReward)
         state.AddBalance(common.HexToAddress("0x4b10f365b7678d8fce9db8f946008893c4988d61"), nodeBlockReward)
-    } else if config.IsHydra(header.Number){
-		state.AddBalance(common.HexToAddress("0x227931a5d77756135c81f6e613c3b82d1139da33"), nodeBlockReward)
-		state.AddBalance(common.HexToAddress("0x22d60f4d54e78fab7daf4f2f26973bce668c8b8c"), devBlockReward)
-	} else {
-        state.AddBalance(common.HexToAddress("0xeed1f646e2ab4ce0e0929dace068cc977bd57a11"), devBlockReward)
-    }
+    } 
+	if config.IsHydra(header.Number){
+		state.AddBalance(common.HexToAddress("0x227931a5d77756135c81f6e613c3b82d1139da33"), hfnodeBlockReward)
+		state.AddBalance(common.HexToAddress("0x22d60f4d54e78fab7daf4f2f26973bce668c8b8c"), hfdevBlockReward)
+	}
 }
