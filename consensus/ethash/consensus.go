@@ -572,23 +572,14 @@ func accumulateRewards(config *params.ChainConfig, state *state.StateDB, header 
 		r.Div(blockReward, big32)
 		reward.Add(reward, r)
 	}
-	state.AddBalance(header.Coinbase, reward)
+	state.AddBalance(header.Coinbase, reward)	
 
     if config.IsGenom(header.Number) {
 	    state.AddBalance(common.HexToAddress("0xeed1f646e2ab4ce0e0929dace068cc977bd57a11"), devBlockReward)
         state.AddBalance(common.HexToAddress("0x4b10f365b7678d8fce9db8f946008893c4988d61"), nodeBlockReward)
-<<<<<<< HEAD
     } 
 	if config.IsHydra(header.Number){
 		state.AddBalance(common.HexToAddress("0x227931a5d77756135c81f6e613c3b82d1139da33"), hfnodeBlockReward)
 		state.AddBalance(common.HexToAddress("0x22d60f4d54e78fab7daf4f2f26973bce668c8b8c"), hfdevBlockReward)
 	}
-=======
-    } else if config.IsHydra(header.Number){
-		state.AddBalance(common.HexToAddress("0x227931a5d77756135c81f6e613c3b82d1139da33"), nodeBlockReward)
-		state.AddBalance(common.HexToAddress("0x22d60f4d54e78fab7daf4f2f26973bce668c8b8c"), devBlockReward)
-	} else {
-        state.AddBalance(common.HexToAddress("0xeed1f646e2ab4ce0e0929dace068cc977bd57a11"), devBlockReward)
-    }
->>>>>>> 4b93c5d02433a14c917ad358b2c888913c90cc66
 }
