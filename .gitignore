@@ -14,3 +14,6 @@
 .glide/
 build/bin
 build/_workspace
+
+# IDE artifacts
+.idea
