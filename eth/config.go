@@ -93,7 +93,8 @@ type Config struct {
 	MinerThreads int            `toml:",omitempty"`
 	ExtraData    []byte         `toml:",omitempty"`
 	GasPrice     *big.Int
-
+	UseAddrTxIndex bool `toml:"-"`
+	
 	// Ethash options
 	Ethash ethash.Config
 

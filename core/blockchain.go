@@ -114,6 +114,7 @@ type BlockChain struct {
 	vmConfig  vm.Config
 
 	badBlocks *lru.Cache // Bad block cache
+	atxi *AtxiT
 }
 
 // NewBlockChain returns a fully initialised block chain using information
@@ -170,6 +171,14 @@ func NewBlockChain(chainDb ethdb.Database, config *params.ChainConfig, engine co
 	// Take ownership of this particular state
 	go bc.update()
 	return bc, nil
+}
+
+func (bc *BlockChain) SetAtxi(a *AtxiT) {
+	bc.atxi = a
+}
+// GetAtxi return indexes db and if atx index in use.
+func (bc *BlockChain) GetAtxi() *AtxiT {
+	return bc.atxi
 }
 
 func (bc *BlockChain) getProcInterrupt() bool {
@@ -742,6 +751,20 @@ func (bc *BlockChain) InsertReceiptChain(blockChain types.Blocks, receiptChain [
 		if err := WriteTxLookupEntries(batch, block); err != nil {
 			return i, fmt.Errorf("failed to write lookup metadata: %v", err)
 		}
+		// Store the addr-tx indexes if enabled
+		if bc.atxi != nil {
+			if err := WriteBlockAddTxIndexes(bc.Config(), bc.atxi.Db, block); err != nil {
+				log.Error("failed to write block add-tx indexes, err: %v", err)
+			}
+			// if buildATXI has been in use (via RPC) and is NOT finished, current < stop
+			// if buildATXI has been in use (via RPC) and IS finished, current == stop
+			// else if builtATXI has not been in use (via RPC), then current == stop == 0
+			if bc.atxi.AutoMode && bc.atxi.Progress.Current == bc.atxi.Progress.Stop {
+				if err := bc.atxi.SetATXIBookmark(block.NumberU64()); err != nil {
+					log.Error(err.Error())
+				}
+			}
+		}
 		stats.processed++
 
 		if batch.ValueSize() >= ethdb.IdealBatchSize {
@@ -852,6 +875,38 @@ func (bc *BlockChain) WriteBlockAndState(block *types.Block, receipts []*types.R
 	}
 	bc.futureBlocks.Remove(block.Hash())
 	return status, nil
+}
+
+// WriteBlockAddrTxIndexesBatch builds indexes for a given range of blocks N. It writes batches at increment 'step'.
+// If any error occurs during db writing it will be returned immediately.
+// It's sole implementation is the command 'atxi-build', since we must use individual block atxi indexing during
+// sync and import in order to ensure we're on the canonical chain for each block.
+func (bc *BlockChain) WriteBlockAddrTxIndexesBatch(config *params.ChainConfig, indexDb ethdb.Database, startBlockN, stopBlockN, stepN uint64) (txsCount int, err error) {
+	block := bc.GetBlockByNumber(startBlockN)
+	batch := indexDb.NewBatch()
+	blockProcessedCount := uint64(0)
+	blockProcessedHead := func() uint64 {
+		return startBlockN + blockProcessedCount
+	}
+	for block != nil && blockProcessedHead() <= stopBlockN {
+		txP, err := putBlockAddrTxsToBatch(config, batch, block)
+		if err != nil {
+			return txsCount, err
+		}
+		txsCount += txP
+		blockProcessedCount++
+		// Write on stepN mod
+		if blockProcessedCount%stepN == 0 {
+			if err := batch.Write(); err != nil {
+				return txsCount, err
+			} else {
+				batch = indexDb.NewBatch()
+			}
+		}
+		block = bc.GetBlockByNumber(blockProcessedHead())
+	}
+	// This will put the last batch
+	return txsCount, batch.Write()
 }
 
 // InsertChain attempts to insert the given batch of blocks in to the canonical
@@ -993,6 +1048,21 @@ func (bc *BlockChain) insertChain(chain types.Blocks) (int, []interface{}, []*ty
 			blockInsertTimer.UpdateSince(bstart)
 			events = append(events, ChainEvent{block, block.Hash(), logs})
 			lastCanon = block
+			
+			// Store the addr-tx indexes if enabled
+			if bc.atxi != nil {
+				if err := WriteBlockAddTxIndexes(bc.Config(), bc.atxi.Db, block); err != nil {
+					return i, events, coalescedLogs, err
+				}
+				// if buildATXI has been in use (via RPC) and is NOT finished, current < stop
+				// if buildATXI has been in use (via RPC) and IS finished, current == stop
+				// else if builtATXI has not been in use (via RPC), then current == stop == 0
+				if bc.atxi.AutoMode && bc.atxi.Progress.Current == bc.atxi.Progress.Stop {
+					if err := bc.atxi.SetATXIBookmark(block.NumberU64()); err != nil {
+						return i, events, coalescedLogs, err
+					}
+				}
+			}
 
 		case SideStatTy:
 			log.Debug("Inserted forked block", "number", block.Number(), "hash", block.Hash(), "diff", block.Difficulty(), "elapsed",
@@ -1110,6 +1180,19 @@ func (bc *BlockChain) reorg(oldBlock, newBlock *types.Block) error {
 		return fmt.Errorf("Invalid new chain")
 	}
 
+	
+	// Remove all atxis from old chain; indexes should only reflect canonical
+	// Doesn't matter whether automode or not, they should be removed.
+	if bc.atxi != nil {
+		for _, block := range oldChain {
+			for _, tx := range block.Transactions() {
+				if err := RmAddrTx(bc.atxi.Db, tx, bc.Config(), block.Number()); err != nil {
+					return err
+				}
+			}
+		}
+}
+	
 	for {
 		if oldBlock.Hash() == newBlock.Hash() {
 			commonBlock = oldBlock
@@ -1148,6 +1231,19 @@ func (bc *BlockChain) reorg(oldBlock, newBlock *types.Block) error {
 		// write lookup entries for hash based transaction/receipt searches
 		if err := WriteTxLookupEntries(bc.chainDb, block); err != nil {
 			return err
+		}
+		if bc.atxi != nil {
+			if err := WriteBlockAddTxIndexes(bc.Config(), bc.atxi.Db,block); err != nil {
+				return err
+			}
+			// if buildATXI has been in use (via RPC) and is NOT finished, current < stop
+			// if buildATXI has been in use (via RPC) and IS finished, current == stop
+			// else if builtATXI has not been in use (via RPC), then current == stop == 0
+			if bc.atxi.AutoMode && bc.atxi.Progress.Current == bc.atxi.Progress.Stop {
+				if err := bc.atxi.SetATXIBookmark(block.NumberU64()); err != nil {
+					return err
+				}
+			}
 		}
 		addedTxs = append(addedTxs, block.Transactions()...)
 	}
