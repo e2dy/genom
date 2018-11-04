@@ -282,7 +282,7 @@ func startNode(ctx *cli.Context, stack *node.Node) {
 		}
 	}()
 	// Start auxiliary services if enabled
-	log.Info("Transaction Indexing", "AddrTxIndexFlax", ctx.GlobalBool(utils.AddrTxIndexFlag.Name), "AddrTxIndexAutoBuildFlag", ctx.GlobalBool(utils.AddrTxIndexAutoBuildFlag.Name))
+	log.Info("Transaction Indexing", "AddrTxIndexFlag", ctx.GlobalBool(utils.AddrTxIndexFlag.Name), "AddrTxIndexAutoBuildFlag", ctx.GlobalBool(utils.AddrTxIndexAutoBuildFlag.Name))
 	if ctx.GlobalBool(utils.AddrTxIndexFlag.Name) && ctx.GlobalBool(utils.AddrTxIndexAutoBuildFlag.Name) {
 		var ethereum *eth.Ethereum
 		if err := stack.Service(&ethereum); err != nil {
@@ -295,7 +295,7 @@ func startNode(ctx *cli.Context, stack *node.Node) {
 		a.AutoMode = true
 		go core.BuildAddrTxIndex(ethereum.BlockChain(), ethereum.ChainDb(), a.Db, math.MaxUint64, math.MaxUint64, 10000)
 	}
-	
+
 	if ctx.GlobalBool(utils.MiningEnabledFlag.Name) || ctx.GlobalBool(utils.DeveloperFlag.Name) {
 		// Mining only makes sense if a full Ethereum node is running
 		var ethereum *eth.Ethereum
