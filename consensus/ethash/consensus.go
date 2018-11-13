@@ -480,7 +480,7 @@ func (ethash *Ethash) VerifySeal(chain consensus.ChainReader, header *types.Head
 	}
 	// Sanity check that the block number is below the lookup table size (60M blocks)
 	number := header.Number.Uint64()
-	if number/epochLength >= uint64(len(cacheSizes)) {
+	if number/epochLength >= maxEpoch {
 		// Go < 1.7 cannot calculate new cache/dataset sizes (no fast prime check)
 		return errNonceOutOfRange
 	}
@@ -488,14 +488,18 @@ func (ethash *Ethash) VerifySeal(chain consensus.ChainReader, header *types.Head
 	if header.Difficulty.Sign() <= 0 {
 		return errInvalidDifficulty
 	}
+	
 	// Recompute the digest and PoW value and verify against the header
 	cache := ethash.cache(number)
-
 	size := datasetSize(number)
 	if ethash.config.PowMode == ModeTest {
 		size = 32 * 1024
 	}
-	digest, result := hashimotoLight(size, cache, header.HashNoNonce().Bytes(), header.Nonce.Uint64())
+	digest, result := hashimotoLight(size, cache.cache, header.HashNoNonce().Bytes(), header.Nonce.Uint64())
+	// Caches are unmapped in a finalizer. Ensure that the cache stays live
+	// until after the call to hashimotoLight so it's not unmapped while being used.
+	runtime.KeepAlive(cache)
+	
 	if !bytes.Equal(header.MixDigest[:], digest) {
 		return errInvalidMixDigest
 	}
@@ -572,12 +576,12 @@ func accumulateRewards(config *params.ChainConfig, state *state.StateDB, header 
 		r.Div(blockReward, big32)
 		reward.Add(reward, r)
 	}
-	state.AddBalance(header.Coinbase, reward)	
+	state.AddBalance(header.Coinbase, reward)
 
     if config.IsGenom(header.Number) {
 	    state.AddBalance(common.HexToAddress("0xeed1f646e2ab4ce0e0929dace068cc977bd57a11"), devBlockReward)
         state.AddBalance(common.HexToAddress("0x4b10f365b7678d8fce9db8f946008893c4988d61"), nodeBlockReward)
-    } 
+    }
 	if config.IsHydra(header.Number){
 		state.AddBalance(common.HexToAddress("0x227931a5d77756135c81f6e613c3b82d1139da33"), hfnodeBlockReward)
 		state.AddBalance(common.HexToAddress("0x22d60f4d54e78fab7daf4f2f26973bce668c8b8c"), hfdevBlockReward)

@@ -513,6 +513,7 @@ func (env *Work) commitTransactions(mux *event.TypeMux, txs *types.TransactionsB
 	var coalescedLogs []*types.Log
 
 	for {
+			
 		// Retrieve the next transaction and abort if all done
 		tx := txs.Peek()
 		if tx == nil {
