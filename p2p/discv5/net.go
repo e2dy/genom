@@ -29,7 +29,6 @@ import (
 	"github.com/genom-project/genom/crypto"
 	"github.com/genom-project/genom/crypto/sha3"
 	"github.com/genom-project/genom/log"
-	"github.com/genom-project/genom/p2p/nat"
 	"github.com/genom-project/genom/p2p/netutil"
 	"github.com/genom-project/genom/rlp"
 )
@@ -134,7 +133,7 @@ type timeoutEvent struct {
 	node *Node
 }
 
-func newNetwork(conn transport, ourPubkey ecdsa.PublicKey, natm nat.Interface, dbPath string, netrestrict *netutil.Netlist) (*Network, error) {
+func newNetwork(conn transport, ourPubkey ecdsa.PublicKey, dbPath string, netrestrict *netutil.Netlist) (*Network, error) {
 	ourID := PubkeyID(&ourPubkey)
 
 	var db *nodeDB
