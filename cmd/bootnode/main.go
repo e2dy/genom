@@ -21,6 +21,7 @@ import (
 	"crypto/ecdsa"
 	"flag"
 	"fmt"
+	"net"
 	"os"
 
 	"github.com/genom-project/genom/cmd/utils"
@@ -34,7 +35,7 @@ import (
 
 func main() {
 	var (
-		listenAddr  = flag.String("addr", ":30303", "listen address")
+		listenAddr  = flag.String("addr", ":30301", "listen address")
 		genKey      = flag.String("genkey", "", "generate a node key")
 		writeAddr   = flag.Bool("writeaddress", false, "write out the node's pubkey hash and quit")
 		nodeKeyFile = flag.String("nodekey", "", "private key filename")
@@ -96,12 +97,37 @@ func main() {
 		}
 	}
 
+	addr, err := net.ResolveUDPAddr("udp", *listenAddr)
+	if err != nil {
+		utils.Fatalf("-ResolveUDPAddr: %v", err)
+	}
+	conn, err := net.ListenUDP("udp", addr)
+	if err != nil {
+		utils.Fatalf("-ListenUDP: %v", err)
+	}
+
+	realaddr := conn.LocalAddr().(*net.UDPAddr)
+	if natm != nil {
+		if !realaddr.IP.IsLoopback() {
+			go nat.Map(natm, nil, "udp", realaddr.Port, realaddr.Port, "ethereum discovery")
+		}
+		// TODO: react to external IP changes over time.
+		if ext, err := natm.ExternalIP(); err == nil {
+			realaddr = &net.UDPAddr{IP: ext, Port: realaddr.Port}
+		}
+	}
+
 	if *runv5 {
-		if _, err := discv5.ListenUDP(nodeKey, *listenAddr, natm, "", restrictList); err != nil {
+		if _, err := discv5.ListenUDP(nodeKey, conn, realaddr, "", restrictList); err != nil {
 			utils.Fatalf("%v", err)
 		}
 	} else {
-		if _, err := discover.ListenUDP(nodeKey, *listenAddr, natm, "", restrictList); err != nil {
+		cfg := discover.Config{
+			PrivateKey:   nodeKey,
+			AnnounceAddr: realaddr,
+			NetRestrict:  restrictList,
+		}
+		if _, err := discover.ListenUDP(conn, cfg); err != nil {
 			utils.Fatalf("%v", err)
 		}
 	}
