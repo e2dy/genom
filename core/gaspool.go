@@ -40,6 +40,10 @@ func (gp *GasPool) SubGas(amount *big.Int) error {
 	i.Sub(i, amount)
 	return nil
 }
+// Gas returns the amount of gas remaining in the pool.
+func (gp *GasPool) Gas() uint64 {
+	return uint64(*gp)
+}
 
 func (gp *GasPool) String() string {
 	return (*big.Int)(gp).String()
