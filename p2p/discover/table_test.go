@@ -28,7 +28,7 @@ import (
 	"testing/quick"
 	"time"
 
-	"github.com/genom-project/genom/common"
+	"github.com/genom-project/genom/ommon"
 	"github.com/genom-project/genom/crypto"
 )
 
