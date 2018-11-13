@@ -36,27 +36,19 @@ import (
 	"github.com/genom-project/genom/common"
 	"github.com/genom-project/genom/crypto"
 	"github.com/genom-project/genom/log"
-<<<<<<< HEAD
 	"github.com/genom-project/genom/p2p/netutil"
-=======
-	"github.com/ethereum/go-ethereum/p2p/netutil"
->>>>>>> 31e529a6f7f2b0637b5c90a31c27b9f7244a2cbc
 )
 
 const (
 	alpha           = 3  // Kademlia concurrency factor
 	bucketSize      = 16 // Kademlia bucket size
 	maxReplacements = 10 // Size of per-bucket replacement list
-<<<<<<< HEAD
 
-=======
->>>>>>> 31e529a6f7f2b0637b5c90a31c27b9f7244a2cbc
 	// We keep buckets for the upper 1/15 of distances because
 	// it's very unlikely we'll ever encounter a node that's closer.
 	hashBits          = len(common.Hash{}) * 8
 	nBuckets          = hashBits / 15       // Number of buckets
 	bucketMinDistance = hashBits - nBuckets // Log distance of closest bucket
-<<<<<<< HEAD
 
 	// IP address limits.
 	bucketIPLimit, bucketSubnet = 2, 24 // at most 2 addresses from the same /24
@@ -65,13 +57,6 @@ const (
 	maxBondingPingPongs = 16 // Limit on the number of concurrent ping/pong interactions
 	maxFindnodeFailures = 5  // Nodes exceeding this limit are dropped
 
-=======
-	// IP address limits.
-	bucketIPLimit, bucketSubnet = 2, 24 // at most 2 addresses from the same /24
-	tableIPLimit, tableSubnet   = 10, 24
-	maxBondingPingPongs = 16 // Limit on the number of concurrent ping/pong interactions
-	maxFindnodeFailures = 5  // Nodes exceeding this limit are dropped
->>>>>>> 31e529a6f7f2b0637b5c90a31c27b9f7244a2cbc
 	refreshInterval    = 30 * time.Minute
 	revalidateInterval = 10 * time.Second
 	copyNodesInterval  = 30 * time.Second
@@ -86,10 +71,6 @@ type Table struct {
 	nursery []*Node           // bootstrap nodes
 	rand    *mrand.Rand       // source of randomness, periodically reseeded
 	ips     netutil.DistinctNetSet
-<<<<<<< HEAD
-=======
-	db         *nodeDB // database of known nodes
->>>>>>> 31e529a6f7f2b0637b5c90a31c27b9f7244a2cbc
 
 	db         *nodeDB // database of known nodes
 	refreshReq chan chan struct{}
@@ -174,10 +155,7 @@ func newTable(t transport, ourID NodeID, ourAddr *net.UDPAddr, nodeDBPath string
 func (tab *Table) seedRand() {
 	var b [8]byte
 	crand.Read(b[:])
-<<<<<<< HEAD
 
-=======
->>>>>>> 31e529a6f7f2b0637b5c90a31c27b9f7244a2cbc
 	tab.mutex.Lock()
 	tab.rand.Seed(int64(binary.BigEndian.Uint64(b[:])))
 	tab.mutex.Unlock()
@@ -198,11 +176,7 @@ func (tab *Table) ReadRandomNodes(buf []*Node) (n int) {
 	}
 	tab.mutex.Lock()
 	defer tab.mutex.Unlock()
-<<<<<<< HEAD
 
-=======
-	
->>>>>>> 31e529a6f7f2b0637b5c90a31c27b9f7244a2cbc
 	// Find all non-empty buckets and get a fresh slice of their entries.
 	var buckets [][]*Node
 	for _, b := range tab.buckets {
@@ -234,11 +208,6 @@ func (tab *Table) ReadRandomNodes(buf []*Node) (n int) {
 	return i + 1
 }
 
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 31e529a6f7f2b0637b5c90a31c27b9f7244a2cbc
 // Close terminates the network listener and flushes the node database.
 func (tab *Table) Close() {
 	select {
@@ -403,10 +372,7 @@ func (tab *Table) loop() {
 	defer refresh.Stop()
 	defer revalidate.Stop()
 	defer copyNodes.Stop()
-<<<<<<< HEAD
 
-=======
->>>>>>> 31e529a6f7f2b0637b5c90a31c27b9f7244a2cbc
 	// Start initial refresh.
 	go tab.doRefresh(refreshDone)
 
@@ -459,14 +425,6 @@ loop:
 // bootstrap or discarded faulty peers).
 func (tab *Table) doRefresh(done chan struct{}) {
 	defer close(done)
-	
-	// Load nodes from the database and insert
-	// them. This should yield a few previously seen nodes that are
-	// (hopefully) still alive.
-	tab.loadSeedNodes(true)
-	// Run self lookup to discover new neighbor nodes.
-	tab.lookup(tab.self.ID, false)
-
 
 	// Load nodes from the database and insert
 	// them. This should yield a few previously seen nodes that are
@@ -502,34 +460,21 @@ func (tab *Table) loadSeedNodes(bond bool) {
 		tab.add(seed)
 	}
 }
-<<<<<<< HEAD
 
 // doRevalidate checks that the last node in a random bucket is still live
 // and replaces or deletes the node if it isn't.
 func (tab *Table) doRevalidate(done chan<- struct{}) {
 	defer func() { done <- struct{}{} }()
 
-=======
-
-// doRevalidate checks that the last node in a random bucket is still live
-// and replaces or deletes the node if it isn't.
-func (tab *Table) doRevalidate(done chan<- struct{}) {
-	defer func() { done <- struct{}{} }()
->>>>>>> 31e529a6f7f2b0637b5c90a31c27b9f7244a2cbc
 	last, bi := tab.nodeToRevalidate()
 	if last == nil {
 		// No non-empty bucket found.
 		return
 	}
-<<<<<<< HEAD
 
 	// Ping the selected node and wait for a pong.
 	err := tab.ping(last.ID, last.addr())
 
-=======
-	// Ping the selected node and wait for a pong.
-	err := tab.ping(last.ID, last.addr())
->>>>>>> 31e529a6f7f2b0637b5c90a31c27b9f7244a2cbc
 	tab.mutex.Lock()
 	defer tab.mutex.Unlock()
 	b := tab.buckets[bi]
@@ -546,7 +491,6 @@ func (tab *Table) doRevalidate(done chan<- struct{}) {
 	} else {
 		log.Debug("Removed dead node", "b", bi, "id", last.ID, "ip", last.IP)
 	}
-<<<<<<< HEAD
 }
 
 // nodeToRevalidate returns the last node in a random, non-empty bucket.
@@ -571,37 +515,12 @@ func (tab *Table) nextRevalidateTime() time.Duration {
 	return time.Duration(tab.rand.Int63n(int64(revalidateInterval)))
 }
 
-=======
-	}
-// nodeToRevalidate returns the last node in a random, non-empty bucket.
-func (tab *Table) nodeToRevalidate() (n *Node, bi int) {
-	tab.mutex.Lock()
-	defer tab.mutex.Unlock()
-	for _, bi = range tab.rand.Perm(len(tab.buckets)) {
-		b := tab.buckets[bi]
-		if len(b.entries) > 0 {
-			last := b.entries[len(b.entries)-1]
-			return last, bi
-		}
-	}
-	return nil, 0
-}
-func (tab *Table) nextRevalidateTime() time.Duration {
-	tab.mutex.Lock()
-	defer tab.mutex.Unlock()
-
-	return time.Duration(tab.rand.Int63n(int64(revalidateInterval)))
-}
->>>>>>> 31e529a6f7f2b0637b5c90a31c27b9f7244a2cbc
 // copyBondedNodes adds nodes from the table to the database if they have been in the table
 // longer then minTableTime.
 func (tab *Table) copyBondedNodes() {
 	tab.mutex.Lock()
 	defer tab.mutex.Unlock()
-<<<<<<< HEAD
 
-=======
->>>>>>> 31e529a6f7f2b0637b5c90a31c27b9f7244a2cbc
 	now := time.Now()
 	for _, b := range tab.buckets {
 		for _, n := range b.entries {
@@ -672,10 +591,6 @@ func (tab *Table) bond(pinged bool, id NodeID, addr *net.UDPAddr, tcpPort uint16
 	if id == tab.self.ID {
 		return nil, errors.New("is self")
 	}
-<<<<<<< HEAD
-=======
-	// Retrieve a previously known node and any recent findnode failures
->>>>>>> 31e529a6f7f2b0637b5c90a31c27b9f7244a2cbc
 	if pinged && !tab.isInitDone() {
 		return nil, errors.New("still initializing")
 	}
@@ -713,11 +628,7 @@ func (tab *Table) bond(pinged bool, id NodeID, addr *net.UDPAddr, tcpPort uint16
 	// Add the node to the table even if the bonding ping/pong
 	// fails. It will be relaced quickly if it continues to be
 	// unresponsive.
-<<<<<<< HEAD
 	if node != nil {
-=======
-	if node != nil {		
->>>>>>> 31e529a6f7f2b0637b5c90a31c27b9f7244a2cbc
 		tab.add(node)
 		tab.db.updateFindFails(id, 0)
 	}
@@ -764,10 +675,7 @@ func (tab *Table) bucket(sha common.Hash) *bucket {
 	}
 	return tab.buckets[d-bucketMinDistance-1]
 }
-<<<<<<< HEAD
 
-=======
->>>>>>> 31e529a6f7f2b0637b5c90a31c27b9f7244a2cbc
 // add attempts to add the given node its corresponding bucket. If the
 // bucket has space available, adding the node succeeds immediately.
 // Otherwise, the node is added if the least recently active node in
@@ -777,11 +685,7 @@ func (tab *Table) bucket(sha common.Hash) *bucket {
 func (tab *Table) add(new *Node) {
 	tab.mutex.Lock()
 	defer tab.mutex.Unlock()
-<<<<<<< HEAD
 
-=======
-	
->>>>>>> 31e529a6f7f2b0637b5c90a31c27b9f7244a2cbc
 	b := tab.bucket(new.sha)
 	if !tab.bumpOrAdd(b, new) {
 		// Node is not in table. Add it to the replacement list.
@@ -811,10 +715,7 @@ func (tab *Table) stuff(nodes []*Node) {
 func (tab *Table) delete(node *Node) {
 	tab.mutex.Lock()
 	defer tab.mutex.Unlock()
-<<<<<<< HEAD
 
-=======
->>>>>>> 31e529a6f7f2b0637b5c90a31c27b9f7244a2cbc
 	tab.deleteInBucket(tab.bucket(node.sha), node)
 }
 
@@ -822,12 +723,6 @@ func (tab *Table) addIP(b *bucket, ip net.IP) bool {
 	if netutil.IsLAN(ip) {
 		return true
 	}
-<<<<<<< HEAD
-=======
-	// Replace last if it is still the last entry or just add n if b
-	// isn't full. If is no longer the last entry, it has either been
-	// replaced with someone else or became active.
->>>>>>> 31e529a6f7f2b0637b5c90a31c27b9f7244a2cbc
 	if !tab.ips.Add(ip) {
 		log.Debug("IP exceeds table limit", "ip", ip)
 		return false
@@ -836,16 +731,10 @@ func (tab *Table) addIP(b *bucket, ip net.IP) bool {
 		log.Debug("IP exceeds bucket limit", "ip", ip)
 		tab.ips.Remove(ip)
 		return false
-<<<<<<< HEAD
 	}
 	return true
 }
 
-=======
-	}	
-	return true
-}
->>>>>>> 31e529a6f7f2b0637b5c90a31c27b9f7244a2cbc
 func (tab *Table) removeIP(b *bucket, ip net.IP) {
 	if netutil.IsLAN(ip) {
 		return
@@ -853,10 +742,7 @@ func (tab *Table) removeIP(b *bucket, ip net.IP) {
 	tab.ips.Remove(ip)
 	b.ips.Remove(ip)
 }
-<<<<<<< HEAD
 
-=======
->>>>>>> 31e529a6f7f2b0637b5c90a31c27b9f7244a2cbc
 func (tab *Table) addReplacement(b *bucket, n *Node) {
 	for _, e := range b.replacements {
 		if e.ID == n.ID {
@@ -872,10 +758,7 @@ func (tab *Table) addReplacement(b *bucket, n *Node) {
 		tab.removeIP(b, removed.IP)
 	}
 }
-<<<<<<< HEAD
 
-=======
->>>>>>> 31e529a6f7f2b0637b5c90a31c27b9f7244a2cbc
 // replace removes n from the replacement list and replaces 'last' with it if it is the
 // last entry in the bucket. If 'last' isn't the last entry, it has either been replaced
 // with someone else or became active.
@@ -895,10 +778,7 @@ func (tab *Table) replace(b *bucket, last *Node) *Node {
 	tab.removeIP(b, last.IP)
 	return r
 }
-<<<<<<< HEAD
 
-=======
->>>>>>> 31e529a6f7f2b0637b5c90a31c27b9f7244a2cbc
 // bump moves the given node to the front of the bucket entry list
 // if it is contained in that list.
 func (b *bucket) bump(n *Node) bool {
@@ -912,10 +792,7 @@ func (b *bucket) bump(n *Node) bool {
 	}
 	return false
 }
-<<<<<<< HEAD
 
-=======
->>>>>>> 31e529a6f7f2b0637b5c90a31c27b9f7244a2cbc
 // bumpOrAdd moves n to the front of the bucket entry list or adds it if the list isn't
 // full. The return value is true if n is in the bucket.
 func (tab *Table) bumpOrAdd(b *bucket, n *Node) bool {
@@ -933,18 +810,12 @@ func (tab *Table) bumpOrAdd(b *bucket, n *Node) bool {
 	}
 	return true
 }
-<<<<<<< HEAD
 
-=======
->>>>>>> 31e529a6f7f2b0637b5c90a31c27b9f7244a2cbc
 func (tab *Table) deleteInBucket(b *bucket, n *Node) {
 	b.entries = deleteNode(b.entries, n)
 	tab.removeIP(b, n.IP)
 }
-<<<<<<< HEAD
 
-=======
->>>>>>> 31e529a6f7f2b0637b5c90a31c27b9f7244a2cbc
 // pushNode adds n to the front of list, keeping at most max items.
 func pushNode(list []*Node, n *Node, max int) ([]*Node, *Node) {
 	if len(list) < max {
@@ -955,10 +826,7 @@ func pushNode(list []*Node, n *Node, max int) ([]*Node, *Node) {
 	list[0] = n
 	return list, removed
 }
-<<<<<<< HEAD
 
-=======
->>>>>>> 31e529a6f7f2b0637b5c90a31c27b9f7244a2cbc
 // deleteNode removes n from list.
 func deleteNode(list []*Node, n *Node) []*Node {
 	for i := range list {
@@ -968,10 +836,7 @@ func deleteNode(list []*Node, n *Node) []*Node {
 	}
 	return list
 }
-<<<<<<< HEAD
 
-=======
->>>>>>> 31e529a6f7f2b0637b5c90a31c27b9f7244a2cbc
 // nodesByDistance is a list of nodes, ordered by
 // distance to target.
 type nodesByDistance struct {
