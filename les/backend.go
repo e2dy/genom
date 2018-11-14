@@ -46,6 +46,8 @@ import (
 )
 
 type LightEthereum struct {
+	config *eth.Config
+
 	odr         *LesOdr
 	relay       *LesTxRelay
 	chainConfig *params.ChainConfig
@@ -92,6 +94,7 @@ func New(ctx *node.ServiceContext, config *eth.Config) (*LightEthereum, error) {
 	quitSync := make(chan struct{})
 
 	leth := &LightEthereum{
+		config:           config,
 		chainConfig:      chainConfig,
 		chainDb:          chainDb,
 		eventMux:         ctx.EventMux,
@@ -216,7 +219,7 @@ func (s *LightEthereum) Protocols() []p2p.Protocol {
 }
 
 // Start implements node.Service, starting all internal goroutines needed by the
-// Genom protocol implementation.
+// Ethereum protocol implementation.
 func (s *LightEthereum) Start(srvr *p2p.Server) error {
 	s.startBloomHandlers()
 	log.Warn("Light client mode is an experimental feature")
@@ -224,12 +227,12 @@ func (s *LightEthereum) Start(srvr *p2p.Server) error {
 	// clients are searching for the first advertised protocol in the list
 	protocolVersion := AdvertiseProtocolVersions[0]
 	s.serverPool.start(srvr, lesTopic(s.blockchain.Genesis().Hash(), protocolVersion))
-	s.protocolManager.Start()
+	s.protocolManager.Start(s.config.LightPeers)
 	return nil
 }
 
 // Stop implements node.Service, terminating all internal goroutines used by the
-// Genom protocol.
+// Ethereum protocol.
 func (s *LightEthereum) Stop() error {
 	s.odr.Stop()
 	if s.bloomIndexer != nil {

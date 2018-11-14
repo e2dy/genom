@@ -38,6 +38,7 @@ import (
 )
 
 type LesServer struct {
+	config *eth.Config
 	protocolManager *ProtocolManager
 	fcManager       *flowcontrol.ClientManager // nil if our node is client only
 	fcCostStats     *requestCostStats
@@ -108,7 +109,7 @@ func (s *LesServer) Protocols() []p2p.Protocol {
 
 // Start starts the LES server
 func (s *LesServer) Start(srvr *p2p.Server) {
-	s.protocolManager.Start()
+	s.protocolManager.Start(s.config.LightPeers)
 	for _, topic := range s.lesTopics {
 		topic := topic
 		go func() {
