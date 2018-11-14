@@ -78,7 +78,6 @@ func (arguments Arguments) NonIndexed() Arguments {
 	return ret
 }
 
-
 // isTuple returns true for non-atomic constructs, like (uint,uint) or uint[]
 func (arguments Arguments) isTuple() bool {
 	return len(arguments) > 1
@@ -86,6 +85,7 @@ func (arguments Arguments) isTuple() bool {
 
 // Unpack performs the operation hexdata -> Go format
 func (arguments Arguments) Unpack(v interface{}, data []byte) error {
+
 	// make sure the passed value is arguments pointer
 	if reflect.Ptr != reflect.ValueOf(v).Kind() {
 		return fmt.Errorf("abi: Unpack(non-pointer %T)", v)
@@ -99,7 +99,9 @@ func (arguments Arguments) Unpack(v interface{}, data []byte) error {
 	}
 	return arguments.unpackAtomic(v, marshalledValues)
 }
+
 func (arguments Arguments) unpackTuple(v interface{}, marshalledValues []interface{}) error {
+
 	var (
 		value = reflect.ValueOf(v).Elem()
 		typ   = value.Type()
@@ -109,20 +111,21 @@ func (arguments Arguments) unpackTuple(v interface{}, marshalledValues []interfa
 	if err := requireUnpackKind(value, typ, kind, arguments); err != nil {
 		return err
 	}
+	// If the output interface is a struct, make sure names don't collide
+	if kind == reflect.Struct {
+		if err := requireUniqueStructFieldNames(arguments); err != nil {
+			return err
+		}
+	}
 	for i, arg := range arguments.NonIndexed() {
 
-	reflectValue := reflect.ValueOf(marshalledValues[i])
+		reflectValue := reflect.ValueOf(marshalledValues[i])
 
 		switch kind {
 		case reflect.Struct:
-			for j := 0; j < typ.NumField(); j++ {
-				field := typ.Field(j)
-				// TODO read tags: `abi:"fieldName"`
-				if field.Name == strings.ToUpper(arg.Name[:1])+arg.Name[1:] {
-					if err := set(value.Field(j), reflectValue, arg); err != nil {
-						return err
-					}
-				}
+			err := unpackStruct(value, reflectValue, arg)
+			if err != nil {
+				return err
 			}
 		case reflect.Slice, reflect.Array:
 			if value.Len() < i {
@@ -149,9 +152,37 @@ func (arguments Arguments) unpackAtomic(v interface{}, marshalledValues []interf
 		return fmt.Errorf("abi: wrong length, expected single value, got %d", len(marshalledValues))
 	}
 	elem := reflect.ValueOf(v).Elem()
+	kind := elem.Kind()
 	reflectValue := reflect.ValueOf(marshalledValues[0])
+
+	if kind == reflect.Struct {
+		//make sure names don't collide
+		if err := requireUniqueStructFieldNames(arguments); err != nil {
+			return err
+		}
+
+		return unpackStruct(elem, reflectValue, arguments[0])
+	}
+
 	return set(elem, reflectValue, arguments.NonIndexed()[0])
+
 }
+
+// Computes the full size of an array;
+// i.e. counting nested arrays, which count towards size for unpacking.
+func getArraySize(arr *Type) int {
+	size := arr.Size
+	// Arrays can be nested, with each element being the same size
+	arr = arr.Elem
+	for arr.T == ArrayTy {
+		// Keep multiplying by elem.Size while the elem is an array.
+		size *= arr.Size
+		arr = arr.Elem
+	}
+	// Now we have the full array size, including its children.
+	return size
+}
+
 // UnpackValues can be used to unpack ABI-encoded hexdata according to the ABI-specification,
 // without supplying a struct to unpack into. Instead, this method returns a list containing the
 // values. An atomic argument will be a list with one element.
@@ -164,8 +195,14 @@ func (arguments Arguments) UnpackValues(data []byte) ([]interface{}, error) {
 			// If we have a static array, like [3]uint256, these are coded as
 			// just like uint256,uint256,uint256.
 			// This means that we need to add two 'virtual' arguments when
-			// we count the index from now on
-			virtualArgs += arg.Type.Size - 1
+			// we count the index from now on.
+			//
+			// Array values nested multiple levels deep are also encoded inline:
+			// [2][3]uint256: uint256,uint256,uint256,uint256,uint256,uint256
+			//
+			// Calculate the full array size to get the correct offset for the next argument.
+			// Decrement it by 1, as the normal index increment is still applied.
+			virtualArgs += getArraySize(&arg.Type) - 1
 		}
 		if err != nil {
 			return nil, err
@@ -180,6 +217,7 @@ func (arguments Arguments) UnpackValues(data []byte) ([]interface{}, error) {
 func (arguments Arguments) PackValues(args []interface{}) ([]byte, error) {
 	return arguments.Pack(args...)
 }
+
 // Pack performs the operation Go format -> Hexdata
 func (arguments Arguments) Pack(args ...interface{}) ([]byte, error) {
 	// Make sure arguments match up and pack them
@@ -187,7 +225,6 @@ func (arguments Arguments) Pack(args ...interface{}) ([]byte, error) {
 	if len(args) != len(abiArgs) {
 		return nil, fmt.Errorf("argument count mismatch: %d for %d", len(args), len(abiArgs))
 	}
-
 	// variable input is the output appended at the end of packed
 	// output. This is used for strings and bytes types input.
 	var variableInput []byte
@@ -196,12 +233,11 @@ func (arguments Arguments) Pack(args ...interface{}) ([]byte, error) {
 	inputOffset := 0
 	for _, abiArg := range abiArgs {
 		if abiArg.Type.T == ArrayTy {
-			inputOffset += (32 * abiArg.Type.Size)
+			inputOffset += 32 * abiArg.Type.Size
 		} else {
 			inputOffset += 32
 		}
 	}
-
 	var ret []byte
 	for i, a := range args {
 		input := abiArgs[i]
@@ -210,7 +246,6 @@ func (arguments Arguments) Pack(args ...interface{}) ([]byte, error) {
 		if err != nil {
 			return nil, err
 		}
-
 		// check for a slice type (string, bytes, slice)
 		if input.Type.requiresLengthPrefix() {
 			// calculate the offset
@@ -229,4 +264,31 @@ func (arguments Arguments) Pack(args ...interface{}) ([]byte, error) {
 	ret = append(ret, variableInput...)
 
 	return ret, nil
+}
+
+// capitalise makes the first character of a string upper case, also removing any
+// prefixing underscores from the variable names.
+func capitalise(input string) string {
+	for len(input) > 0 && input[0] == '_' {
+		input = input[1:]
+	}
+	if len(input) == 0 {
+		return ""
+	}
+	return strings.ToUpper(input[:1]) + input[1:]
+}
+
+//unpackStruct extracts each argument into its corresponding struct field
+func unpackStruct(value, reflectValue reflect.Value, arg Argument) error {
+	name := capitalise(arg.Name)
+	typ := value.Type()
+	for j := 0; j < typ.NumField(); j++ {
+		// TODO read tags: `abi:"fieldName"`
+		if typ.Field(j).Name == name {
+			if err := set(value.Field(j), reflectValue, arg); err != nil {
+				return err
+			}
+		}
+	}
+	return nil
 }

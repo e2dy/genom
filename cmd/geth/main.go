@@ -14,13 +14,12 @@
 // You should have received a copy of the GNU General Public License
 // along with go-ethereum. If not, see <http://www.gnu.org/licenses/>.
 
-// geth is the official command-line client for Ethereum.
+// geth is the official command-line client for Genom.
 package main
 
 import (
 	"fmt"
 	"os"
-	"math"
 	"runtime"
 	"sort"
 	"strings"
@@ -31,7 +30,6 @@ import (
 	"github.com/genom-project/genom/cmd/utils"
 	"github.com/genom-project/genom/common"
 	"github.com/genom-project/genom/console"
-	"github.com/genom-project/genom/core"
 	"github.com/genom-project/genom/eth"
 	"github.com/genom-project/genom/ethclient"
 	"github.com/genom-project/genom/internal/debug"
@@ -51,7 +49,7 @@ var (
 	// Genom address of the Geth release oracle.
 	relOracle = common.HexToAddress("0xfa7b9770ca4cb04296cac84f37736d4041251cdf")
 	// The app that holds all commands and flags.
-	app = utils.NewApp(gitCommit, "the Trinity command line interface")
+	app = utils.NewApp(gitCommit, "the go-ethereum command line interface")
 	// flags that configure the node
 	nodeFlags = []cli.Flag{
 		utils.IdentityFlag,
@@ -67,7 +65,6 @@ var (
 		utils.DashboardAddrFlag,
 		utils.DashboardPortFlag,
 		utils.DashboardRefreshFlag,
-		utils.DashboardAssetsFlag,
 		utils.EthashCacheDirFlag,
 		utils.EthashCachesInMemoryFlag,
 		utils.EthashCachesOnDiskFlag,
@@ -87,18 +84,19 @@ var (
 		utils.FastSyncFlag,
 		utils.LightModeFlag,
 		utils.SyncModeFlag,
+		utils.GCModeFlag,
 		utils.LightServFlag,
 		utils.LightPeersFlag,
 		utils.LightKDFFlag,
 		utils.CacheFlag,
+		utils.CacheDatabaseFlag,
+		utils.CacheGCFlag,
 		utils.TrieCacheGenFlag,
 		utils.ListenPortFlag,
 		utils.MaxPeersFlag,
 		utils.MaxPendingPeersFlag,
 		utils.EtherbaseFlag,
 		utils.GasPriceFlag,
-		utils.AddrTxIndexFlag,
-		utils.AddrTxIndexAutoBuildFlag,
 		utils.MinerThreadsFlag,
 		utils.MiningEnabledFlag,
 		utils.TargetGasLimitFlag,
@@ -157,6 +155,8 @@ func init() {
 		initCommand,
 		importCommand,
 		exportCommand,
+		importPreimagesCommand,
+		exportPreimagesCommand,
 		copydbCommand,
 		removedbCommand,
 		dumpCommand,
@@ -177,8 +177,6 @@ func init() {
 		licenseCommand,
 		// See config.go
 		dumpConfigCommand,
-		// See build_atxi_cmd.go
-		buildAddrTxIndexCommand,
 	}
 	sort.Sort(cli.CommandsByName(app.Commands))
 
@@ -283,25 +281,14 @@ func startNode(ctx *cli.Context, stack *node.Node) {
 		}
 	}()
 	// Start auxiliary services if enabled
-	log.Info("Transaction Indexing", "AddrTxIndexFlag", ctx.GlobalBool(utils.AddrTxIndexFlag.Name), "AddrTxIndexAutoBuildFlag", ctx.GlobalBool(utils.AddrTxIndexAutoBuildFlag.Name))
-	if ctx.GlobalBool(utils.AddrTxIndexFlag.Name) && ctx.GlobalBool(utils.AddrTxIndexAutoBuildFlag.Name) {
-		var ethereum *eth.Ethereum
-		if err := stack.Service(&ethereum); err != nil {
-			utils.Fatalf("Ethereum service not running: %v", err)
-		}
-		a := ethereum.BlockChain().GetAtxi()
-		if a == nil {
-			panic("somehow atxi did not get enabled in backend setup. this is not expected")
-		}
-		a.AutoMode = true
-		go core.BuildAddrTxIndex(ethereum.BlockChain(), ethereum.ChainDb(), a.Db, math.MaxUint64, math.MaxUint64, 10000)
-	}
-
 	if ctx.GlobalBool(utils.MiningEnabledFlag.Name) || ctx.GlobalBool(utils.DeveloperFlag.Name) {
-		// Mining only makes sense if a full Ethereum node is running
-		var ethereum *eth.Ethereum
+		// Mining only makes sense if a full Genom node is running
+		if ctx.GlobalBool(utils.LightModeFlag.Name) || ctx.GlobalString(utils.SyncModeFlag.Name) == "light" {
+			utils.Fatalf("Light clients do not support mining")
+		}
+		var ethereum *eth.Genom
 		if err := stack.Service(&ethereum); err != nil {
-			utils.Fatalf("ethereum service not running: %v", err)
+			utils.Fatalf("Genom service not running: %v", err)
 		}
 		// Use a reduced number of threads if requested
 		if threads := ctx.GlobalInt(utils.MinerThreadsFlag.Name); threads > 0 {

@@ -20,6 +20,7 @@ package main
 import (
 	"math/rand"
 	"os"
+	"strings"
 	"time"
 
 	"github.com/genom-project/genom/log"
@@ -30,11 +31,11 @@ import (
 func main() {
 	app := cli.NewApp()
 	app.Name = "puppeth"
-	app.Usage = "assemble and maintain private Ethereum networks"
+	app.Usage = "assemble and maintain private Genom networks"
 	app.Flags = []cli.Flag{
 		cli.StringFlag{
 			Name:  "network",
-			Usage: "name of the network to administer",
+			Usage: "name of the network to administer (no spaces or hyphens, please)",
 		},
 		cli.IntFlag{
 			Name:  "loglevel",
@@ -47,6 +48,10 @@ func main() {
 		log.Root().SetHandler(log.LvlFilterHandler(log.Lvl(c.Int("loglevel")), log.StreamHandler(os.Stdout, log.TerminalFormat(true))))
 		rand.Seed(time.Now().UnixNano())
 
+		network := c.String("network")
+		if strings.Contains(network, " ") || strings.Contains(network, "-") {
+			log.Crit("No spaces or hyphens allowed in network name")
+		}
 		// Start the wizard and relinquish control
 		makeWizard(c.String("network")).run()
 		return nil

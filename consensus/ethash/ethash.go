@@ -26,7 +26,7 @@ import (
 	"os"
 	"path/filepath"
 	"reflect"
-		"runtime"
+	"runtime"
 	"strconv"
 	"sync"
 	"time"
@@ -35,9 +35,9 @@ import (
 	mmap "github.com/edsrzf/mmap-go"
 	"github.com/genom-project/genom/consensus"
 	"github.com/genom-project/genom/log"
+	"github.com/genom-project/genom/metrics"
 	"github.com/genom-project/genom/rpc"
 	"github.com/hashicorp/golang-lru/simplelru"
-	metrics "github.com/rcrowley/go-metrics"
 )
 
 var ErrInvalidDumpMagic = errors.New("invalid dump magic")
@@ -155,6 +155,7 @@ type lru struct {
 	future     uint64
 	futureItem interface{}
 }
+
 // newlru create a new least-recently-used cache for ither the verification caches
 // or the mining datasets.
 func newlru(what string, maxItems int, new func(epoch uint64) interface{}) *lru {
@@ -166,12 +167,14 @@ func newlru(what string, maxItems int, new func(epoch uint64) interface{}) *lru 
 	})
 	return &lru{what: what, new: new, cache: cache}
 }
+
 // get retrieves or creates an item for the given epoch. The first return value is always
 // non-nil. The second return value is non-nil if lru thinks that an item will be useful in
 // the near future.
 func (lru *lru) get(epoch uint64) (item, future interface{}) {
 	lru.mu.Lock()
 	defer lru.mu.Unlock()
+
 	// Get or create the item for the requested epoch.
 	item, ok := lru.cache.Get(epoch)
 	if !ok {
@@ -193,7 +196,6 @@ func (lru *lru) get(epoch uint64) (item, future interface{}) {
 	return item, future
 }
 
-
 // cache wraps an ethash cache with some metadata to allow easier concurrent use.
 type cache struct {
 	epoch uint64    // Epoch for which this cache is relevant
@@ -202,6 +204,7 @@ type cache struct {
 	cache []uint32  // The actual cache data content (may be memory mapped)
 	once  sync.Once // Ensures the cache is generated only once
 }
+
 // newCache creates a new ethash verification cache and returns it as a plain Go
 // interface to be usable in an LRU cache.
 func newCache(epoch uint64) interface{} {
@@ -211,7 +214,6 @@ func newCache(epoch uint64) interface{} {
 // generate ensures that the cache content is generated before use.
 func (c *cache) generate(dir string, limit int, test bool) {
 	c.once.Do(func() {
-		
 		size := cacheSize(c.epoch*epochLength + 1)
 		seed := seedHash(c.epoch*epochLength + 1)
 		if test {
@@ -234,7 +236,7 @@ func (c *cache) generate(dir string, limit int, test bool) {
 		// We're about to mmap the file, ensure that the mapping is cleaned up when the
 		// cache becomes unused.
 		runtime.SetFinalizer(c, (*cache).finalizer)
-		
+
 		// Try to load the file from disk and memory map it
 		var err error
 		c.dump, c.mmap, c.cache, err = memoryMap(path)
@@ -264,7 +266,7 @@ func (c *cache) generate(dir string, limit int, test bool) {
 // finalizer unmaps the memory and closes the file.
 func (c *cache) finalizer() {
 	if c.mmap != nil {
-		c.mmap.Unmap()		
+		c.mmap.Unmap()
 		c.dump.Close()
 		c.mmap, c.dump = nil, nil
 	}
@@ -278,6 +280,7 @@ type dataset struct {
 	dataset []uint32  // The actual cache data content
 	once    sync.Once // Ensures the cache is generated only once
 }
+
 // newDataset creates a new ethash mining dataset and returns it as a plain Go
 // interface to be usable in an LRU cache.
 func newDataset(epoch uint64) interface{} {
@@ -286,7 +289,7 @@ func newDataset(epoch uint64) interface{} {
 
 // generate ensures that the dataset content is generated before use.
 func (d *dataset) generate(dir string, limit int, test bool) {
-	d.once.Do(func() {		
+	d.once.Do(func() {
 		csize := cacheSize(d.epoch*epochLength + 1)
 		dsize := datasetSize(d.epoch*epochLength + 1)
 		seed := seedHash(d.epoch*epochLength + 1)
@@ -313,7 +316,7 @@ func (d *dataset) generate(dir string, limit int, test bool) {
 		// We're about to mmap the file, ensure that the mapping is cleaned up when the
 		// cache becomes unused.
 		runtime.SetFinalizer(d, (*dataset).finalizer)
-		
+
 		// Try to load the file from disk and memory map it
 		var err error
 		d.dump, d.mmap, d.dataset, err = memoryMap(path)
@@ -346,7 +349,7 @@ func (d *dataset) generate(dir string, limit int, test bool) {
 // finalizer closes any file handlers and memory maps open.
 func (d *dataset) finalizer() {
 	if d.mmap != nil {
-		d.mmap.Unmap()		
+		d.mmap.Unmap()
 		d.dump.Close()
 		d.mmap, d.dump = nil, nil
 	}
@@ -436,7 +439,7 @@ func NewTester() *Ethash {
 }
 
 // NewFaker creates a ethash consensus engine with a fake PoW scheme that accepts
-// all blocks' seal as valid, though they still have to conform to the Ethereum
+// all blocks' seal as valid, though they still have to conform to the Genom
 // consensus rules.
 func NewFaker() *Ethash {
 	return &Ethash{
@@ -448,7 +451,7 @@ func NewFaker() *Ethash {
 
 // NewFakeFailer creates a ethash consensus engine with a fake PoW scheme that
 // accepts all blocks as valid apart from the single one specified, though they
-// still have to conform to the Ethereum consensus rules.
+// still have to conform to the Genom consensus rules.
 func NewFakeFailer(fail uint64) *Ethash {
 	return &Ethash{
 		config: Config{
@@ -460,7 +463,7 @@ func NewFakeFailer(fail uint64) *Ethash {
 
 // NewFakeDelayer creates a ethash consensus engine with a fake PoW scheme that
 // accepts all blocks as valid, but delays verifications by some time, though
-// they still have to conform to the Ethereum consensus rules.
+// they still have to conform to the Genom consensus rules.
 func NewFakeDelayer(delay time.Duration) *Ethash {
 	return &Ethash{
 		config: Config{
@@ -493,6 +496,7 @@ func (ethash *Ethash) cache(block uint64) *cache {
 	epoch := block / epochLength
 	currentI, futureI := ethash.caches.get(epoch)
 	current := currentI.(*cache)
+
 	// Wait for generation finish.
 	current.generate(ethash.config.CacheDir, ethash.config.CachesOnDisk, ethash.config.PowMode == ModeTest)
 
@@ -515,11 +519,12 @@ func (ethash *Ethash) dataset(block uint64) *dataset {
 	// Wait for generation finish.
 	current.generate(ethash.config.DatasetDir, ethash.config.DatasetsOnDisk, ethash.config.PowMode == ModeTest)
 
-		// If we need a new future dataset, now's a good time to regenerate it.
+	// If we need a new future dataset, now's a good time to regenerate it.
 	if futureI != nil {
 		future := futureI.(*dataset)
 		go future.generate(ethash.config.DatasetDir, ethash.config.DatasetsOnDisk, ethash.config.PowMode == ModeTest)
 	}
+
 	return current
 }
 

@@ -29,7 +29,7 @@ import (
 )
 
 // cppEthereumGenesisSpec represents the genesis specification format used by the
-// C++ Ethereum implementation.
+// C++ Genom implementation.
 type cppEthereumGenesisSpec struct {
 	SealEngine string `json:"sealEngine"`
 	Params     struct {
@@ -44,7 +44,7 @@ type cppEthereumGenesisSpec struct {
 		MaximumExtraDataSize    hexutil.Uint64 `json:"maximumExtraDataSize"`
 		MinGasLimit             hexutil.Uint64 `json:"minGasLimit"`
 		MaxGasLimit             hexutil.Uint64 `json:"maxGasLimit"`
-		GasLimitBoundDivisor    *hexutil.Big   `json:"gasLimitBoundDivisor"`
+		GasLimitBoundDivisor    hexutil.Uint64 `json:"gasLimitBoundDivisor"`
 		MinimumDifficulty       *hexutil.Big   `json:"minimumDifficulty"`
 		DifficultyBoundDivisor  *hexutil.Big   `json:"difficultyBoundDivisor"`
 		DurationLimit           *hexutil.Big   `json:"durationLimit"`
@@ -107,13 +107,13 @@ func newCppEthereumGenesisSpec(network string, genesis *core.Genesis) (*cppEther
 	spec.Params.ChainID = (hexutil.Uint64)(genesis.Config.ChainId.Uint64())
 
 	spec.Params.MaximumExtraDataSize = (hexutil.Uint64)(params.MaximumExtraDataSize)
-	spec.Params.MinGasLimit = (hexutil.Uint64)(params.MinGasLimit.Uint64())
+	spec.Params.MinGasLimit = (hexutil.Uint64)(params.MinGasLimit)
 	spec.Params.MaxGasLimit = (hexutil.Uint64)(math.MaxUint64)
 	spec.Params.MinimumDifficulty = (*hexutil.Big)(params.MinimumDifficulty)
 	spec.Params.DifficultyBoundDivisor = (*hexutil.Big)(params.DifficultyBoundDivisor)
-	spec.Params.GasLimitBoundDivisor = (*hexutil.Big)(params.GasLimitBoundDivisor)
+	spec.Params.GasLimitBoundDivisor = (hexutil.Uint64)(params.GasLimitBoundDivisor)
 	spec.Params.DurationLimit = (*hexutil.Big)(params.DurationLimit)
-	spec.Params.BlockReward = (*hexutil.Big)(ethash.BlockReward)
+	spec.Params.BlockReward = (*hexutil.Big)(ethash.FrontierBlockReward)
 
 	spec.Genesis.Nonce = (hexutil.Bytes)(make([]byte, 8))
 	binary.LittleEndian.PutUint64(spec.Genesis.Nonce[:], genesis.Nonce)
@@ -170,7 +170,6 @@ type parityChainSpec struct {
 			Params struct {
 				MinimumDifficulty      *hexutil.Big `json:"minimumDifficulty"`
 				DifficultyBoundDivisor *hexutil.Big `json:"difficultyBoundDivisor"`
-				GasLimitBoundDivisor   *hexutil.Big `json:"gasLimitBoundDivisor"`
 				DurationLimit          *hexutil.Big `json:"durationLimit"`
 				BlockReward            *hexutil.Big `json:"blockReward"`
 				HomesteadTransition    uint64       `json:"homesteadTransition"`
@@ -187,7 +186,8 @@ type parityChainSpec struct {
 
 	Params struct {
 		MaximumExtraDataSize hexutil.Uint64 `json:"maximumExtraDataSize"`
-		MinGasLimit          *hexutil.Big   `json:"minGasLimit"`
+		MinGasLimit          hexutil.Uint64 `json:"minGasLimit"`
+		GasLimitBoundDivisor hexutil.Uint64 `json:"gasLimitBoundDivisor"`
 		NetworkID            hexutil.Uint64 `json:"networkID"`
 		MaxCodeSize          uint64         `json:"maxCodeSize"`
 		EIP155Transition     uint64         `json:"eip155Transition"`
@@ -201,7 +201,7 @@ type parityChainSpec struct {
 
 	Genesis struct {
 		Seal struct {
-			Ethereum struct {
+			Genom struct {
 				Nonce   hexutil.Bytes `json:"nonce"`
 				MixHash hexutil.Bytes `json:"mixHash"`
 			} `json:"ethereum"`
@@ -270,20 +270,20 @@ func newParityChainSpec(network string, genesis *core.Genesis, bootnodes []strin
 	}
 	spec.Engine.Ethash.Params.MinimumDifficulty = (*hexutil.Big)(params.MinimumDifficulty)
 	spec.Engine.Ethash.Params.DifficultyBoundDivisor = (*hexutil.Big)(params.DifficultyBoundDivisor)
-	spec.Engine.Ethash.Params.GasLimitBoundDivisor = (*hexutil.Big)(params.GasLimitBoundDivisor)
 	spec.Engine.Ethash.Params.DurationLimit = (*hexutil.Big)(params.DurationLimit)
-	spec.Engine.Ethash.Params.BlockReward = (*hexutil.Big)(ethash.BlockReward)
+	spec.Engine.Ethash.Params.BlockReward = (*hexutil.Big)(ethash.FrontierBlockReward)
 	spec.Engine.Ethash.Params.HomesteadTransition = genesis.Config.HomesteadBlock.Uint64()
 	spec.Engine.Ethash.Params.EIP150Transition = genesis.Config.EIP150Block.Uint64()
 	spec.Engine.Ethash.Params.EIP160Transition = genesis.Config.EIP155Block.Uint64()
 	spec.Engine.Ethash.Params.EIP161abcTransition = genesis.Config.EIP158Block.Uint64()
 	spec.Engine.Ethash.Params.EIP161dTransition = genesis.Config.EIP158Block.Uint64()
-	spec.Engine.Ethash.Params.EIP649Reward = (*hexutil.Big)(ethash.BlockReward)
+	spec.Engine.Ethash.Params.EIP649Reward = (*hexutil.Big)(ethash.ByzantiumBlockReward)
 	spec.Engine.Ethash.Params.EIP100bTransition = genesis.Config.ByzantiumBlock.Uint64()
 	spec.Engine.Ethash.Params.EIP649Transition = genesis.Config.ByzantiumBlock.Uint64()
 
 	spec.Params.MaximumExtraDataSize = (hexutil.Uint64)(params.MaximumExtraDataSize)
-	spec.Params.MinGasLimit = (*hexutil.Big)(params.MinGasLimit)
+	spec.Params.MinGasLimit = (hexutil.Uint64)(params.MinGasLimit)
+	spec.Params.GasLimitBoundDivisor = (hexutil.Uint64)(params.GasLimitBoundDivisor)
 	spec.Params.NetworkID = (hexutil.Uint64)(genesis.Config.ChainId.Uint64())
 	spec.Params.MaxCodeSize = params.MaxCodeSize
 	spec.Params.EIP155Transition = genesis.Config.EIP155Block.Uint64()
@@ -294,10 +294,10 @@ func newParityChainSpec(network string, genesis *core.Genesis, bootnodes []strin
 	spec.Params.EIP214Transition = genesis.Config.ByzantiumBlock.Uint64()
 	spec.Params.EIP658Transition = genesis.Config.ByzantiumBlock.Uint64()
 
-	spec.Genesis.Seal.Ethereum.Nonce = (hexutil.Bytes)(make([]byte, 8))
-	binary.LittleEndian.PutUint64(spec.Genesis.Seal.Ethereum.Nonce[:], genesis.Nonce)
+	spec.Genesis.Seal.Genom.Nonce = (hexutil.Bytes)(make([]byte, 8))
+	binary.LittleEndian.PutUint64(spec.Genesis.Seal.Genom.Nonce[:], genesis.Nonce)
 
-	spec.Genesis.Seal.Ethereum.MixHash = (hexutil.Bytes)(genesis.Mixhash[:])
+	spec.Genesis.Seal.Genom.MixHash = (hexutil.Bytes)(genesis.Mixhash[:])
 	spec.Genesis.Difficulty = (*hexutil.Big)(genesis.Difficulty)
 	spec.Genesis.Author = genesis.Coinbase
 	spec.Genesis.Timestamp = (hexutil.Uint64)(genesis.Timestamp)
@@ -342,7 +342,7 @@ func newParityChainSpec(network string, genesis *core.Genesis, bootnodes []strin
 }
 
 // pyEthereumGenesisSpec represents the genesis specification format used by the
-// Python Ethereum implementation.
+// Python Genom implementation.
 type pyEthereumGenesisSpec struct {
 	Nonce      hexutil.Bytes     `json:"nonce"`
 	Timestamp  hexutil.Uint64    `json:"timestamp"`

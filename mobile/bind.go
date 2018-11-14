@@ -68,7 +68,7 @@ func (opts *CallOpts) SetGasLimit(limit int64)     { /* TODO(karalabe) */ }
 func (opts *CallOpts) SetContext(context *Context) { opts.opts.Context = context.context }
 
 // TransactOpts is the collection of authorization data required to create a
-// valid Ethereum transaction.
+// valid Genom transaction.
 type TransactOpts struct {
 	opts bind.TransactOpts
 }
@@ -77,7 +77,7 @@ func (opts *TransactOpts) GetFrom() *Address    { return &Address{opts.opts.From
 func (opts *TransactOpts) GetNonce() int64      { return opts.opts.Nonce.Int64() }
 func (opts *TransactOpts) GetValue() *BigInt    { return &BigInt{opts.opts.Value} }
 func (opts *TransactOpts) GetGasPrice() *BigInt { return &BigInt{opts.opts.GasPrice} }
-func (opts *TransactOpts) GetGasLimit() int64   { return opts.opts.GasLimit.Int64() }
+func (opts *TransactOpts) GetGasLimit() int64   { return int64(opts.opts.GasLimit) }
 
 // GetSigner cannot be reliably implemented without identity preservation (https://github.com/golang/go/issues/16876)
 // func (opts *TransactOpts) GetSigner() Signer { return &signer{opts.opts.Signer} }
@@ -99,7 +99,7 @@ func (opts *TransactOpts) SetSigner(s Signer) {
 }
 func (opts *TransactOpts) SetValue(value *BigInt)      { opts.opts.Value = value.bigint }
 func (opts *TransactOpts) SetGasPrice(price *BigInt)   { opts.opts.GasPrice = price.bigint }
-func (opts *TransactOpts) SetGasLimit(limit int64)     { opts.opts.GasLimit = big.NewInt(limit) }
+func (opts *TransactOpts) SetGasLimit(limit int64)     { opts.opts.GasLimit = uint64(limit) }
 func (opts *TransactOpts) SetContext(context *Context) { opts.opts.Context = context.context }
 
 // BoundContract is the base wrapper object that reflects a contract on the
@@ -111,7 +111,7 @@ type BoundContract struct {
 	deployer *types.Transaction
 }
 
-// DeployContract deploys a contract onto the Ethereum blockchain and binds the
+// DeployContract deploys a contract onto the Genom blockchain and binds the
 // deployment address with a wrapper.
 func DeployContract(opts *TransactOpts, abiJSON string, bytecode []byte, client *EthereumClient, args *Interfaces) (contract *BoundContract, _ error) {
 	// Deploy the contract to the network
@@ -138,7 +138,7 @@ func BindContract(address *Address, abiJSON string, client *EthereumClient) (con
 		return nil, err
 	}
 	return &BoundContract{
-		contract: bind.NewBoundContract(address.address, parsed, client.client, client.client),
+		contract: bind.NewBoundContract(address.address, parsed, client.client, client.client, client.client),
 		address:  address.address,
 	}, nil
 }
@@ -154,12 +154,20 @@ func (c *BoundContract) GetDeployer() *Transaction {
 // Call invokes the (constant) contract method with params as input values and
 // sets the output to result.
 func (c *BoundContract) Call(opts *CallOpts, out *Interfaces, method string, args *Interfaces) error {
-	results := make([]interface{}, len(out.objects))
-	copy(results, out.objects)
-	if err := c.contract.Call(&opts.opts, &results, method, args.objects...); err != nil {
-		return err
+	if len(out.objects) == 1 {
+		result := out.objects[0]
+		if err := c.contract.Call(&opts.opts, result, method, args.objects...); err != nil {
+			return err
+		}
+		out.objects[0] = result
+	} else {
+		results := make([]interface{}, len(out.objects))
+		copy(results, out.objects)
+		if err := c.contract.Call(&opts.opts, &results, method, args.objects...); err != nil {
+			return err
+		}
+		copy(out.objects, results)
 	}
-	copy(out.objects, results)
 	return nil
 }
 

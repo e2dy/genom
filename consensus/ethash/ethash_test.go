@@ -42,8 +42,9 @@ func TestTestMode(t *testing.T) {
 		t.Fatalf("unexpected verification error: %v", err)
 	}
 }
+
 // This test checks that cache lru logic doesn't crash under load.
-// It reproduces https://github.com/ethereum/go-ethereum/issues/14943
+// It reproduces https://github.com/genom-project/genom/issues/14943
 func TestCacheFileEvict(t *testing.T) {
 	tmpdir, err := ioutil.TempDir("", "ethash-test")
 	if err != nil {
@@ -51,6 +52,7 @@ func TestCacheFileEvict(t *testing.T) {
 	}
 	defer os.RemoveAll(tmpdir)
 	e := New(Config{CachesInMem: 3, CachesOnDisk: 10, CacheDir: tmpdir, PowMode: ModeTest})
+
 	workers := 8
 	epochs := 100
 	var wg sync.WaitGroup
@@ -60,8 +62,10 @@ func TestCacheFileEvict(t *testing.T) {
 	}
 	wg.Wait()
 }
+
 func verifyTest(wg *sync.WaitGroup, e *Ethash, workerIndex, epochs int) {
 	defer wg.Done()
+
 	const wiggle = 4 * epochLength
 	r := rand.New(rand.NewSource(int64(workerIndex)))
 	for epoch := 0; epoch < epochs; epoch++ {

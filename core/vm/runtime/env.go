@@ -17,8 +17,6 @@
 package runtime
 
 import (
-	"math/big"
-
 	"github.com/genom-project/genom/common"
 	"github.com/genom-project/genom/core"
 	"github.com/genom-project/genom/core/vm"
@@ -35,7 +33,7 @@ func NewEnv(cfg *Config) *vm.EVM {
 		BlockNumber: cfg.BlockNumber,
 		Time:        cfg.Time,
 		Difficulty:  cfg.Difficulty,
-		GasLimit:    new(big.Int).SetUint64(cfg.GasLimit),
+		GasLimit:    cfg.GasLimit,
 		GasPrice:    cfg.GasPrice,
 	}
 

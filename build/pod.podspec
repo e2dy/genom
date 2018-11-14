@@ -6,7 +6,7 @@ Pod::Spec.new do |spec|
   spec.authors      = { {{range .Contributors}}
 		'{{.Name}}' => '{{.Email}}',{{end}}
 	}
-  spec.summary      = 'iOS Ethereum Client'
+  spec.summary      = 'iOS Genom Client'
   spec.source       = { :git => 'https://github.com/genom-project/genom.git', :commit => '{{.Commit}}' }
 
 	spec.platform = :ios

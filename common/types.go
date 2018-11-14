@@ -135,7 +135,7 @@ func (h UnprefixedHash) MarshalText() ([]byte, error) {
 
 /////////// Address
 
-// Address represents the 20 byte address of an Ethereum account.
+// Address represents the 20 byte address of an Genom account.
 type Address [AddressLength]byte
 
 func BytesToAddress(b []byte) Address {

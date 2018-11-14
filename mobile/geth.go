@@ -34,7 +34,7 @@ import (
 	"github.com/genom-project/genom/p2p"
 	"github.com/genom-project/genom/p2p/nat"
 	"github.com/genom-project/genom/params"
-	whisper "github.com/genom-project/genom/whisper/whisperv5"
+	whisper "github.com/genom-project/genom/whisper/whisperv6"
 )
 
 // NodeConfig represents the collection of configuration values to fine tune the Geth
@@ -49,22 +49,22 @@ type NodeConfig struct {
 	// set to zero, then only the configured static and trusted peers can connect.
 	MaxPeers int
 
-	// GenomEnabled specifies whether the node should run the Ethereum protocol.
+	// EthereumEnabled specifies whether the node should run the Genom protocol.
 	EthereumEnabled bool
 
-	// GenomNetworkID is the network identifier used by the Ethereum protocol to
+	// EthereumNetworkID is the network identifier used by the Genom protocol to
 	// decide if remote peers should be accepted or not.
 	EthereumNetworkID int64 // uint64 in truth, but Java can't handle that...
 
-	// GenomGenesis is the genesis JSON to use to seed the blockchain with. An
+	// EthereumGenesis is the genesis JSON to use to seed the blockchain with. An
 	// empty genesis state is equivalent to using the mainnet's state.
 	EthereumGenesis string
 
-	// GenomDatabaseCache is the system memory in MB to allocate for database caching.
+	// EthereumDatabaseCache is the system memory in MB to allocate for database caching.
 	// A minimum of 16MB is always reserved.
 	EthereumDatabaseCache int
 
-	// GenomNetStats is a netstats connection string to use to report various
+	// EthereumNetStats is a netstats connection string to use to report various
 	// chain, transaction and node stats to a monitoring server.
 	//
 	// It has the form "nodename:secret@host:port"
@@ -90,7 +90,7 @@ func NewNodeConfig() *NodeConfig {
 	return &config
 }
 
-// Node represents a Geth Ethereum node instance.
+// Node represents a Geth Genom node instance.
 type Node struct {
 	node *node.Node
 }
@@ -142,7 +142,7 @@ func NewNode(datadir string, config *NodeConfig) (stack *Node, _ error) {
 			}
 		}
 	}
-	// Register the Ethereum protocol if requested
+	// Register the Genom protocol if requested
 	if config.EthereumEnabled {
 		ethConf := eth.DefaultConfig
 		ethConf.Genesis = genesis
@@ -188,7 +188,7 @@ func (n *Node) Stop() error {
 	return n.node.Stop()
 }
 
-// GetEthereumClient retrieves a client to access the Ethereum subsystem.
+// GetEthereumClient retrieves a client to access the Genom subsystem.
 func (n *Node) GetEthereumClient() (client *EthereumClient, _ error) {
 	rpc, err := n.node.Attach()
 	if err != nil {

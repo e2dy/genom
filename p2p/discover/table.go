@@ -455,7 +455,7 @@ func (tab *Table) loadSeedNodes(bond bool) {
 	}
 	for i := range seeds {
 		seed := seeds[i]
-		age := log.Lazy{Fn: func() interface{} { return time.Since(tab.db.lastPong(seed.ID)) }}
+		age := log.Lazy{Fn: func() interface{} { return time.Since(tab.db.bondTime(seed.ID)) }}
 		log.Debug("Found seed node in database", "id", seed.ID, "addr", seed.addr(), "age", age)
 		tab.add(seed)
 	}
@@ -596,7 +596,7 @@ func (tab *Table) bond(pinged bool, id NodeID, addr *net.UDPAddr, tcpPort uint16
 	}
 	// Start bonding if we haven't seen this node for a while or if it failed findnode too often.
 	node, fails := tab.db.node(id), tab.db.findFails(id)
-	age := time.Since(tab.db.lastPong(id))
+	age := time.Since(tab.db.bondTime(id))
 	var result error
 	if fails > 0 || age > nodeDBNodeExpiration {
 		log.Trace("Starting bonding ping/pong", "id", id, "known", node != nil, "failcount", fails, "age", age)
@@ -663,7 +663,7 @@ func (tab *Table) ping(id NodeID, addr *net.UDPAddr) error {
 	if err := tab.net.ping(id, addr); err != nil {
 		return err
 	}
-	tab.db.updateLastPong(id, time.Now())
+	tab.db.updateBondTime(id, time.Now())
 	return nil
 }
 
@@ -763,7 +763,7 @@ func (tab *Table) addReplacement(b *bucket, n *Node) {
 // last entry in the bucket. If 'last' isn't the last entry, it has either been replaced
 // with someone else or became active.
 func (tab *Table) replace(b *bucket, last *Node) *Node {
-	if len(b.entries) >= 0 && b.entries[len(b.entries)-1].ID != last.ID {
+	if len(b.entries) == 0 || b.entries[len(b.entries)-1].ID != last.ID {
 		// Entry has moved, don't replace it.
 		return nil
 	}

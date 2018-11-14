@@ -308,6 +308,21 @@ web3._extend({
 			params: 1
 		}),
 		new web3._extend.Method({
+			name: 'mutexProfile',
+			call: 'debug_mutexProfile',
+			params: 2
+		}),
+		new web3._extend.Method({
+			name: 'setMutexProfileRate',
+			call: 'debug_setMutexProfileRate',
+			params: 1
+		}),
+		new web3._extend.Method({
+			name: 'writeMutexProfile',
+			call: 'debug_writeMutexProfile',
+			params: 1
+		}),
+		new web3._extend.Method({
 			name: 'writeMemProfile',
 			call: 'debug_writeMemProfile',
 			params: 1
@@ -416,24 +431,6 @@ web3._extend({
 			params: 2,
 			inputFormatter: [web3._extend.formatters.inputBlockNumberFormatter, web3._extend.utils.toHex]
 		}),
-	
-		new web3._extend.Method({
-			name: 'getTransactionsByAddress',
-			call: 'eth_getTransactionsByAddress',
-			params: 8,
-			inputFormatter: [web3._extend.formatters.inputAddressFormatter, null, null, null, null, null, null, null]
-		}),
-		new web3._extend.Method({
-			name: 'buildATXI',
-			call: 'eth_buildATXI',
-			params: 3,
-			inputFormatter: [null, null, null]
-		}),
-		new web3._extend.Method({
-			name: 'getATXIBuildStatus',
-			call: 'eth_getATXIBuildStatus',
-			params: 0,
-		})
 	],
 	properties: [
 		new web3._extend.Property({
@@ -534,6 +531,12 @@ web3._extend({
 			name: 'deriveAccount',
 			call: 'personal_deriveAccount',
 			params: 3
+		}),
+		new web3._extend.Method({
+			name: 'signTransaction',
+			call: 'personal_signTransaction',
+			params: 2,
+			inputFormatter: [web3._extend.formatters.inputTransactionFormatter, null]
 		}),
 	],
 	properties: [
