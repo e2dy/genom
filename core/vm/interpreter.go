@@ -68,7 +68,7 @@ type Interpreter interface {
 }
 
 // EVMInterpreter represents an EVM interpreter
-+type EVMInterpreter struct {
+type EVMInterpreter struct {
  	evm      *EVM
  	cfg      Config
  	gasTable params.GasTable
