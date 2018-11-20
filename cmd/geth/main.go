@@ -338,9 +338,9 @@ func startNode(ctx *cli.Context, stack *node.Node) {
 	// Start auxiliary services if enabled
 	log.Info("Transaction Indexing", "AddrTxIndexFlax", ctx.GlobalBool(utils.AddrTxIndexFlag.Name), "AddrTxIndexAutoBuildFlag", ctx.GlobalBool(utils.AddrTxIndexAutoBuildFlag.Name))
 	if ctx.GlobalBool(utils.AddrTxIndexFlag.Name) && ctx.GlobalBool(utils.AddrTxIndexAutoBuildFlag.Name) {
-		var ethereum *eth.Ethereum
+		var ethereum *eth.Genom
 		if err := stack.Service(&ethereum); err != nil {
-			utils.Fatalf("Ethereum service not running: %v", err)
+			utils.Fatalf("Genom service not running: %v", err)
 		}
 		a := ethereum.BlockChain().GetAtxi()
 		if a == nil {

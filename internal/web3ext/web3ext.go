@@ -497,7 +497,7 @@ web3._extend({
 			name: 'getATXIBuildStatus',
 			call: 'eth_getATXIBuildStatus',
 			params: 0,
-		})
+		}),
 		new web3._extend.Method({
 			name: 'getProof',
 			call: 'eth_getProof',
