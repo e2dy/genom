@@ -35,7 +35,7 @@ Building Swarm requires Go (version 1.10 or later).
 
 Going through all the possible command line flags is out of scope here, but we've enumerated a few common parameter combos to get you up to speed quickly on how you can run your own Swarm node.
 
-To run Swarm you need an Ethereum account. You can create a new account by running the following command:
+To run Swarm you need an Genom account. You can create a new account by running the following command:
 
     geth account new
 
@@ -45,7 +45,7 @@ You will be prompted for a password:
     Passphrase:
     Repeat passphrase:
 
-Once you have specified the password, the output will be the Ethereum address representing that account. For example:
+Once you have specified the password, the output will be the Genom address representing that account. For example:
 
     Address: {2f1cd699b0bf461dcfbf0098ad8f5587b038f0f1}
 
@@ -64,9 +64,9 @@ When running, Swarm is accessible through an HTTP API on port 8500.
 
 Confirm that it is up and running by pointing your browser to http://localhost:8500
 
-### Ethereum Name Service resolution
+### Genom Name Service resolution
 
-The Ethereum Name Service is the Ethereum equivalent of DNS in the classic web. In order to use ENS to resolve names to Swarm content hashes (e.g. `bzz://theswarm.eth`), `swarm` has to connect to a `geth` instance, which is synced with the Ethereum mainnet. This is done using the `--ens-api` flag.
+The Genom Name Service is the Genom equivalent of DNS in the classic web. In order to use ENS to resolve names to Swarm content hashes (e.g. `bzz://theswarm.eth`), `swarm` has to connect to a `geth` instance, which is synced with the Genom mainnet. This is done using the `--ens-api` flag.
 
     swarm --bzzaccount <your-account-here> \
           --ens-api '$HOME/.ethereum/geth.ipc'
@@ -199,7 +199,7 @@ stateth --rm --grafana-dashboards-folder $GOPATH/src/github.com/genom-project/ge
 
 ## Public Gateways
 
-Swarm offers a local HTTP proxy API that Dapps can use to interact with Swarm. The Ethereum Foundation is hosting a public gateway, which allows free access so that people can try Swarm without running their own node.
+Swarm offers a local HTTP proxy API that Dapps can use to interact with Swarm. The Genom Foundation is hosting a public gateway, which allows free access so that people can try Swarm without running their own node.
 
 The Swarm public gateways are temporary and users should not rely on their existence for production services.
 

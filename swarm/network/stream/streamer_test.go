@@ -19,6 +19,7 @@ package stream
 import (
 	"bytes"
 	"context"
+	"errors"
 	"strconv"
 	"testing"
 	"time"
@@ -512,7 +513,7 @@ func TestStreamerDownstreamCorruptHashesMsgExchange(t *testing.T) {
 						To:     8,
 						Stream: stream,
 					},
-					Peer: peerID,
+					Peer: node.ID(),
 				},
 			},
 		})
@@ -521,7 +522,7 @@ func TestStreamerDownstreamCorruptHashesMsgExchange(t *testing.T) {
 	}
 
 	expectedError := errors.New("Message handler error: (msg code 1): error invalid hashes length (len: 40)")
-	if err := tester.TestDisconnected(&p2ptest.Disconnect{Peer: tester.IDs[0], Error: expectedError}); err != nil {
+	if err := tester.TestDisconnected(&p2ptest.Disconnect{Peer: node.ID(), Error: expectedError}); err != nil {
 		t.Fatal(err)
 	}
 }
@@ -542,9 +543,9 @@ func TestStreamerDownstreamOfferedHashesMsgExchange(t *testing.T) {
 		return tc, nil
 	})
 
-	peerID := tester.IDs[0]
+	node := tester.Nodes[0]
 
-	err = streamer.Subscribe(peerID, stream, NewRange(5, 8), Top)
+	err = streamer.Subscribe(node.ID(), stream, NewRange(5, 8), Top)
 	if err != nil {
 		t.Fatalf("Expected no error, got %v", err)
 	}
@@ -559,7 +560,7 @@ func TestStreamerDownstreamOfferedHashesMsgExchange(t *testing.T) {
 					History:  NewRange(5, 8),
 					Priority: Top,
 				},
-				Peer: peerID,
+				Peer: node.ID(),
 			},
 		},
 	},
@@ -753,83 +754,83 @@ func TestStreamerRequestSubscriptionQuitMsgExchange(t *testing.T) {
 	}
 }
 
-+// TestMaxPeerServersWithUnsubscribe creates a registry with a limited
-+// number of stream servers, and performs a test with subscriptions and
-+// unsubscriptions, checking if unsubscriptions will remove streams,
-+// leaving place for new streams.
-+func TestMaxPeerServersWithUnsubscribe(t *testing.T) {
-+	var maxPeerServers = 6
-+	tester, streamer, _, teardown, err := newStreamerTester(t, &RegistryOptions{
-+		MaxPeerServers: maxPeerServers,
-+	})
-+	defer teardown()
-+	if err != nil {
-+		t.Fatal(err)
-+	}
-+
-+	streamer.RegisterServerFunc("foo", func(p *Peer, t string, live bool) (Server, error) {
-+		return newTestServer(t), nil
-+	})
-+
-+	peerID := tester.IDs[0]
-+
-+	for i := 0; i < maxPeerServers+10; i++ {
-+		stream := NewStream("foo", strconv.Itoa(i), true)
-+
-+		err = tester.TestExchanges(p2ptest.Exchange{
-+			Label: "Subscribe message",
-+			Triggers: []p2ptest.Trigger{
-+				{
-+					Code: 4,
-+					Msg: &SubscribeMsg{
-+						Stream:   stream,
-+						Priority: Top,
-+					},
-+					Peer: peerID,
-+				},
-+			},
-+			Expects: []p2ptest.Expect{
-+				{
-+					Code: 1,
-+					Msg: &OfferedHashesMsg{
-+						Stream: stream,
-+						HandoverProof: &HandoverProof{
-+							Handover: &Handover{},
-+						},
-+						Hashes: make([]byte, HashSize),
-+						From:   1,
-+						To:     1,
-+					},
-+					Peer: peerID,
-+				},
-+			},
-+		})
-+
-+		if err != nil {
-+			t.Fatal(err)
-+		}
-+
-+		err = tester.TestExchanges(p2ptest.Exchange{
-+			Label: "unsubscribe message",
-+			Triggers: []p2ptest.Trigger{
-+				{
-+					Code: 0,
-+					Msg: &UnsubscribeMsg{
-+						Stream: stream,
-+					},
-+					Peer: peerID,
-+				},
-+			},
-+		})
-+
-+		if err != nil {
-+			t.Fatal(err)
-+		}
-+	}
-+}
+// TestMaxPeerServersWithUnsubscribe creates a registry with a limited
+// number of stream servers, and performs a test with subscriptions and
+// unsubscriptions, checking if unsubscriptions will remove streams,
+// leaving place for new streams.
+func TestMaxPeerServersWithUnsubscribe(t *testing.T) {
+	var maxPeerServers = 6
+	tester, streamer, _, teardown, err := newStreamerTester(t, &RegistryOptions{
+		MaxPeerServers: maxPeerServers,
+	})
+	defer teardown()
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	streamer.RegisterServerFunc("foo", func(p *Peer, t string, live bool) (Server, error) {
+		return newTestServer(t), nil
+	})
+
+	node := tester.Nodes[0]
+
+	for i := 0; i < maxPeerServers+10; i++ {
+		stream := NewStream("foo", strconv.Itoa(i), true)
+
+		err = tester.TestExchanges(p2ptest.Exchange{
+			Label: "Subscribe message",
+			Triggers: []p2ptest.Trigger{
+				{
+					Code: 4,
+					Msg: &SubscribeMsg{
+						Stream:   stream,
+						Priority: Top,
+					},
+					Peer: node.ID(),
+				},
+			},
+			Expects: []p2ptest.Expect{
+				{
+					Code: 1,
+					Msg: &OfferedHashesMsg{
+						Stream: stream,
+						HandoverProof: &HandoverProof{
+							Handover: &Handover{},
+						},
+						Hashes: make([]byte, HashSize),
+						From:   1,
+						To:     1,
+					},
+					Peer: node.ID(),
+				},
+			},
+		})
+
+		if err != nil {
+			t.Fatal(err)
+		}
+
+		err = tester.TestExchanges(p2ptest.Exchange{
+			Label: "unsubscribe message",
+			Triggers: []p2ptest.Trigger{
+				{
+					Code: 0,
+					Msg: &UnsubscribeMsg{
+						Stream: stream,
+					},
+					Peer: node.ID(),
+				},
+			},
+		})
+
+		if err != nil {
+			t.Fatal(err)
+		}
+	}
+}
 
 // TestMaxPeerServersWithoutUnsubscribe creates a registry with a limited
-// number of stream servers, and performs subscriptions to detect sunscriptions
+// number of stream servers, and performs subscriptions to detect subscriptions
 // error message exchange.
 func TestMaxPeerServersWithoutUnsubscribe(t *testing.T) {
 	var maxPeerServers = 6
@@ -845,7 +846,7 @@ func TestMaxPeerServersWithoutUnsubscribe(t *testing.T) {
 		return newTestServer(t), nil
 	})
 
-	peerID := tester.IDs[0]
+	node := tester.Nodes[0]
 
 	for i := 0; i < maxPeerServers+10; i++ {
 		stream := NewStream("foo", strconv.Itoa(i), true)
@@ -860,7 +861,7 @@ func TestMaxPeerServersWithoutUnsubscribe(t *testing.T) {
 							Stream:   stream,
 							Priority: Top,
 						},
-						Peer: peerID,
+						Peer: node.ID(),
 					},
 				},
 				Expects: []p2ptest.Expect{
@@ -869,7 +870,7 @@ func TestMaxPeerServersWithoutUnsubscribe(t *testing.T) {
 						Msg: &SubscribeErrorMsg{
 							Error: ErrMaxPeerServers.Error(),
 						},
-						Peer: peerID,
+						Peer: node.ID(),
 					},
 				},
 			})
@@ -889,7 +890,7 @@ func TestMaxPeerServersWithoutUnsubscribe(t *testing.T) {
 						Stream:   stream,
 						Priority: Top,
 					},
-					Peer: peerID,
+					Peer: node.ID(),
 				},
 			},
 			Expects: []p2ptest.Expect{
@@ -904,7 +905,7 @@ func TestMaxPeerServersWithoutUnsubscribe(t *testing.T) {
 						From:   1,
 						To:     1,
 					},
-					Peer: peerID,
+					Peer: node.ID(),
 				},
 			},
 		})
