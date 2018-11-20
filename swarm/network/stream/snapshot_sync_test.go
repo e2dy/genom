@@ -17,9 +17,7 @@ package stream
 
 import (
 	"context"
-	crand "crypto/rand"
 	"fmt"
-	"io"
 	"os"
 	"runtime"
 	"sync"
@@ -39,6 +37,7 @@ import (
 	"github.com/genom-project/genom/swarm/state"
 	"github.com/genom-project/genom/swarm/storage"
 	mockdb "github.com/genom-project/genom/swarm/storage/mock/db"
+	"github.com/genom-project/genom/swarm/testutil"
 )
 
 const MaxTimeout = 600
@@ -165,8 +164,8 @@ func streamerFunc(ctx *adapters.ServiceContext, bucket *sync.Map) (s node.Servic
 	netStore.NewNetFetcherFunc = network.NewFetcherFactory(dummyRequestFromPeers, true).New
 
 	r := NewRegistry(addr.ID(), delivery, netStore, state.NewInmemoryStore(), &RegistryOptions{
-		DoSync:          true,
-		DoServeRetrieve: true,
+		Retrieval:       RetrievalDisabled,
+		Syncing:         SyncingAutoSubscribe,
 		SyncUpdateDelay: 3 * time.Second,
 	})
 
@@ -360,8 +359,8 @@ func testSyncingViaDirectSubscribe(t *testing.T, chunkCount int, nodeCount int) 
 			netStore.NewNetFetcherFunc = network.NewFetcherFactory(dummyRequestFromPeers, true).New
 
 			r := NewRegistry(addr.ID(), delivery, netStore, state.NewInmemoryStore(), &RegistryOptions{
-				DoServeRetrieve: true,
-				DoSync:          true,
+				Retrieval: RetrievalDisabled,
+				Syncing:   SyncingRegisterOnly,
 			})
 			bucket.Store(bucketKeyRegistry, r)
 
@@ -603,7 +602,7 @@ func uploadFileToSingleNodeStore(id enode.ID, chunkCount int, lstore *storage.Lo
 	size := chunkSize
 	var rootAddrs []storage.Address
 	for i := 0; i < chunkCount; i++ {
-		rk, wait, err := fileStore.Store(context.TODO(), io.LimitReader(crand.Reader, int64(size)), int64(size), false)
+		rk, wait, err := fileStore.Store(context.TODO(), testutil.RandomReader(i, size), int64(size), false)
 		if err != nil {
 			return nil, err
 		}

@@ -18,10 +18,8 @@ package stream
 
 import (
 	"context"
-	crand "crypto/rand"
 	"encoding/binary"
 	"fmt"
-	"io"
 	"os"
 	"sync"
 	"testing"
@@ -36,6 +34,7 @@ import (
 	"github.com/genom-project/genom/swarm/network/simulation"
 	"github.com/genom-project/genom/swarm/state"
 	"github.com/genom-project/genom/swarm/storage"
+	"github.com/genom-project/genom/swarm/testutil"
 )
 
 func TestIntervalsLive(t *testing.T) {
@@ -83,6 +82,8 @@ func testIntervals(t *testing.T, live bool, history *Range, skipCheck bool) {
 			netStore.NewNetFetcherFunc = network.NewFetcherFactory(delivery.RequestFromPeers, true).New
 
 			r := NewRegistry(addr.ID(), delivery, netStore, state.NewInmemoryStore(), &RegistryOptions{
+				Retrieval: RetrievalDisabled,
+				Syncing:   SyncingRegisterOnly,
 				SkipCheck: skipCheck,
 			})
 			bucket.Store(bucketKeyRegistry, r)
@@ -128,7 +129,8 @@ func testIntervals(t *testing.T, live bool, history *Range, skipCheck bool) {
 		fileStore := item.(*storage.FileStore)
 
 		size := chunkCount * chunkSize
-		_, wait, err := fileStore.Store(ctx, io.LimitReader(crand.Reader, int64(size)), int64(size), false)
+
+		_, wait, err := fileStore.Store(ctx, testutil.RandomReader(1, size), int64(size), false)
 		if err != nil {
 			log.Error("Store error: %v", "err", err)
 			t.Fatal(err)
