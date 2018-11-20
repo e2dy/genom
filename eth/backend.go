@@ -166,6 +166,7 @@ func New(ctx *node.ServiceContext, config *Config) (*Genom, error) {
 	if eth.protocolManager, err = NewProtocolManager(eth.chainConfig, config.SyncMode, config.NetworkId, eth.eventMux, eth.txPool, eth.engine, eth.blockchain, chainDb); err != nil {
 		return nil, err
 	}
+	
 	eth.miner = miner.New(eth, eth.chainConfig, eth.EventMux(), eth.engine)
 	eth.miner.SetExtra(makeExtraData(config.ExtraData))
 
@@ -408,12 +409,13 @@ func (s *Genom) Start(srvr *p2p.Server) error {
 
 // Stop implements node.Service, terminating all internal goroutines used by the
 // Genom protocol.
-func (s *Genom) Stop() error {	
-	s.bloomIndexer.Close()
-	s.blockchain.Stop()
+func (s *Genom) Stop() error {
+ 	s.bloomIndexer.Close()
+ 	s.blockchain.Stop()
+	s.engine.Close()
 	s.protocolManager.Stop()
-	if s.lesServer != nil {
-		s.lesServer.Stop()
+ 	if s.lesServer != nil {
+ 		s.lesServer.Stop()
 	}
 	s.txPool.Stop()
 	s.miner.Stop()
@@ -421,6 +423,5 @@ func (s *Genom) Stop() error {
 
 	s.chainDb.Close()
 	close(s.shutdownChan)
-
 	return nil
 }
