@@ -44,7 +44,7 @@ type Config struct {
 	EWASMInterpreter string
 	// Type of the EVM interpreter
 	EVMInterpreter string
-	EVMInterpreter string
+
 }
 
 // Interpreter is used to run Genom based contracts and will utilise the
