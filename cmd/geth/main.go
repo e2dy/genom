@@ -33,6 +33,7 @@ import (
 	"github.com/genom-project/genom/cmd/utils"
 	"github.com/genom-project/genom/common"
 	"github.com/genom-project/genom/console"
+	"github.com/genom-project/genom/core"
 	"github.com/genom-project/genom/eth"
 	"github.com/genom-project/genom/ethclient"
 	"github.com/genom-project/genom/internal/debug"
@@ -97,6 +98,8 @@ var (
 		utils.ListenPortFlag,
 		utils.MaxPeersFlag,
 		utils.MaxPendingPeersFlag,
+		utils.AddrTxIndexFlag,
+		utils.AddrTxIndexAutoBuildFlag,
 		utils.MiningEnabledFlag,
 		utils.MinerThreadsFlag,
 		utils.MinerLegacyThreadsFlag,
@@ -200,6 +203,8 @@ func init() {
 		licenseCommand,
 		// See config.go
 		dumpConfigCommand,
+		// See build_atxi_cmd.go
+		buildAddrTxIndexCommand,
 	}
 	sort.Sort(cli.CommandsByName(app.Commands))
 
@@ -331,6 +336,20 @@ func startNode(ctx *cli.Context, stack *node.Node) {
 		}
 	}()
 	// Start auxiliary services if enabled
+	log.Info("Transaction Indexing", "AddrTxIndexFlax", ctx.GlobalBool(utils.AddrTxIndexFlag.Name), "AddrTxIndexAutoBuildFlag", ctx.GlobalBool(utils.AddrTxIndexAutoBuildFlag.Name))
+	if ctx.GlobalBool(utils.AddrTxIndexFlag.Name) && ctx.GlobalBool(utils.AddrTxIndexAutoBuildFlag.Name) {
+		var ethereum *eth.Ethereum
+		if err := stack.Service(&ethereum); err != nil {
+			utils.Fatalf("Ethereum service not running: %v", err)
+		}
+		a := ethereum.BlockChain().GetAtxi()
+		if a == nil {
+			panic("somehow atxi did not get enabled in backend setup. this is not expected")
+		}
+		a.AutoMode = true
+		go core.BuildAddrTxIndex(ethereum.BlockChain(), ethereum.ChainDb(), a.Db, math.MaxUint64, math.MaxUint64, 10000)
+	}
+
 	if ctx.GlobalBool(utils.MiningEnabledFlag.Name) || ctx.GlobalBool(utils.DeveloperFlag.Name) {
 		// Mining only makes sense if a full Genom node is running
 		if ctx.GlobalString(utils.SyncModeFlag.Name) == "light" {
