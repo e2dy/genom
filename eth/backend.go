@@ -354,8 +354,6 @@ func (s *Genom) StartMining(threads int) error {
 		}
 		th.SetThreads(threads)
 	}
-	if local {
-		// If the miner was not running, initialize it
 	if !s.IsMining() {
 		// Propagate the initial price point to the transaction pool
 		s.lock.RLock()
@@ -383,7 +381,6 @@ func (s *Genom) StartMining(threads int) error {
 		
 		go s.miner.Start(eb)
 	}
-	go s.miner.Start(eb)
 	return nil
 }
 
