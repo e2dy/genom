@@ -39,6 +39,12 @@ type Config struct {
 	// may be left uninitialised and will be set to the default
 	// table.
 	JumpTable [256]operation
+	
+	// Type of the EWASM interpreter
+	EWASMInterpreter string
+	// Type of the EVM interpreter
+	EVMInterpreter string
+	EVMInterpreter string
 }
 
 // Interpreter is used to run Genom based contracts and will utilise the
