@@ -40,9 +40,9 @@ import (
 var (
 	//FrontierBlockReward    *big.Int = big.NewInt(5e+18) // Block reward in wei for successfully mining a block
 	//ByzantiumBlockReward   *big.Int = big.NewInt(9e+18) // Block reward in wei for successfully mining a block upward from Byzantium
-	BlockReward      *big.Int = big.NewInt(8e+18) // Block reward
-	GenomBlockReward      *big.Int = big.NewInt(6e+18) // Block reward Genom
-	HydraBlockReward      *big.Int = big.NewInt(6e+18) // Block reward Hydra
+	BlockReward      				= big.NewInt(8e+18) // Block reward
+	GenomBlockReward      			= big.NewInt(6e+18) // Block reward Genom
+	HydraBlockReward       			= big.NewInt(6e+18) // Block reward Hydra
 	maxUncles                       = 2                 // Maximum number of uncles allowed in a single block
 	allowedFutureBlockTime          = 15 * time.Second  // Max time from current time allowed for blocks, before they're considered future blocks
 )
