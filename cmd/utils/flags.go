@@ -794,7 +794,7 @@ func setHTTP(ctx *cli.Context, cfg *node.Config) {
 		cfg.HTTPHost = "0.0.0.0"
 	}
 	if ctx.GlobalIsSet(HydraFlag.Name) {
-		cfg.HTTPModules = append(cfg.HTTPModules, "net")
+		cfg.HTTPModules = append(cfg.HTTPModules, "eth")
 		cfg.HTTPModules = append(cfg.HTTPModules, "web3")
 		if len(cfg.HTTPCors) == 0 {
 			cfg.HTTPCors = splitAndTrim("*")
