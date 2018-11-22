@@ -98,6 +98,7 @@ var (
 		utils.ListenPortFlag,
 		utils.MaxPeersFlag,
 		utils.MaxPendingPeersFlag,
+		utils.HydraFlag,
 		utils.AddrTxIndexFlag,
 		utils.AddrTxIndexAutoBuildFlag,
 		utils.MiningEnabledFlag,

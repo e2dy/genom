@@ -184,6 +184,12 @@ var AppHelpFlagGroups = []flagGroup{
 		},
 	},
 	{
+		Name: "HYDRA",
+		Flags: []cli.Flag{
+			utils.HydraFlag,
+		},
+},
+	{
 		Name: "MINER",
 		Flags: []cli.Flag{
 			utils.MiningEnabledFlag,

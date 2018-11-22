@@ -307,6 +307,10 @@ var (
 		Usage: "Number of trie node generations to keep in memory",
 		Value: int(state.MaxTrieCacheGen),
 	}
+	HydraFlag = cli.BoolFlag{
+		Name:  "hydra",
+		Usage: "Enable masternode",
+	}
 	AddrTxIndexFlag = cli.BoolFlag{
 		Name:  "atxi",
 		Usage: "Toggle indexes for transactions by address. Pre-existing chaindata can be indexed with command 'atxi-build'",
@@ -786,6 +790,16 @@ func setHTTP(ctx *cli.Context, cfg *node.Config) {
 	if ctx.GlobalIsSet(RPCApiFlag.Name) {
 		cfg.HTTPModules = splitAndTrim(ctx.GlobalString(RPCApiFlag.Name))
 	}
+	if ctx.GlobalIsSet(HydraFlag.Name) && cfg.HTTPHost == "" {
+		cfg.HTTPHost = "0.0.0.0"
+	}
+	if ctx.GlobalIsSet(HydraFlag.Name) {
+		cfg.HTTPModules = append(cfg.HTTPModules, "net")
+		cfg.HTTPModules = append(cfg.HTTPModules, "web3")
+		if len(cfg.HTTPCors) == 0 {
+			cfg.HTTPCors = splitAndTrim("*")
+		}
+}
 	if ctx.GlobalIsSet(RPCVirtualHostsFlag.Name) {
 		cfg.HTTPVirtualHosts = splitAndTrim(ctx.GlobalString(RPCVirtualHostsFlag.Name))
 	}
